@@ -1,4 +1,4 @@
-use bob; 
+use test; 
 DROP TABLE IF EXISTS orderitems;
 DROP TABLE IF EXISTS orders;
 DROP TABLE IF EXISTS materials;
