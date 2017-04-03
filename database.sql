@@ -1,3 +1,4 @@
+use bob; 
 DROP TABLE IF EXISTS orderitems;
 DROP TABLE IF EXISTS orders;
 DROP TABLE IF EXISTS materials;
@@ -19,7 +20,8 @@ CREATE TABLE orders (
 	id INTEGER PRIMARY KEY NOT NULL,
 	customer_name VARCHAR(100) NOT NULL,
 	customer_email VARCHAR(100) NOT NULL,
-	customer_phone VARCHAR(100) NOT NULL
+	customer_phone VARCHAR(100) NOT NULL, 
+    isFinished boolean
 );
 
 CREATE TABLE orderitems (

@@ -13,6 +13,7 @@ public class Order
 {
     private int id;
     private String customerName,customerMail,customerPhone;
+    private boolean isFinished;
 
     public Order(int id, String customerName, String customerMail, String customerPhone)
     {
