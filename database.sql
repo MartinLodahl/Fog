@@ -1,7 +1,7 @@
-DROP TABLE orderitems;
-DROP TABLE orders;
-DROP TABLE materials;
-DROP TABLE users;
+DROP TABLE IF EXISTS orderitems;
+DROP TABLE IF EXISTS orders;
+DROP TABLE IF EXISTS materials;
+DROP TABLE IF EXISTS users;
 
 CREATE TABLE users (
 	username VARCHAR(100) PRIMARY KEY NOT NULL,
