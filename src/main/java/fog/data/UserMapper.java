@@ -1,0 +1,32 @@
+package fog.data;
+
+import fog.domain.User;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+public class UserMapper
+{
+    private final Connector connector;
+
+    public UserMapper(Connector connector) {
+        this.connector = connector;
+    }
+
+    public User getUserByUsername(String username) throws SQLException {
+        String query = "SELECT * FROM users  WHERE username = ?;";
+        Connection connection = connector.getConnection();
+        PreparedStatement stmt = connection.prepareStatement(query);
+        stmt.setString(1, username);
+        ResultSet res = stmt.executeQuery();
+
+        if (res.next()) {
+            String password = res.getString("password");
+            User user = new User(username, password);
+            return user;
+        } else {
+            return null;
+        }
+    }
+}
