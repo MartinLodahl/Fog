@@ -27,7 +27,7 @@ public class OrderMapper
     
     public Order getOrderById(int id) throws SQLException {
         
-        try {
+        
             String query = "SELECT * FROM orders  WHERE id = ?;";
             PreparedStatement stmt = connector.getConnection().prepareStatement(query);
             stmt.setInt(1, id);
@@ -46,12 +46,7 @@ public class OrderMapper
             else 
                 return null;
             
-        }
         
-        catch (Exception ex) {
-            ex.printStackTrace();
-            return null;
-        }
         
     }
     
