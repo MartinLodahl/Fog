@@ -66,11 +66,4 @@ public class OrderMapper {
         stmt.setInt(1, id);
         stmt.executeUpdate();
     }
-
-    public static void main(String[] args) throws SQLException {
-        Connector conn = new Connector();
-        OrderMapper om = new OrderMapper(conn);
-
-        om.finishOrder(100);
-    }
 }
