@@ -13,7 +13,8 @@ CREATE TABLE materials (
 	id INTEGER PRIMARY KEY NOT NULL,
 	name VARCHAR(100) NOT NULL,
 	type VARCHAR(100) NOT NULL,
-	size DECIMAL(5, 3) NOT NULL
+	size DECIMAL(7, 2) NOT NULL,
+    price double(8,2) NOT NULL
 );
 
 CREATE TABLE orders (
