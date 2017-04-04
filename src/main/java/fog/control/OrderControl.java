@@ -7,6 +7,7 @@ package fog.control;
 
 import fog.data.Connector;
 import fog.data.OrderMapper;
+import fog.domain.Order;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
@@ -17,15 +18,13 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author Pravien
  */
-@WebServlet(name = "OrderControl", urlPatterns =
-{
-    "/order"
-})
+@WebServlet(name = "OrderControl",urlPatterns = {"/order"})
 public class OrderControl extends HttpServlet
 {
 
@@ -38,36 +37,37 @@ public class OrderControl extends HttpServlet
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    
     private Connector connector;
     private OrderMapper oM;
-    
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException
     {
-        
+
         connector = new Connector();
         oM = new OrderMapper(connector);
-        
-       
-         response.setContentType("text/html;charset=UTF-8");
-       PrintWriter out = response.getWriter();
-        out.println("<!DOCTYPE html>");
-        out.println("<html>");
-        out.println("<head>");
-        out.println("<title>Servlet Servlet</title>");
-        out.println("</head>");
-        out.println("<body>");
-        out.println("<h1>Hello </h1>");
-        out.println("</body>");
-        out.println("</html>");
-                       
-        
-        
-        
-        
-        
-        
+        String orderid = request.getParameter("orderid");
+
+        HttpSession session = request.getSession();
+        //Checks if user is logged in, else redirect them to the login page
+        if (session.getAttribute("username") != null)
+        {
+            response.sendRedirect("./login");
+        } else
+        {
+            try
+            {
+                Order order = oM.getOrderById(Integer.parseInt(orderid));
+
+                request.setAttribute("order", order);
+                getServletContext().getRequestDispatcher("/order.jsp").forward(request, response);
+
+            } catch (SQLException ex)
+            {
+                Logger.getLogger(OrderControl.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

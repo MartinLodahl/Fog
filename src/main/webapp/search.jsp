@@ -12,7 +12,7 @@
         <title>JSP Page</title>
     </head>
     <body>
-         <form action="/order" method="get">
+         <form action="./order" method="get">
             <p>
                 <label for="orderid">Orderid:</label>
                 <input type="text" name="orderid" id="orderid">

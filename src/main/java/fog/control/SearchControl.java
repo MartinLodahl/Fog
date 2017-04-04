@@ -25,7 +25,7 @@ import javax.servlet.http.HttpSession;
  */
 @WebServlet(name = "SearchControl", urlPatterns =
 {
-    "/search"
+   "/search"
 })
 public class SearchControl extends HttpServlet
 {
@@ -47,11 +47,13 @@ public class SearchControl extends HttpServlet
 
         HttpSession session =request.getSession();
         
-        if(session.getAttribute("username")==null){
+        // Checks if user is logged in
+        if(session.getAttribute("username")!=null){
             response.sendRedirect("./login");
         }
         else{
-            request.
+            // redirects to search.jsp
+            request.getRequestDispatcher("search.jsp").forward(request, response);
         }
 
     }
