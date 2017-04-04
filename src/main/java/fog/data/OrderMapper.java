@@ -11,6 +11,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 /**
  *
@@ -59,7 +60,7 @@ public class OrderMapper {
                 + "isFinished, width, length, height, skur) "
                 + "VALUES (?, ?, ?, ?, ?, ?, ?, ?);";
         Connection connection = connector.getConnection();
-        PreparedStatement stmt = connection.prepareStatement(query);
+        PreparedStatement stmt = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
         stmt.setString(1, order.getCustomerName());
         stmt.setString(2, order.getCustomerMail());
         stmt.setString(3, order.getCustomerPhone());
@@ -71,7 +72,7 @@ public class OrderMapper {
         stmt.executeUpdate();
         ResultSet generatedKeys = stmt.getGeneratedKeys();
         if (generatedKeys.next()) {
-            return generatedKeys.getInt(0);
+            return generatedKeys.getInt(1);
         }
         return 0;
     }
