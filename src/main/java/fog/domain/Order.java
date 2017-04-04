@@ -14,13 +14,18 @@ public class Order
     private int id;
     private String customerName,customerMail,customerPhone;
     private boolean isFinished;
+    private int width, length, height;
 
-    public Order(int id, String customerName, String customerMail, String customerPhone)
+    public Order(int id, String customerName, String customerMail, String customerPhone,
+            int width, int length, int height)
     {
         this.id = id;
         this.customerName = customerName;
         this.customerMail = customerMail;
         this.customerPhone = customerPhone;
+        this.width = width;
+        this.length = length;
+        this.height = height;
     }
 
     public int getId()
@@ -62,4 +67,36 @@ public class Order
     {
         this.customerPhone = customerPhone;
     } 
+
+    public boolean isIsFinished() {
+        return isFinished;
+    }
+
+    public void setIsFinished(boolean isFinished) {
+        this.isFinished = isFinished;
+    }
+
+    public int getWidth() {
+        return width;
+    }
+
+    public void setWidth(int width) {
+        this.width = width;
+    }
+
+    public int getLength() {
+        return length;
+    }
+
+    public void setLength(int length) {
+        this.length = length;
+    }
+
+    public int getHeight() {
+        return height;
+    }
+
+    public void setHeight(int height) {
+        this.height = height;
+    }
 }
