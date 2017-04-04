@@ -6,6 +6,8 @@
 package fog.data;
 
 import fog.domain.Order;
+import fog.domain.User;
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -35,7 +37,11 @@ public class OrderMapper {
             String customerName = res.getString("customer_name");
             String customerEmail = res.getString("customer_email");
             String customerPhone = res.getString("customer_phone");
-            Order newOrder = new Order(orderId, customerName, customerEmail, customerPhone);
+            boolean isFinished = res.getBoolean("isFinished");
+            int width = res.getInt("width");
+            int length = res.getInt("length");
+            int height = res.getInt("height");
+            Order newOrder = new Order(orderId, customerName, customerEmail, customerPhone, isFinished, width, length, height);
 
             return newOrder;
 
@@ -43,6 +49,23 @@ public class OrderMapper {
             return null;
         }
 
+    }
+    
+    public void createOrder(Order order) throws SQLException {
+        String query = "INSERT INTO orders "
+                + "(customer_name, customer_email, customer_phone, "
+                + "isFinished, width, length, height) "
+                + "VALUES (?, ?, ?, ?, ?, ?, ?);";
+        Connection connection = connector.getConnection();
+        PreparedStatement stmt = connection.prepareStatement(query);
+        stmt.setString(1, order.getCustomerName());
+        stmt.setString(2, order.getCustomerMail());
+        stmt.setString(3, order.getCustomerPhone());
+        stmt.setBoolean(4, order.isIsFinished());
+        stmt.setInt(5, order.getWidth());
+        stmt.setInt(6, order.getLength());
+        stmt.setInt(7, order.getHeight());
+        stmt.executeUpdate();
     }
 
     public void deleteOrderById(int id) throws SQLException {

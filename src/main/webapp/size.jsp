@@ -2,16 +2,28 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>Log ind</title>
+        <title>Bestil Carport</title>
     </head>
     <body>
-        <form method="post" action="./bestil">
+        <form method="post" action="./size">
+            <p>
+                <label for="name">Navn:</label>
+                <input type="text" name="name" id="name">
+            </p>
+            <p>
+                <label for="email">Email:</label>
+                <input type="email" name="email" id="email">
+            </p>
+            <p>
+                <label for="phone">Telefonnummer:</label>
+                <input type="tel" name="phone" id="phone">
+            </p>
             <p>
                 <label for="width">Bredde:</label>
                 <input type="number" name="width" id="width" value="400"> cm
             </p>
             <p>
-                <label for="password">Længde:</label>
+                <label for="length">Længde:</label>
                 <input type="number" name="length" id="length" value="450"> cm
             </p>
             <p>
