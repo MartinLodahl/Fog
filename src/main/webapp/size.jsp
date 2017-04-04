@@ -11,6 +11,32 @@
                 <input type="text" name="name" id="name">
             </p>
             <p>
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
                 <label for="email">Email:</label>
                 <input type="email" name="email" id="email">
             </p>
@@ -23,11 +49,11 @@
                 <input type="number" name="width" id="width" value="400"> cm
             </p>
             <p>
-                <label for="length">Længde:</label>
+                <label for="length">L?ngde:</label>
                 <input type="number" name="length" id="length" value="450"> cm
             </p>
             <p>
-                <label for="height">Højde:</label>
+                <label for="height">H?jde:</label>
                 <input type="number" name="height" id="height" value="200"> cm
             </p>
             <p>
