@@ -6,6 +6,8 @@
 package fog.data;
 
 import fog.domain.Order;
+import fog.domain.User;
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -43,6 +45,18 @@ public class OrderMapper {
             return null;
         }
 
+    }
+    
+    public void createOrder(Order order) throws SQLException {
+        String query = "INSERT INTO orders "
+                + "(customer_name, customer_email, customer_phone) "
+                + "VALUES (?, ?, ?);";
+        Connection connection = connector.getConnection();
+        PreparedStatement stmt = connection.prepareStatement(query);
+        stmt.setString(1, order.getCustomerName());
+        stmt.setString(1, order.getCustomerMail());
+        stmt.setString(1, order.getCustomerPhone());
+        stmt.executeUpdate();
     }
 
     public void deleteOrderById(int id) throws SQLException {
