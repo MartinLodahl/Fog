@@ -19,8 +19,9 @@ public class MaterialMapper {
     public MaterialMapper(Connector connector) {
         this.connector = connector;
     }
-     
+     /*
      public ArrayList<Material> CreateMaterialList(int length, int width){
-         
+
      } 
+    */
 }
