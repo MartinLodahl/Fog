@@ -50,7 +50,7 @@ public class OrderControl extends HttpServlet
 
         HttpSession session = request.getSession();
         //Checks if user is logged in, else redirect them to the login page
-        if (session.getAttribute("username") != null)
+        if (session.getAttribute("username") == null)
         {
             response.sendRedirect("./login");
         } else
@@ -58,9 +58,17 @@ public class OrderControl extends HttpServlet
             try
             {
                 Order order = oM.getOrderById(Integer.parseInt(orderid));
+                
+                if(order==null){
+                 
+                getServletContext().getRequestDispatcher("/searchError.jsp").forward(request, response);
+                    
+                }
+                else{
 
                 request.setAttribute("order", order);
                 getServletContext().getRequestDispatcher("/order.jsp").forward(request, response);
+                }
 
             } catch (SQLException ex)
             {

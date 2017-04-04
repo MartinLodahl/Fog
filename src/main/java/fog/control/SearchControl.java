@@ -48,7 +48,7 @@ public class SearchControl extends HttpServlet
         HttpSession session =request.getSession();
         
         // Checks if user is logged in
-        if(session.getAttribute("username")!=null){
+        if(session.getAttribute("username")==null){
             response.sendRedirect("./login");
         }
         else{
