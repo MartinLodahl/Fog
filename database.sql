@@ -13,10 +13,10 @@ INSERT INTO users (username, password)
 VALUES ('admin', '12345');
 
 CREATE TABLE materials (
-	id INTEGER PRIMARY KEY AUTO_INCREMENT NOT NULL,
+	id INTEGER PRIMARY KEY NOT NULL,
 	name VARCHAR(100) NOT NULL,
 	type VARCHAR(100) NOT NULL,
-	size DECIMAL(7, 2) NOT NULL,
+	size INTEGER(7) NOT NULL,
     price double(8,2) NOT NULL
 );
 
@@ -36,7 +36,10 @@ CREATE TABLE orderitems (
 	id INTEGER PRIMARY KEY AUTO_INCREMENT NOT NULL,
 	order_id INTEGER NOT NULL REFERENCES orders(id),
 	material_id INTEGER NOT NULL REFERENCES materials(id),
-	quantity INTEGER NOT NULL
+	quantity INTEGER NOT NULL,
+    length INTEGER NOT NULL,
+    width INTEGER NOT NULL,
+    price  DOUBLE (8,2) NOT NULL
 );
 
 

@@ -15,14 +15,17 @@ public class OrderItem
     private int id;
     private int orderId;
     private int materialId;
-    private int quantity;
+    private int quantity,length, width, price;
 
-    public OrderItem(int id, int orderId, int materialId, int quantity)
+    public OrderItem(int id, int orderId, int materialId, int quantity, int length, int width, int price)
     {
         this.id = id;
         this.orderId = orderId;
         this.materialId = materialId;
         this.quantity = quantity;
+        this.length = length;
+        this.width = width;
+        this.price = price;
     }
 
     public int getId()
