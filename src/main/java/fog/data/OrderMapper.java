@@ -11,6 +11,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 /**
  *
@@ -53,13 +54,13 @@ public class OrderMapper {
 
     }
     
-    public void createOrder(Order order) throws SQLException {
+    public int createOrder(Order order) throws SQLException {
         String query = "INSERT INTO orders "
                 + "(customer_name, customer_email, customer_phone, "
                 + "isFinished, width, length, height, skur) "
                 + "VALUES (?, ?, ?, ?, ?, ?, ?, ?);";
         Connection connection = connector.getConnection();
-        PreparedStatement stmt = connection.prepareStatement(query);
+        PreparedStatement stmt = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
         stmt.setString(1, order.getCustomerName());
         stmt.setString(2, order.getCustomerMail());
         stmt.setString(3, order.getCustomerPhone());
@@ -69,6 +70,11 @@ public class OrderMapper {
         stmt.setInt(7, order.getHeight());
         stmt.setBoolean(8, order.isSkur());
         stmt.executeUpdate();
+        ResultSet generatedKeys = stmt.getGeneratedKeys();
+        if (generatedKeys.next()) {
+            return generatedKeys.getInt(1);
+        }
+        return 0;
     }
 
     public void deleteOrderById(int id) throws SQLException {
