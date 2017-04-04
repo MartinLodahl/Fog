@@ -1,4 +1,3 @@
-use test; 
 DROP TABLE IF EXISTS orderitems;
 DROP TABLE IF EXISTS orders;
 DROP TABLE IF EXISTS materials;
@@ -8,6 +7,9 @@ CREATE TABLE users (
 	username VARCHAR(100) PRIMARY KEY NOT NULL,
 	password VARCHAR(100) NOT NULL
 );
+
+INSERT INTO users (username, password)
+VALUES ('admin', '12345');
 
 CREATE TABLE materials (
 	id INTEGER PRIMARY KEY NOT NULL,
