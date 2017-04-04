@@ -1,7 +1,9 @@
 package fog.control;
 
 import fog.data.Connector;
+import fog.data.OrderMapper;
 import fog.data.UserMapper;
+import fog.domain.Order;
 import fog.domain.User;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -32,11 +34,23 @@ public class SizeControl extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        int width = Integer.parseInt(request.getParameter("width"));
-        int length = Integer.parseInt(request.getParameter("length"));
-        int height = Integer.parseInt(request.getParameter("height"));
-        boolean skur = request.getParameter("skur") != null;
-        
+        try {
+            String name = request.getParameter("name");
+            String email = request.getParameter("email");
+            String phone = request.getParameter("phone");
+            int width = Integer.parseInt(request.getParameter("width"));
+            int length = Integer.parseInt(request.getParameter("length"));
+            int height = Integer.parseInt(request.getParameter("height"));
+            boolean skur = request.getParameter("skur") != null;
+            
+            Order order = new Order(0, name, email, phone, false, width, length, height, skur);
+            Connector connector = new Connector();
+            OrderMapper mapper = new OrderMapper(connector);
+            mapper.createOrder(order);
+            request.getRequestDispatcher("bestil.jsp").forward(request, response);
+        } catch (SQLException ex) {
+            Logger.getLogger(SizeControl.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     @Override

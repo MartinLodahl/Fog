@@ -7,7 +7,6 @@ package fog.control;
 
 import fog.data.Connector;
 import fog.data.OrderMapper;
-import fog.domain.Order;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
@@ -24,8 +23,11 @@ import javax.servlet.http.HttpSession;
  *
  * @author Pravien
  */
-@WebServlet(name = "OrderControl",urlPatterns = {"/order"})
-public class OrderControl extends HttpServlet
+@WebServlet(name = "SearchControl", urlPatterns =
+{
+   "/search"
+})
+public class SearchControl extends HttpServlet
 {
 
     /**
@@ -37,43 +39,21 @@ public class OrderControl extends HttpServlet
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    private Connector connector;
-    private OrderMapper oM;
-
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException
     {
 
-        connector = new Connector();
-        oM = new OrderMapper(connector);
-        String orderid = request.getParameter("orderid");
+        
 
-        HttpSession session = request.getSession();
-        //Checks if user is logged in, else redirect them to the login page
-        if (session.getAttribute("username") == null)
-        {
+        HttpSession session =request.getSession();
+        
+        // Checks if user is logged in
+        if(session.getAttribute("username")==null){
             response.sendRedirect("./login");
-        } else
-        {
-            try
-            {
-                Order order = oM.getOrderById(Integer.parseInt(orderid));
-                
-                if(order==null){
-                 
-                getServletContext().getRequestDispatcher("/searchError.jsp").forward(request, response);
-                    
-                }
-                else{
-
-                request.setAttribute("order", order);
-                getServletContext().getRequestDispatcher("/order.jsp").forward(request, response);
-                }
-
-            } catch (SQLException ex)
-            {
-                Logger.getLogger(OrderControl.class.getName()).log(Level.SEVERE, null, ex);
-            }
+        }
+        else{
+            // redirects to search.jsp
+            request.getRequestDispatcher("search.jsp").forward(request, response);
         }
 
     }

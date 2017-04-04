@@ -5,7 +5,7 @@
         <title>Bestil Carport</title>
     </head>
     <body>
-        <form method="post" action="./bestil">
+        <form method="post" action="./size">
             <p>
                 <label for="name">Navn:</label>
                 <input type="text" name="name" id="name">
