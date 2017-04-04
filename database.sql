@@ -28,7 +28,8 @@ CREATE TABLE orders (
 	isFinished BOOLEAN NOT NULL,
 	width INTEGER NOT NULL,
 	length INTEGER NOT NULL,
-	height INTEGER NOT NULL
+	height INTEGER NOT NULL,
+	skur BOOLEAN NOT NULL
 );
 
 CREATE TABLE orderitems (

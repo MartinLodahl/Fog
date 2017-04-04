@@ -15,9 +15,10 @@ public class Order
     private String customerName,customerMail,customerPhone;
     private boolean isFinished;
     private int width, length, height;
+    private boolean skur;
 
     public Order(int id, String customerName, String customerMail, String customerPhone,
-            boolean isFinished, int width, int length, int height)
+            boolean isFinished, int width, int length, int height, boolean skur)
     {
         this.id = id;
         this.customerName = customerName;
@@ -27,6 +28,7 @@ public class Order
         this.width = width;
         this.length = length;
         this.height = height;
+        this.skur = skur;
     }
 
     public int getId()
@@ -99,5 +101,13 @@ public class Order
 
     public void setHeight(int height) {
         this.height = height;
+    }
+
+    public boolean isSkur() {
+        return skur;
+    }
+
+    public void setSkur(boolean skur) {
+        this.skur = skur;
     }
 }
