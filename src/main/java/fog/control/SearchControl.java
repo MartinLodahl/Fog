@@ -17,16 +17,17 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author Pravien
  */
-@WebServlet(name = "OrderControl", urlPatterns =
+@WebServlet(name = "SearchControl", urlPatterns =
 {
-    "/order"
+    "/search"
 })
-public class OrderControl extends HttpServlet
+public class SearchControl extends HttpServlet
 {
 
     /**
@@ -38,36 +39,21 @@ public class OrderControl extends HttpServlet
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    
-    private Connector connector;
-    private OrderMapper oM;
-    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException
     {
+
         
-        connector = new Connector();
-        oM = new OrderMapper(connector);
+
+        HttpSession session =request.getSession();
         
-       
-         response.setContentType("text/html;charset=UTF-8");
-       PrintWriter out = response.getWriter();
-        out.println("<!DOCTYPE html>");
-        out.println("<html>");
-        out.println("<head>");
-        out.println("<title>Servlet Servlet</title>");
-        out.println("</head>");
-        out.println("<body>");
-        out.println("<h1>Hello </h1>");
-        out.println("</body>");
-        out.println("</html>");
-                       
-        
-        
-        
-        
-        
-        
+        if(session.getAttribute("username")==null){
+            response.sendRedirect("./login");
+        }
+        else{
+            request.
+        }
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
