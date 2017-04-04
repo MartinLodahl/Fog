@@ -39,7 +39,13 @@
 
         </table>
 
-    
+        <form method="post" action="delete">
+            <input type="hidden" name="id" value="${order.id}">
+            <div><button>Slet</button></div>
+        </form>
 
-</body>
+    </body>
+
+
+
 </html>
