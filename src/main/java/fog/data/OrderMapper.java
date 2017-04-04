@@ -41,7 +41,9 @@ public class OrderMapper {
             int width = res.getInt("width");
             int length = res.getInt("length");
             int height = res.getInt("height");
-            Order newOrder = new Order(orderId, customerName, customerEmail, customerPhone, isFinished, width, length, height);
+            boolean isSkur = res.getBoolean("skur");
+            Order newOrder = new Order(orderId, customerName, customerEmail, customerPhone,
+                    isFinished, width, length, height, isSkur);
 
             return newOrder;
 
@@ -54,8 +56,8 @@ public class OrderMapper {
     public void createOrder(Order order) throws SQLException {
         String query = "INSERT INTO orders "
                 + "(customer_name, customer_email, customer_phone, "
-                + "isFinished, width, length, height) "
-                + "VALUES (?, ?, ?, ?, ?, ?, ?);";
+                + "isFinished, width, length, height, skur) "
+                + "VALUES (?, ?, ?, ?, ?, ?, ?, ?);";
         Connection connection = connector.getConnection();
         PreparedStatement stmt = connection.prepareStatement(query);
         stmt.setString(1, order.getCustomerName());
@@ -65,6 +67,7 @@ public class OrderMapper {
         stmt.setInt(5, order.getWidth());
         stmt.setInt(6, order.getLength());
         stmt.setInt(7, order.getHeight());
+        stmt.setBoolean(8, order.isSkur());
         stmt.executeUpdate();
     }
 
