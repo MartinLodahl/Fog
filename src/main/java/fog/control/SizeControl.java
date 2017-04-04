@@ -43,7 +43,7 @@ public class SizeControl extends HttpServlet {
             int height = Integer.parseInt(request.getParameter("height"));
             boolean skur = request.getParameter("skur") != null;
             
-            Order order = new Order(0, name, email, phone, width, length, height);
+            Order order = new Order(0, name, email, phone, false, width, length, height);
             Connector connector = new Connector();
             OrderMapper mapper = new OrderMapper(connector);
             mapper.createOrder(order);

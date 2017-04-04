@@ -17,12 +17,13 @@ public class Order
     private int width, length, height;
 
     public Order(int id, String customerName, String customerMail, String customerPhone,
-            int width, int length, int height)
+            boolean isFinished, int width, int length, int height)
     {
         this.id = id;
         this.customerName = customerName;
         this.customerMail = customerMail;
         this.customerPhone = customerPhone;
+        this.isFinished = isFinished;
         this.width = width;
         this.length = length;
         this.height = height;
