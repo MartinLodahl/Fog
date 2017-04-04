@@ -43,7 +43,7 @@ public class LoginControl extends HttpServlet {
             
             if (user != null && password.equals(user.getPassword())) {
                 session.setAttribute("username", username);
-                response.sendRedirect("/order");
+                response.sendRedirect("./search");
             } else {
                 request.getRequestDispatcher("login.jsp").forward(request, response);
             }
