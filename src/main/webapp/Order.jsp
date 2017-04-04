@@ -12,7 +12,7 @@
         <title>JSP Page</title>
     </head>
     <body>
-         <form method="post">
+         <form action="OrderControl" method="post">
             <p>
                 <label for="username">Orderid:</label>
                 <input type="text" name="username" id="orderid">
