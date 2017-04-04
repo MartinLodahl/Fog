@@ -111,21 +111,17 @@ public class MaterialMapper {
         }
         return list;
     }
-    
 
-    
     public static void main(String[] args) {
         Connector con = new Connector();
         MaterialMapper MM = new MaterialMapper(con);
         ArrayList<Material> list = MM.CreateMaterialList(500, 40, true, 500);
         for (int i = 0; i < list.size(); i++) {
-           System.out.println(list.get(i).getId());
-           System.out.println(list.get(i).getName());
-           System.out.println(list.get(i).getSize());
-           System.out.println(list.get(i).getType());
-           System.out.println(list.get(i).getPrice());
+            System.out.println(list.get(i).getId());
+            System.out.println(list.get(i).getName());
+            System.out.println(list.get(i).getSize());
+            System.out.println(list.get(i).getType());
+            System.out.println(list.get(i).getPrice());
         }
-        
-        //int length, int width, boolean skur, int heigth
     }
 }

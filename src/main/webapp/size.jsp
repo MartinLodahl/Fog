@@ -1,30 +1,42 @@
-<%-- 
-    Document   : size
-    Created on : 03-04-2017, 11:43:59
-    Author     : MartinLodahl
---%>
-
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <meta charset="UTF-8">
+        <title>Bestil Carport</title>
     </head>
     <body>
-        
-        <form action="LoginControl" method="POST">
-             <label for="username">lÃ¦ngde</label>
-            <input type="number" name="lÃ¦ngde" /><br>
-             <label for="username">Bredde:</label>
-            <input type="number" name="bredde" /><br>
-            <label for="carport">Carport:</label> 
-            <input type="checkbox" name="carport" value="carport">
-            <label for="carport">Skur</label> 
-            <input type="checkbox" name="skur" value="skur">
-            <input type="submit" value="login" name="login">
+        <form method="post" action="./bestil">
+            <p>
+                <label for="name">Navn:</label>
+                <input type="text" name="name" id="name">
+            </p>
+            <p>
+                <label for="email">Email:</label>
+                <input type="email" name="email" id="email">
+            </p>
+            <p>
+                <label for="phone">Telefonnummer:</label>
+                <input type="tel" name="phone" id="phone">
+            </p>
+            <p>
+                <label for="width">Bredde:</label>
+                <input type="number" name="width" id="width" value="400"> cm
+            </p>
+            <p>
+                <label for="length">Længde:</label>
+                <input type="number" name="length" id="length" value="450"> cm
+            </p>
+            <p>
+                <label for="height">Højde:</label>
+                <input type="number" name="height" id="height" value="200"> cm
+            </p>
+            <p>
+                <input type="checkbox" name="skur" id="skur">
+                <label for="skur">Skur</label>
+            </p>
+            <p>
+                <button>Bestil</button>
+            </p>
         </form>
-        
-        
     </body>
 </html>
