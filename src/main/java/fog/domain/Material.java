@@ -13,14 +13,28 @@ public class Material
 {
     private int id;
     private String name, type;
-    private double size, price;
+    private double size, size2, price;
 
-    public Material(int id, String name, String type, double size, double price)
+    public Material(int id, String name, String type, double size, double size2, double price)
     {
         this.id = id;
         this.name = name;
         this.type = type;
         this.size = size;
+        this.size2 = size2;
+        this.price = price;
+    }
+
+    public double getSize2() {
+        return size2;
+    }
+
+    public Material(int id, String name, String type, double size, double price) {
+        this.id = id;
+        this.name = name;
+        this.type = type;
+        this.size = size;
+        this.size2 = 0;
         this.price = price;
     }
 

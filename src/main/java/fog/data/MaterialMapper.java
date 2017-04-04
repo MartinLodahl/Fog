@@ -25,9 +25,19 @@ public class MaterialMapper {
         this.connector = connector;
     }
 
-    public ArrayList<Material> CreateMaterialList(int length, int width, boolean skur, int heigth) {
+    public ArrayList<Material> CreateMaterialList(int length, int width, boolean skur, int heigth) throws SQLException {
+
+        if (skur == false) {
+            return CalculateCarport(length, width, heigth);
+        } else {
+            return CalculateSkur(length, width, heigth);
+        }
+
+    }
+
+    public ArrayList<Material> CalculateCarport(int length, int width, int heigth) throws SQLException {
         ArrayList<Material> list = new ArrayList<>();
-        try {
+        if (heigth == 500 || heigth == 200) {
             String query = "SELECT * FROM materials where type='stolpe' and size=?;";
             PreparedStatement stmt = connector.getConnection().prepareStatement(query);
             stmt.setInt(1, heigth);
@@ -42,86 +52,135 @@ public class MaterialMapper {
                     list.add(new Material(id, name, type, size, price));
                 }
             }
-
-            if (length == 500) {
-                query = "SELECT * FROM materials where type='brædde' and size=?;";
-                stmt = connector.getConnection().prepareStatement(query);
-                stmt.setInt(1, length);
-                res = stmt.executeQuery();
-                if (res.next()) {
-                    int id = res.getInt("id");
-                    String name = res.getString("name");
-                    String type = res.getString("type");
-                    Double size = res.getDouble("size");
-                    Double price = res.getDouble("price");
-                    for (int i = 0; i < 2; i++) {
-                        list.add(new Material(id, name, type, size, price));
-                    }
-                }
-            } else {
-                query = "SELECT * FROM materials where type='brædde' and size=?;";
-                stmt = connector.getConnection().prepareStatement(query);
-                stmt.setInt(1, 0);
-                res = stmt.executeQuery();
-                if (res.next()) {
-                    int id = res.getInt("id");
-                    String name = res.getString("name");
-                    String type = res.getString("type");
-                    Double price = res.getDouble("price");
-                    for (int i = 0; i < 2; i++) {
-                        list.add(new Material(id, name, type, length, price * length / 100));
-                    }
+        } else {
+            String query = "SELECT * FROM materials where type='stolpe' and size=?;";
+            PreparedStatement stmt = connector.getConnection().prepareStatement(query);
+            stmt.setInt(1, 0);
+            ResultSet res = stmt.executeQuery();
+            if (res.next()) {
+                int id = res.getInt("id");
+                String name = res.getString("name");
+                String type = res.getString("type");
+                Double size = res.getDouble("size");
+                Double price = res.getDouble("price");
+                for (int i = 0; i < 4; i++) {
+                    list.add(new Material(id, name, type, size, price * heigth / 100));
                 }
             }
+        }
 
-            if (width == 500) {
-                query = "SELECT * FROM materials where type='brædde' and size=?;";
-                stmt = connector.getConnection().prepareStatement(query);
-                stmt.setInt(1, width);
-                res = stmt.executeQuery();
-                if (res.next()) {
-                    int id = res.getInt("id");
-                    String name = res.getString("name");
-                    String type = res.getString("type");
-                    Double size = res.getDouble("size");
-                    Double price = res.getDouble("price");
-                    for (int i = 0; i < 2; i++) {
-                        list.add(new Material(id, name, type, size, price));
-                    }
-                }
-            } else {
-                query = "SELECT * FROM materials where type='brædde' and size=?;";
-                stmt = connector.getConnection().prepareStatement(query);
-                stmt.setInt(1, 0);
-                res = stmt.executeQuery();
-                if (res.next()) {
-                    int id = res.getInt("id");
-                    String name = res.getString("name");
-                    String type = res.getString("type");
-                    Double price = res.getDouble("price");
-                    for (int i = 0; i < 2; i++) {
-                        list.add(new Material(id, name, type, width, price * width / 100));
-                    }
+        if (length == 500) {
+            String query = "SELECT * FROM materials where type='brædde' and size=?;";
+            PreparedStatement stmt = connector.getConnection().prepareStatement(query);
+            stmt.setInt(1, length);
+            ResultSet res = stmt.executeQuery();
+            if (res.next()) {
+                int id = res.getInt("id");
+                String name = res.getString("name");
+                String type = res.getString("type");
+                Double size = res.getDouble("size");
+                Double price = res.getDouble("price");
+                for (int i = 0; i < 2; i++) {
+                    list.add(new Material(id, name, type, size, price));
                 }
             }
+        } else {
+            String query = "SELECT * FROM materials where type='brædde' and size=?;";
+            PreparedStatement stmt = connector.getConnection().prepareStatement(query);
+            stmt.setInt(1, 0);
+            ResultSet res = stmt.executeQuery();
+            if (res.next()) {
+                int id = res.getInt("id");
+                String name = res.getString("name");
+                String type = res.getString("type");
+                Double price = res.getDouble("price");
+                for (int i = 0; i < 2; i++) {
+                    list.add(new Material(id, name, type, length, price * length / 100));
+                }
+            }
+        }
 
-            return list;
-        } catch (SQLException ex) {
-            Logger.getLogger(MaterialMapper.class.getName()).log(Level.SEVERE, null, ex);
+        if (width == 500) {
+            String query = "SELECT * FROM materials where type='brædde' and size=?;";
+            PreparedStatement stmt = connector.getConnection().prepareStatement(query);
+            stmt.setInt(1, width);
+            ResultSet res = stmt.executeQuery();
+            if (res.next()) {
+                int id = res.getInt("id");
+                String name = res.getString("name");
+                String type = res.getString("type");
+                Double size = res.getDouble("size");
+                Double price = res.getDouble("price");
+                for (int i = 0; i < 2; i++) {
+                    list.add(new Material(id, name, type, size, price));
+                }
+            }
+        } else {
+            String query = "SELECT * FROM materials where type='brædde' and size=?;";
+            PreparedStatement stmt = connector.getConnection().prepareStatement(query);
+            stmt.setInt(1, 0);
+            ResultSet res = stmt.executeQuery();
+            if (res.next()) {
+                int id = res.getInt("id");
+                String name = res.getString("name");
+                String type = res.getString("type");
+                Double price = res.getDouble("price");
+                for (int i = 0; i < 2; i++) {
+                    list.add(new Material(id, name, type, width, price * width / 100));
+                }
+            }
+        }
+        String query = "SELECT * FROM materials where type='tag';";
+        PreparedStatement stmt = connector.getConnection().prepareStatement(query);
+        ResultSet res = stmt.executeQuery();
+        if (res.next()) {
+            int id = res.getInt("id");
+            String name = res.getString("name");
+            String type = res.getString("type");
+            Double price = res.getDouble("price");
+            list.add(new Material(id, name, type, width, length, price * (width * heigth) / 10000));
         }
         return list;
     }
 
-    public static void main(String[] args) {
-        Connector con = new Connector();
-        MaterialMapper MM = new MaterialMapper(con);
-        ArrayList<Material> list = MM.CreateMaterialList(500, 40, true, 500);
-        for (int i = 0; i < list.size(); i++) {
-            System.out.println(list.get(i).getId());
-            System.out.println(list.get(i).getName());
-            System.out.println(list.get(i).getSize());
-            System.out.println(list.get(i).getType());
-            System.out.println(list.get(i).getPrice());
+    private ArrayList<Material> CalculateSkur(int length, int width, int heigth) throws SQLException {
+        ArrayList<Material> list = new ArrayList<>();
+        String query = "SELECT * FROM materials where type='tag';";
+        PreparedStatement stmt = connector.getConnection().prepareStatement(query);
+        ResultSet res = stmt.executeQuery();
+        if (res.next()) {
+            int id = res.getInt("id");
+            String name = res.getString("name");
+            String type = res.getString("type");
+            Double price = res.getDouble("price");
+            list.add(new Material(id, name, type, width, length, price * (width * heigth) / 10000));
         }
+        query = "SELECT * FROM materials where type='plade';";
+        stmt = connector.getConnection().prepareStatement(query);
+        res = stmt.executeQuery();
+        if (res.next()) {
+            int id = res.getInt("id");
+            String name = res.getString("name");
+            String type = res.getString("type");
+            Double price = res.getDouble("price");
+
+            for (int i = 0; i < 2; i++) {
+                list.add(new Material(id, name, type, width, heigth, price * (width * heigth) / 10000));
+            }
+        }
+        query = "SELECT * FROM materials where type='plade';";
+        stmt = connector.getConnection().prepareStatement(query);
+        res = stmt.executeQuery();
+        if (res.next()) {
+            int id = res.getInt("id");
+            String name = res.getString("name");
+            String type = res.getString("type");
+            Double price = res.getDouble("price");
+
+            for (int i = 0; i < 2; i++) {
+                list.add(new Material(id, name, type, length, heigth, price * (length * heigth) / 10000));
+            }
+        }
+        return list;
     }
 }
