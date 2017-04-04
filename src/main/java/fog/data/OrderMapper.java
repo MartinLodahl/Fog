@@ -53,7 +53,7 @@ public class OrderMapper {
 
     }
     
-    public void createOrder(Order order) throws SQLException {
+    public int createOrder(Order order) throws SQLException {
         String query = "INSERT INTO orders "
                 + "(customer_name, customer_email, customer_phone, "
                 + "isFinished, width, length, height, skur) "
@@ -69,6 +69,11 @@ public class OrderMapper {
         stmt.setInt(7, order.getHeight());
         stmt.setBoolean(8, order.isSkur());
         stmt.executeUpdate();
+        ResultSet generatedKeys = stmt.getGeneratedKeys();
+        if (generatedKeys.next()) {
+            return generatedKeys.getInt(0);
+        }
+        return 0;
     }
 
     public void deleteOrderById(int id) throws SQLException {
