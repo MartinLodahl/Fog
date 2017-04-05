@@ -61,13 +61,13 @@ public class OrderControl extends HttpServlet
                 
                 if(order==null){
                  
-                getServletContext().getRequestDispatcher("/searchError.jsp").forward(request, response);
+                request.getRequestDispatcher("/searchError.jsp").forward(request, response);
                     
                 }
                 else{
 
                 request.setAttribute("order", order);
-                getServletContext().getRequestDispatcher("/order.jsp").forward(request, response);
+                request.getRequestDispatcher("order.jsp").forward(request, response);
                 }
 
             } catch (SQLException ex)
