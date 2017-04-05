@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package fog.control;
 
 import fog.data.Connector;
@@ -19,10 +14,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-/**
- *
- * @author Pravien
- */
 @WebServlet(name = "SearchControl", urlPatterns =
 {
    "/search"
@@ -42,20 +33,15 @@ public class SearchControl extends HttpServlet
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException
     {
-
-        
-
-        HttpSession session =request.getSession();
+        HttpSession session = request.getSession();
         
         // Checks if user is logged in
         if(session.getAttribute("username")==null){
             response.sendRedirect("./login");
+            return;
         }
-        else{
-            // redirects to search.jsp
-            request.getRequestDispatcher("search.jsp").forward(request, response);
-        }
-
+        // redirects to search.jsp
+        request.getRequestDispatcher("search.jsp").forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
