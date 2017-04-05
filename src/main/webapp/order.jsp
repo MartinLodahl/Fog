@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <%@ taglib prefix="c" 
-           uri="http://java.sun.com/jsp/jstl/core" %>
+                   uri="http://java.sun.com/jsp/jstl/core" %>
         <title>Ordre ${order.id}</title>
     </head>
     <body>
@@ -30,7 +30,7 @@
                 <td>${order.height}</td>
             </tr>
         </table>
-            
+
         <form method="post" action="save">
             <input type="hidden" name="id" value="${order.id}">
             <c:choose>
@@ -43,9 +43,9 @@
                     <br />
                 </c:otherwise>
             </c:choose>
-             <div><button>Save changes</button></div>
+            <div><button>Save changes</button></div>
         </form>   
-            
+
         <form method="post" action="delete" onsubmit="return confirm('Er du sikker p? du vil slette denne ordre?');">
             <input type="hidden" name="id" value="${order.id}">
             <div><button>Slet</button></div>
@@ -60,12 +60,10 @@
                 <th>price (for all of this type)</th>
             </tr>
 
-            <c:forEach var="orderitem" items="${orderItems}">
-                <c:out value="${orderitem}" />
-            </c:forEach>
-
-        </table>
+          
+            
+    </table>
 
 
-    </body>
+</body>
 </html>
