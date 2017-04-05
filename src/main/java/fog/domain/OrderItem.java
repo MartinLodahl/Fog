@@ -29,6 +29,18 @@ public class OrderItem
         this.price = price;
     }
 
+    public int getLength() {
+        return length;
+    }
+
+    public int getWidth() {
+        return width;
+    }
+
+    public double getPrice() {
+        return price;
+    }
+
      public OrderItem(int orderId, int materialId, int quantity, int length, int width, double price)
     {
         this.orderId = orderId;

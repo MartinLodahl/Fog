@@ -61,7 +61,6 @@ public class OrderControl extends HttpServlet
             {
                 Order order = oM.getOrderById(Integer.parseInt(orderid));
                 ArrayList<OrderItem> orderItems = oM.getOrderItems(Integer.parseInt(orderid)); 
-                
                 if(order==null){
                  
                 request.getRequestDispatcher("/searchError.jsp").forward(request, response);

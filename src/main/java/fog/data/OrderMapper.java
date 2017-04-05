@@ -122,7 +122,7 @@ public class OrderMapper {
 
     public ArrayList<OrderItem> getOrderItems(int id) throws SQLException {
         ArrayList<OrderItem> list = new ArrayList<>();
-        String query = "SELECT * FROM orderitems  WHERE id = ?;";
+        String query = "SELECT * FROM orderitems  WHERE order_id = ?;";
         PreparedStatement stmt = connector.getConnection().prepareStatement(query);
         stmt.setInt(1, id);
         ResultSet res = stmt.executeQuery();

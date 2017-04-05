@@ -57,13 +57,20 @@
                 <th>length</th>
                 <th>width</th>
                 <th>price (for each)</th>
-                <th>price (for all of this type)</th>
             </tr>
 
-          
-            
-    </table>
+            <c:forEach items="${orderItems}" var="item">
+                <tr>
+                    <td><c:out value="${item.materialId}"/></td>
+                    <td><c:out value="${item.quantity}"/></td>
+                    <td><c:out value="${item.length}"/></td>
+                    <td><c:out value="${item.width}"/></td>
+                    <td><c:out value="${item.price}"/></td>
+                </tr>
+            </c:forEach>
+
+        </table>
 
 
-</body>
+    </body>
 </html>
