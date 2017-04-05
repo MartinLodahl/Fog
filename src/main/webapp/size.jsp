@@ -23,11 +23,11 @@
                 <input type="number" name="width" id="width" value="400"> cm
             </p>
             <p>
-                <label for="length">L?ngde:</label>
+                <label for="length">Længde:</label>
                 <input type="number" name="length" id="length" value="450"> cm
             </p>
             <p>
-                <label for="height">H?jde:</label>
+                <label for="height">Højde:</label>
                 <input type="number" name="height" id="height" value="200"> cm
             </p>
             <p>
