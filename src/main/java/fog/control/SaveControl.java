@@ -43,35 +43,7 @@ public class SaveControl extends HttpServlet
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException
     {
-        HttpSession session = request.getSession();
-        // Checks if user is logged in
-        if(session.getAttribute("username")==null){
-            response.sendRedirect("./login");
-            return;
-        }
-        int id = Integer.parseInt(request.getParameter("id"));
-        String orderDone = request.getParameter("orderDone");
         
-        Connector connector = new Connector();
-        OrderMapper mapper = new OrderMapper(connector);
-        
-        try
-        {
-            Order order = mapper.getOrderById(id);
-            if(orderDone!=null){
-                order.setIsFinished(true);
-                mapper.updateOrder(order);
-                response.sendRedirect(request.getRequestURI());
-            }
-            else{
-               mapper.updateOrder(order); 
-               response.sendRedirect(request.getRequestURI());
-            }
-            
-        } catch (SQLException ex)
-        {
-            Logger.getLogger(SaveControl.class.getName()).log(Level.SEVERE, null, ex);
-        }
         
     }
 
@@ -103,7 +75,38 @@ public class SaveControl extends HttpServlet
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException
     {
-        processRequest(request, response);
+        HttpSession session = request.getSession();
+        // Checks if user is logged in
+        if(session.getAttribute("username")==null){
+            response.sendRedirect("./login");
+            return;
+        }
+        int id = Integer.parseInt(request.getParameter("id"));
+        String orderDone = request.getParameter("orderDone");
+        
+        Connector connector = new Connector();
+        OrderMapper mapper = new OrderMapper(connector);
+        
+       try
+        {
+           Order order = mapper.getOrderById(id);
+            if(orderDone!=null){
+                order.setIsFinished(true);
+                mapper.updateOrder(order);
+                //(response.sendRedirect(request.getRequestURI());
+                request.getRequestDispatcher("order.jsp").forward(request, response);
+            }
+            else{
+               mapper.updateOrder(order); 
+               //response.sendRedirect(request.getRequestURI());
+               request.getRequestDispatcher("order.jsp").forward(request, response);
+            }
+            
+        } catch (SQLException ex)
+        {
+            Logger.getLogger(SaveControl.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
     }
 
     /**

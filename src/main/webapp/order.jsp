@@ -30,7 +30,7 @@
             </tr>
         </table>
             
-        <form method="post" action="save">
+        <form method="post">
             <input type="hidden" name="id" value="${order.id}">
             <c:choose>
                 <c:when test="${order.isFinished == 'false'}">
