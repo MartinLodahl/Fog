@@ -37,8 +37,11 @@ public class OrderItemsMapper
             int orderItemId = res.getInt("id");
             int material = res.getInt("material_id");
             int quantity = res.getInt("quantity");
-           
-            orderItem = new OrderItem(orderItemId,orderId,material,quantity);
+            int length = res.getInt("length");
+            int width = res.getInt("width");
+            double price = res.getDouble("price");
+           //int length, int width, int price
+            orderItem = new OrderItem(orderItemId,orderId,material,quantity, length, width, price);
             list.add(orderItem);
         }
         
