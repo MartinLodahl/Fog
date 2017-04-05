@@ -1,3 +1,4 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -31,5 +32,22 @@
             <input type="hidden" name="id" value="${order.id}">
             <div><button>Slet</button></div>
         </form>
+        <table>
+            <tr>
+                <th>material_id</th>
+                <th>quantity</th>
+                <th>length</th>
+                <th>width</th>
+                <th>price (for each)</th>
+                <th>price (for all of this type)</th>
+            </tr>
+
+            <c:forEach var="orderitem" items="${orderItems}">
+                <c:out value="${orderitem}" />
+            </c:forEach>
+
+        </table>
+
+
     </body>
 </html>
