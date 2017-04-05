@@ -35,28 +35,35 @@ public class MaterialMapper {
 
     }
 
-    public ArrayList<Material> CalculateCarport(int length, int width, int heigth) throws SQLException {
+    private ArrayList<Material> CalculateCarport(int length, int width, int heigth) throws SQLException {
         ArrayList<Material> list = new ArrayList<>();
-        if (heigth == 500 || heigth == 200) {
-            String query = "SELECT * FROM materials where type='stolpe' and size=?;";
-            PreparedStatement stmt = connector.getConnection().prepareStatement(query);
-            stmt.setInt(1, heigth);
-            ResultSet res = stmt.executeQuery();
-            if (res.next()) {
-                int id = res.getInt("id");
-                String name = res.getString("name");
-                String type = res.getString("type");
-                int size = res.getInt("size");
-                Double price = res.getDouble("price");
+        String query = "SELECT * FROM materials where type='stolpe';";
+        PreparedStatement stmt = connector.getConnection().prepareStatement(query);
+        ResultSet res = stmt.executeQuery();
+        boolean wasInDB = false;
+        while (res.next()) {
+            if (res.getInt("size") == heigth) {
+                query = "SELECT * FROM materials where type='stolpe' and size=?;";
+                stmt = connector.getConnection().prepareStatement(query);
+                stmt.setInt(1, heigth);
+                res = stmt.executeQuery();
+                if (res.next()) {
+                    int id = res.getInt("id");
+                    String name = res.getString("name");
+                    String type = res.getString("type");
+                    int size = res.getInt("size");
+                    Double price = res.getDouble("price");
 
-                list.add(new Material(id, name, type, size, price, 4));
-
+                    list.add(new Material(id, name, type, size, price, 4));
+                    wasInDB = true;
+                }
             }
-        } else {
-            String query = "SELECT * FROM materials where type='stolpe' and size=?;";
-            PreparedStatement stmt = connector.getConnection().prepareStatement(query);
+        }
+        if (!wasInDB) {
+            query = "SELECT * FROM materials where type='stolpe' and size=?;";
+            stmt = connector.getConnection().prepareStatement(query);
             stmt.setInt(1, 0);
-            ResultSet res = stmt.executeQuery();
+            res = stmt.executeQuery();
             if (res.next()) {
                 int id = res.getInt("id");
                 String name = res.getString("name");
@@ -67,25 +74,32 @@ public class MaterialMapper {
 
             }
         }
-
-        if (length == 500) {
-            String query = "SELECT * FROM materials where type='brædde' and size=?;";
-            PreparedStatement stmt = connector.getConnection().prepareStatement(query);
-            stmt.setInt(1, length);
-            ResultSet res = stmt.executeQuery();
-            if (res.next()) {
-                int id = res.getInt("id");
-                String name = res.getString("name");
-                String type = res.getString("type");
-                int size = res.getInt("size");
-                Double price = res.getDouble("price");
-                list.add(new Material(id, name, type, size, price, 2));
+        query = "SELECT * FROM materials where type='brædde';";
+        stmt = connector.getConnection().prepareStatement(query);
+        res = stmt.executeQuery();
+        wasInDB = false;
+        while (res.next()) {
+            if (res.getInt("size") == length) {
+                query = "SELECT * FROM materials where type='brædde' and size=?;";
+                stmt = connector.getConnection().prepareStatement(query);
+                stmt.setInt(1, length);
+                res = stmt.executeQuery();
+                if (res.next()) {
+                    int id = res.getInt("id");
+                    String name = res.getString("name");
+                    String type = res.getString("type");
+                    int size = res.getInt("size");
+                    Double price = res.getDouble("price");
+                    list.add(new Material(id, name, type, size, price, 2));
+                    wasInDB = true;
+                }
             }
-        } else {
-            String query = "SELECT * FROM materials where type='brædde' and size=?;";
-            PreparedStatement stmt = connector.getConnection().prepareStatement(query);
+        }
+        if (!wasInDB) {
+            query = "SELECT * FROM materials where type='brædde' and size=?;";
+            stmt = connector.getConnection().prepareStatement(query);
             stmt.setInt(1, 0);
-            ResultSet res = stmt.executeQuery();
+            res = stmt.executeQuery();
             if (res.next()) {
                 int id = res.getInt("id");
                 String name = res.getString("name");
@@ -94,27 +108,34 @@ public class MaterialMapper {
                 list.add(new Material(id, name, type, length, price * length / 100, 2));
             }
         }
+        query = "SELECT * FROM materials where type='brædde' and size=?;";
+        stmt = connector.getConnection().prepareStatement(query);
+        stmt.setInt(1, width);
+        res = stmt.executeQuery();
+        wasInDB = false;
+        while (res.next()) {
+            if (res.getInt("size") == width) {
+                query = "SELECT * FROM materials where type='brædde' and size=?;";
+                stmt = connector.getConnection().prepareStatement(query);
+                stmt.setInt(1, width);
+                res = stmt.executeQuery();
+                if (res.next()) {
+                    int id = res.getInt("id");
+                    String name = res.getString("name");
+                    String type = res.getString("type");
+                    int size = res.getInt("size");
+                    Double price = res.getDouble("price");
 
-        if (width == 500) {
-            String query = "SELECT * FROM materials where type='brædde' and size=?;";
-            PreparedStatement stmt = connector.getConnection().prepareStatement(query);
-            stmt.setInt(1, width);
-            ResultSet res = stmt.executeQuery();
-            if (res.next()) {
-                int id = res.getInt("id");
-                String name = res.getString("name");
-                String type = res.getString("type");
-                int size = res.getInt("size");
-                Double price = res.getDouble("price");
-
-                list.add(new Material(id, name, type, size, price, 2));
-
+                    list.add(new Material(id, name, type, size, price, 2));
+                    wasInDB = true;
+                }
             }
-        } else {
-            String query = "SELECT * FROM materials where type='brædde' and size=?;";
-            PreparedStatement stmt = connector.getConnection().prepareStatement(query);
+        }
+        if (!wasInDB) {
+            query = "SELECT * FROM materials where type='brædde' and size=?;";
+            stmt = connector.getConnection().prepareStatement(query);
             stmt.setInt(1, 0);
-            ResultSet res = stmt.executeQuery();
+            res = stmt.executeQuery();
             if (res.next()) {
                 int id = res.getInt("id");
                 String name = res.getString("name");
@@ -125,9 +146,9 @@ public class MaterialMapper {
 
             }
         }
-        String query = "SELECT * FROM materials where type='tag';";
-        PreparedStatement stmt = connector.getConnection().prepareStatement(query);
-        ResultSet res = stmt.executeQuery();
+        query = "SELECT * FROM materials where type='tag';";
+        stmt = connector.getConnection().prepareStatement(query);
+        res = stmt.executeQuery();
         if (res.next()) {
             int id = res.getInt("id");
             String name = res.getString("name");
@@ -194,12 +215,3 @@ public class MaterialMapper {
 
     }
 }
-
-
-/*
-CREATE TABLE orderitems (
-	id INTEGER PRIMARY KEY AUTO_INCREMENT NOT NULL,
-	order_id INTEGER NOT NULL REFERENCES orders(id),
-	material_id INTEGER NOT NULL REFERENCES materials(id),
-	quantity INTEGER NOT NULL
-);*/
