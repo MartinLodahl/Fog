@@ -1,9 +1,10 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
     <head>
         <meta charset="UTF-8">
         <%@ taglib prefix="c" 
-           uri="http://java.sun.com/jsp/jstl/core" %>
+                   uri="http://java.sun.com/jsp/jstl/core" %>
         <title>Ordre ${order.id}</title>
     </head>
     <body>
@@ -29,8 +30,12 @@
                 <td>${order.height}</td>
             </tr>
         </table>
-            
-        <form method="post">
+
+      
+
+
+        <form method="post" action="save">
+
             <input type="hidden" name="id" value="${order.id}">
             <c:choose>
                 <c:when test="${order.isFinished == 'false'}">
@@ -42,12 +47,34 @@
                     <br />
                 </c:otherwise>
             </c:choose>
-             <div><button>Save changes</button></div>
+            <div><button>Save changes</button></div>
         </form>   
-            
+
         <form method="post" action="delete" onsubmit="return confirm('Er du sikker p? du vil slette denne ordre?');">
             <input type="hidden" name="id" value="${order.id}">
             <div><button>Slet</button></div>
         </form>
+        <table>
+            <tr>
+                <th>material_id</th>
+                <th>quantity</th>
+                <th>length</th>
+                <th>width</th>
+                <th>price (for each)</th>
+            </tr>
+
+            <c:forEach items="${orderItems}" var="item">
+                <tr>
+                    <td><c:out value="${item.materialId}"/></td>
+                    <td><c:out value="${item.quantity}"/></td>
+                    <td><c:out value="${item.length}"/></td>
+                    <td><c:out value="${item.width}"/></td>
+                    <td><c:out value="${item.price}"/></td>
+                </tr>
+            </c:forEach>
+
+        </table>
+
+
     </body>
 </html>

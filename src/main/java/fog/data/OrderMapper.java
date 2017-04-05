@@ -6,12 +6,14 @@
 package fog.data;
 
 import fog.domain.Order;
+import fog.domain.OrderItem;
 import fog.domain.User;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 
 /**
  *
@@ -72,7 +74,7 @@ public class OrderMapper {
         }
 
     }
-    
+
     public int createOrder(Order order) throws SQLException {
         String query = "INSERT INTO orders "
                 + "(customer_name, customer_email, customer_phone, "
@@ -116,5 +118,23 @@ public class OrderMapper {
         PreparedStatement stmt = connector.getConnection().prepareStatement(query);
         stmt.setInt(1, id);
         stmt.executeUpdate();
+    }
+
+    public ArrayList<OrderItem> getOrderItems(int id) throws SQLException {
+        ArrayList<OrderItem> list = new ArrayList<>();
+        String query = "SELECT * FROM orderitems  WHERE order_id = ?;";
+        PreparedStatement stmt = connector.getConnection().prepareStatement(query);
+        stmt.setInt(1, id);
+        ResultSet res = stmt.executeQuery();
+        while (res.next()) {
+            int order_id = res.getInt("order_id");
+            int material_id = res.getInt("material_id");
+            int quantity = res.getInt("quantity");
+            int length = res.getInt("length");
+            int width = res.getInt("width");
+            double price = res.getDouble("price");
+            list.add(new OrderItem(order_id, material_id, quantity, length, width, price));
+        }
+        return list;
     }
 }

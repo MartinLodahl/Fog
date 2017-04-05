@@ -8,9 +8,11 @@ package fog.control;
 import fog.data.Connector;
 import fog.data.OrderMapper;
 import fog.domain.Order;
+import fog.domain.OrderItem;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
@@ -58,7 +60,7 @@ public class OrderControl extends HttpServlet
             try
             {
                 Order order = oM.getOrderById(Integer.parseInt(orderid));
-                
+                ArrayList<OrderItem> orderItems = oM.getOrderItems(Integer.parseInt(orderid)); 
                 if(order==null){
                  
                 request.getRequestDispatcher("/searchError.jsp").forward(request, response);
@@ -67,6 +69,7 @@ public class OrderControl extends HttpServlet
                 else{
 
                 request.setAttribute("order", order);
+                request.setAttribute("orderItems", orderItems);
                 request.getRequestDispatcher("order.jsp").forward(request, response);
                 }
 
