@@ -25,6 +25,25 @@ public class OrderMapper {
         this.connector = connector;
 
     }
+    
+    public void updateOrder (Order order) throws SQLException{
+        String query = "UPDATE orders SET customer_name = ? , customer_email = ?, customer_phone = ?, isFinished = ?"
+                + ", width = ? , height = ?, length = ?, skur = ? "
+                + " WHERE id = ?;";
+        
+        PreparedStatement stmt = connector.getConnection().prepareStatement(query);
+        stmt.setString(1, order.getCustomerName());
+        stmt.setString(2, order.getCustomerMail());
+        stmt.setString(3, order.getCustomerPhone());
+        stmt.setBoolean(4, order.isIsFinished());
+        stmt.setInt(5, order.getWidth());
+        stmt.setInt(6, order.getHeight());
+        stmt.setInt(7, order.getLength());
+        stmt.setBoolean(8, order.isSkur());
+        stmt.setInt(9, order.getId());
+        
+        stmt.executeUpdate();
+    }
 
     public Order getOrderById(int id) throws SQLException {
 

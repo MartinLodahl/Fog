@@ -2,6 +2,8 @@
 <html>
     <head>
         <meta charset="UTF-8">
+        <%@ taglib prefix="c" 
+           uri="http://java.sun.com/jsp/jstl/core" %>
         <title>Ordre ${order.id}</title>
     </head>
     <body>
@@ -27,7 +29,23 @@
                 <td>${order.height}</td>
             </tr>
         </table>
-        <form method="post" action="delete" onsubmit="return confirm('Er du sikker på du vil slette denne ordre?');">
+            
+        <form method="post" action="save">
+            <input type="hidden" name="id" value="${order.id}">
+            <c:choose>
+                <c:when test="${order.isFinished == 'false'}">
+                    <label>Order done :</label> <input type="checkbox" name="orderDone" value="orderDone">
+                    <br />
+                </c:when>    
+                <c:otherwise>
+                    <label>Order done :</label> <input type="checkbox" name="orderDone" value="orderDone" checked="checked">
+                    <br />
+                </c:otherwise>
+            </c:choose>
+             <div><button>Save changes</button></div>
+        </form>   
+            
+        <form method="post" action="delete" onsubmit="return confirm('Er du sikker p? du vil slette denne ordre?');">
             <input type="hidden" name="id" value="${order.id}">
             <div><button>Slet</button></div>
         </form>
