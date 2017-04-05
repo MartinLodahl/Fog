@@ -38,7 +38,7 @@
                 </tr>
 
             </table>
-                <form method="post" action="delete">
+                <form method="post" action="delete" onsubmit="return confirm('Er du sikker på du vil slette denne ordre?');">
                     <input type="hidden" name="id" value="${order.id}">
                     <div><button>Slet</button></div>
                 </form>
