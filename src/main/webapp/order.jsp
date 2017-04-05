@@ -39,13 +39,13 @@
 
         </table>
 
-<<<<<<< HEAD
+
         <form method="post" action="delete">
             <input type="hidden" name="id" value="${order.id}">
             <div><button>Slet</button></div>
         </form>
 
-=======
+
             <table>
                 <tr>
                     <th>OrderId</th>
@@ -73,7 +73,7 @@
                     <input type="hidden" name="id" value="${order.id}">
                     <div><button>Slet</button></div>
                 </form>
->>>>>>> 1ac410d899f4167226851d790445445fe963db36
+
     </body>
 
 

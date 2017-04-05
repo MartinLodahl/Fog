@@ -20,6 +20,17 @@ CREATE TABLE materials (
     price double(8,2) NOT NULL
 );
 
+insert into materials (id, name, type, size, price) 
+values (1, "stolpe", "stolpe", 200, 10),
+(7, "Træ stolpe3", "stolpe", 0, 6),
+(2, "Plastik stolpe2", "stolpe", 500, 20),
+(3, "Træ brædde", "brædde", 500, 10), 
+(4, "Plastik brædde2", "brædde", 0, 5),
+(5, "Normalt tag", "tag", 0, 10),
+(6, "Normalt tag2", "tag", 0, 12), 
+(8, "Træ plade", "plade", 0, 7)
+;
+
 CREATE TABLE orders (
 	id INTEGER PRIMARY KEY AUTO_INCREMENT NOT NULL,
 	customer_name VARCHAR(100) NOT NULL,
