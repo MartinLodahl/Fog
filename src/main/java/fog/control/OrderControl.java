@@ -42,10 +42,21 @@ public class OrderControl extends HttpServlet
     private Connector connector;
     private OrderMapper oM;
 
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
+    
+
+    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
+    /**
+     * Handles the HTTP <code>GET</code> method.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException
     {
-
         connector = new Connector();
         oM = new OrderMapper(connector);
         String orderid = request.getParameter("orderid");
@@ -78,23 +89,6 @@ public class OrderControl extends HttpServlet
                 Logger.getLogger(OrderControl.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-
-    }
-
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-    /**
-     * Handles the HTTP <code>GET</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException
-    {
-        processRequest(request, response);
     }
 
     /**
@@ -109,7 +103,34 @@ public class OrderControl extends HttpServlet
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException
     {
-        processRequest(request, response);
+        HttpSession session = request.getSession();
+        // Checks if user is logged in
+        if(session.getAttribute("username")==null){
+            response.sendRedirect("./login");
+            return;
+        }
+        
+        int id = Integer.parseInt(request.getParameter("id"));
+        String orderDone = request.getParameter("orderDone");
+        
+        Connector connector = new Connector();
+        OrderMapper mapper = new OrderMapper(connector);
+        
+       try
+        {
+           Order order = mapper.getOrderById(id);
+            
+                order.setIsFinished(orderDone!=null);
+                mapper.updateOrder(order);
+                response.sendRedirect("order?orderid="+id);
+                //request.getRequestDispatcher("order.jsp").forward(request, response);
+            
+            
+            
+        } catch (SQLException ex)
+        {
+            Logger.getLogger(OrderControl.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**

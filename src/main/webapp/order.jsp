@@ -1,4 +1,3 @@
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -31,19 +30,16 @@
             </tr>
         </table>
 
-      
-
-
-        <form method="post" action="save">
-
+        <form method="post">
             <input type="hidden" name="id" value="${order.id}">
             <c:choose>
-                <c:when test="${order.isFinished == 'false'}">
-                    <label>Order done :</label> <input type="checkbox" name="orderDone" value="orderDone">
+                <c:when test="${order.isFinished}">
+                    <label>Order done :<input type="checkbox" name="orderDone" checked="checked"></label> 
+                    
                     <br />
                 </c:when>    
                 <c:otherwise>
-                    <label>Order done :</label> <input type="checkbox" name="orderDone" value="orderDone" checked="checked">
+                    <label>Order done : <input type="checkbox" name="orderDone"> </label>
                     <br />
                 </c:otherwise>
             </c:choose>
