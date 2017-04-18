@@ -71,17 +71,17 @@
                     <c:set var = "b" value = "${b+(item.price*item.quantity)}" />
                 </tr>
             </c:forEach>
-            </table>
+        </table>
+        <c:if test="${b>0}"> 
             <table>
                 <tr>
                     <th>total Order price</th>
                 </tr>
-                    <c:if test="${b>0}"> 
                 <tr>
                     <td><c:out value="${b}"/></td>
                 </tr>
-            </c:if>
-        </table>
+            </table>
+        </c:if>
 
 
     </body>
