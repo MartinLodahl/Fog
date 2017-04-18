@@ -35,7 +35,7 @@
             <c:choose>
                 <c:when test="${order.isFinished}">
                     <label>Order done :<input type="checkbox" name="orderDone" checked="checked"></label> 
-                    
+
                     <br />
                 </c:when>    
                 <c:otherwise>
@@ -57,8 +57,9 @@
                 <th>length</th>
                 <th>width</th>
                 <th>price (for each)</th>
+                <th>price (total)</th>
             </tr>
-
+            <c:set var ="b" value = "${0}"/>
             <c:forEach items="${orderItems}" var="item">
                 <tr>
                     <td><c:out value="${item.materialId}"/></td>
@@ -66,10 +67,21 @@
                     <td><c:out value="${item.length}"/></td>
                     <td><c:out value="${item.width}"/></td>
                     <td><c:out value="${item.price}"/></td>
+                    <td><c:out value="${item.price*item.quantity}"/></td>
+                    <c:set var = "b" value = "${b+(item.price*item.quantity)}" />
                 </tr>
             </c:forEach>
-
         </table>
+        <c:if test="${b>0}"> 
+            <table>
+                <tr>
+                    <th>total Order price</th>
+                </tr>
+                <tr>
+                    <td><c:out value="${b}"/></td>
+                </tr>
+            </table>
+        </c:if>
 
 
     </body>

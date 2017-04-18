@@ -6,6 +6,7 @@ import fog.data.OrderMapper;
 import fog.data.UserMapper;
 import fog.domain.Material;
 import fog.domain.Order;
+import fog.domain.OrderItem;
 import fog.domain.User;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -53,6 +54,11 @@ public class SizeControl extends HttpServlet {
             MaterialMapper mm = new MaterialMapper(connector);
             ArrayList<Material> list = mm.CreateMaterialList(length, width, skur, height);
             mm.CreateOrderItems(list, orderID);
+            
+            //Sends the materiallist to the frontend
+            ArrayList<OrderItem> orderItems = mapper.getOrderItems(orderID);
+            request.setAttribute("orderItems", orderItems);
+
             request.getRequestDispatcher("bestil.jsp").forward(request, response);
         } catch (SQLException ex) {
             Logger.getLogger(SizeControl.class.getName()).log(Level.SEVERE, null, ex);
