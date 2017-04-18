@@ -34,6 +34,13 @@ public class Material {
         this.price = price;
         this.quantity = quantity;
     }
+    
+    public Material (String name , String type , int size, double price){
+        this.name = name;
+        this.type = type;
+        this.size = size;
+        this.price = price;
+    }
 
     public int getQuantity() {
         return quantity;
@@ -78,4 +85,11 @@ public class Material {
     public void setSize(int size) {
         this.size = size;
     }
+
+    @Override
+    public String toString()
+    {
+        return "Material{" + "size=" + size + ", name=" + name + ", type=" + type + ", price=" + price + '}';
+    }
+    
 }

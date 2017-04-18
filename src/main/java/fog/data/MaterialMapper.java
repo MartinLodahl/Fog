@@ -17,37 +17,46 @@ import java.util.logging.Logger;
  *
  * @author MartinLodahl
  */
-public class MaterialMapper {
+public class MaterialMapper
+{
 
     private final Connector connector;
 
-    public MaterialMapper(Connector connector) {
+    public MaterialMapper(Connector connector)
+    {
         this.connector = connector;
     }
 
-    public ArrayList<Material> CreateMaterialList(int length, int width, boolean skur, int heigth) throws SQLException {
+    public ArrayList<Material> CreateMaterialList(int length, int width, boolean skur, int heigth) throws SQLException
+    {
 
-        if (skur == false) {
+        if (skur == false)
+        {
             return CalculateCarport(length, width, heigth);
-        } else {
+        } else
+        {
             return CalculateSkur(length, width, heigth);
         }
 
     }
 
-    private ArrayList<Material> CalculateCarport(int length, int width, int heigth) throws SQLException {
+    private ArrayList<Material> CalculateCarport(int length, int width, int heigth) throws SQLException
+    {
         ArrayList<Material> list = new ArrayList<>();
         String query = "SELECT * FROM materials where type='stolpe';";
         PreparedStatement stmt = connector.getConnection().prepareStatement(query);
         ResultSet res = stmt.executeQuery();
         boolean wasInDB = false;
-        while (res.next()) {
-            if (res.getInt("size") == heigth) {
+        while (res.next())
+        {
+            if (res.getInt("size") == heigth)
+            {
                 query = "SELECT * FROM materials where type='stolpe' and size=?;";
                 stmt = connector.getConnection().prepareStatement(query);
                 stmt.setInt(1, heigth);
                 res = stmt.executeQuery();
-                if (res.next()) {
+                if (res.next())
+                {
                     int id = res.getInt("id");
                     String name = res.getString("name");
                     String type = res.getString("type");
@@ -59,12 +68,14 @@ public class MaterialMapper {
                 }
             }
         }
-        if (!wasInDB) {
+        if (!wasInDB)
+        {
             query = "SELECT * FROM materials where type='stolpe' and size=?;";
             stmt = connector.getConnection().prepareStatement(query);
             stmt.setInt(1, 0);
             res = stmt.executeQuery();
-            if (res.next()) {
+            if (res.next())
+            {
                 int id = res.getInt("id");
                 String name = res.getString("name");
                 String type = res.getString("type");
@@ -78,13 +89,16 @@ public class MaterialMapper {
         stmt = connector.getConnection().prepareStatement(query);
         res = stmt.executeQuery();
         wasInDB = false;
-        while (res.next()) {
-            if (res.getInt("size") == length) {
+        while (res.next())
+        {
+            if (res.getInt("size") == length)
+            {
                 query = "SELECT * FROM materials where type='brædde' and size=?;";
                 stmt = connector.getConnection().prepareStatement(query);
                 stmt.setInt(1, length);
                 res = stmt.executeQuery();
-                if (res.next()) {
+                if (res.next())
+                {
                     int id = res.getInt("id");
                     String name = res.getString("name");
                     String type = res.getString("type");
@@ -95,12 +109,14 @@ public class MaterialMapper {
                 }
             }
         }
-        if (!wasInDB) {
+        if (!wasInDB)
+        {
             query = "SELECT * FROM materials where type='brædde' and size=?;";
             stmt = connector.getConnection().prepareStatement(query);
             stmt.setInt(1, 0);
             res = stmt.executeQuery();
-            if (res.next()) {
+            if (res.next())
+            {
                 int id = res.getInt("id");
                 String name = res.getString("name");
                 String type = res.getString("type");
@@ -113,13 +129,16 @@ public class MaterialMapper {
         stmt.setInt(1, width);
         res = stmt.executeQuery();
         wasInDB = false;
-        while (res.next()) {
-            if (res.getInt("size") == width) {
+        while (res.next())
+        {
+            if (res.getInt("size") == width)
+            {
                 query = "SELECT * FROM materials where type='brædde' and size=?;";
                 stmt = connector.getConnection().prepareStatement(query);
                 stmt.setInt(1, width);
                 res = stmt.executeQuery();
-                if (res.next()) {
+                if (res.next())
+                {
                     int id = res.getInt("id");
                     String name = res.getString("name");
                     String type = res.getString("type");
@@ -131,12 +150,14 @@ public class MaterialMapper {
                 }
             }
         }
-        if (!wasInDB) {
+        if (!wasInDB)
+        {
             query = "SELECT * FROM materials where type='brædde' and size=?;";
             stmt = connector.getConnection().prepareStatement(query);
             stmt.setInt(1, 0);
             res = stmt.executeQuery();
-            if (res.next()) {
+            if (res.next())
+            {
                 int id = res.getInt("id");
                 String name = res.getString("name");
                 String type = res.getString("type");
@@ -149,7 +170,8 @@ public class MaterialMapper {
         query = "SELECT * FROM materials where type='tag';";
         stmt = connector.getConnection().prepareStatement(query);
         res = stmt.executeQuery();
-        if (res.next()) {
+        if (res.next())
+        {
             int id = res.getInt("id");
             String name = res.getString("name");
             String type = res.getString("type");
@@ -159,12 +181,14 @@ public class MaterialMapper {
         return list;
     }
 
-    private ArrayList<Material> CalculateSkur(int length, int width, int heigth) throws SQLException {
+    private ArrayList<Material> CalculateSkur(int length, int width, int heigth) throws SQLException
+    {
         ArrayList<Material> list = new ArrayList<>();
         String query = "SELECT * FROM materials where type='tag';";
         PreparedStatement stmt = connector.getConnection().prepareStatement(query);
         ResultSet res = stmt.executeQuery();
-        if (res.next()) {
+        if (res.next())
+        {
             int id = res.getInt("id");
             String name = res.getString("name");
             String type = res.getString("type");
@@ -174,7 +198,8 @@ public class MaterialMapper {
         query = "SELECT * FROM materials where type='plade';";
         stmt = connector.getConnection().prepareStatement(query);
         res = stmt.executeQuery();
-        if (res.next()) {
+        if (res.next())
+        {
             int id = res.getInt("id");
             String name = res.getString("name");
             String type = res.getString("type");
@@ -186,7 +211,8 @@ public class MaterialMapper {
         query = "SELECT * FROM materials where type='plade';";
         stmt = connector.getConnection().prepareStatement(query);
         res = stmt.executeQuery();
-        if (res.next()) {
+        if (res.next())
+        {
             int id = res.getInt("id");
             String name = res.getString("name");
             String type = res.getString("type");
@@ -198,8 +224,10 @@ public class MaterialMapper {
         return list;
     }
 
-    public void CreateOrderItems(ArrayList<Material> list, int orderID) throws SQLException {
-        for (int i = 0; i < list.size(); i++) {
+    public void CreateOrderItems(ArrayList<Material> list, int orderID) throws SQLException
+    {
+        for (int i = 0; i < list.size(); i++)
+        {
             String query = "INSERT INTO orderitems "
                     + "(order_id, material_id, quantity, length, width, price) "
                     + "VALUES ( ?, ?, ?, ?, ?, ?);";
@@ -214,4 +242,25 @@ public class MaterialMapper {
         }
 
     }
+
+    public void insertMatrial(Material material)
+    {
+        String query = "insert into materials (name, type, size, price) "
+                + "values (?,?,?,?);";
+        PreparedStatement stmt;
+        try
+        {
+            stmt = connector.getConnection().prepareStatement(query);
+            stmt.setString(1, material.getName());
+            stmt.setString(2, material.getType());
+            stmt.setInt(3, material.getSize());
+            stmt.setDouble(4, material.getPrice());
+            stmt.executeUpdate();
+        } catch (SQLException ex)
+        {
+            Logger.getLogger(MaterialMapper.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
+
 }
