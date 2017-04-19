@@ -37,11 +37,11 @@ public class LoginControl extends HttpServlet {
             HttpSession session = request.getSession();
             
             String username = request.getParameter("username");
-            int password = request.getParameter("password").hashCode();
+            String password = request.getParameter("password");
             
             User user = mapper.getUserByUsername(username);
             
-            if (user != null && password == (user.getPassword().hashCode())) {
+            if (user != null && password.equals(user.getPassword())) {
                 session.setAttribute("username", username);
                 response.sendRedirect("./search");
             } else {
