@@ -5,7 +5,7 @@
         <title>Bestil Carport</title>
     </head>
     <body>
-        <p><a href="./index">Menuen</a></p>
+        <p><a href="./index.html">Menuen</a></p>
         <form method="post" action="./size">
             <p>
                 <label for="name">Navn:</label>
