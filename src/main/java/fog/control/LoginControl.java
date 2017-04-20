@@ -51,9 +51,4 @@ public class LoginControl extends HttpServlet {
             Logger.getLogger(LoginControl.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-
-    @Override
-    public String getServletInfo() {
-        return "Login Servlet";
-    }
 }
