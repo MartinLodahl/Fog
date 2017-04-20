@@ -26,7 +26,7 @@ import javax.servlet.http.HttpSession;
  */
 @WebServlet(name = "MaterialControl", urlPatterns =
 {
-    "/addMatrial"
+    "/addMaterial"
 })
 public class MaterialControl extends HttpServlet
 {
@@ -34,7 +34,15 @@ public class MaterialControl extends HttpServlet
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException
     {
-        
+        HttpSession session = request.getSession();
+
+        // Checks if user is logged in
+        if(session.getAttribute("username")==null){
+            response.sendRedirect("./login");
+            return;
+        }
+
+        request.getRequestDispatcher("addMaterial.jsp").forward(request, response);
     }
 
     @Override

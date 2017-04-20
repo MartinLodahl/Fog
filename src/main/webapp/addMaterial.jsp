@@ -13,7 +13,7 @@
     </head>
     <body> 
         <p><a href="./index">Menuen</a></p>
-        <form action="./addMatrial" method="post">
+        <form action="./addMaterial" method="post">
         <label for="name">navn:</label> <input type="text" name="materialname"><br>
         <select name="select">
             <option value="stolpe">stolpe</option>
