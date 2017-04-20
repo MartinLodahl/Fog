@@ -12,6 +12,7 @@
         <title>Tilføj materialer</title>
     </head>
     <body> 
+        <form action="./addMatrial" method="post">
         <p><a href=".">Menuen</a></p>
         <form action="./addMaterial" method="post">
         <label for="name">navn:</label> <input type="text" name="materialname"><br>
