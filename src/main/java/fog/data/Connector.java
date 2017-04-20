@@ -7,6 +7,9 @@ package fog.data;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -22,26 +25,28 @@ public class Connector {
     private final String id = "root";
     private final String pw = "fuck";
 
-    public Connection getConnection() {
+    public Connection getConnection() throws SQLException {
         Connection con = null;
         try {
             Class.forName(driver);
             con = DriverManager.getConnection(URL, id, pw);  // The connection will be released upon program 
 
-        } catch (Exception e) {
-            System.out.println("\n*** Remember to insert your  ID and PW in the DBConnector class! ***\n");
-            System.out.println("error in DBConnector.getConnection()");
-            System.out.println(e);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(MaterialMapper.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(MaterialMapper.class.getName()).log(Level.SEVERE, null, ex);
+            throw ex;
         }
 
         return con;
     }
 
-    public void releaseConnection(Connection con) {
+    public void releaseConnection(Connection con) throws SQLException {
         try {
             con.close();
-        } catch (Exception e) {
-            System.err.println(e);
+        } catch (SQLException ex) {
+            Logger.getLogger(MaterialMapper.class.getName()).log(Level.SEVERE, null, ex);
+            throw ex;
         }
     }
 }

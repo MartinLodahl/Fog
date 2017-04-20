@@ -7,8 +7,10 @@ package fog.data;
 
 import fog.domain.Material;
 import java.util.ArrayList;
+import java.util.Arrays;
 import org.junit.After;
 import org.junit.AfterClass;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -54,30 +56,13 @@ public class MaterialMapperTest {
         MaterialMapper instance = new MaterialMapper(con);
         ArrayList<Material> expResult = new ArrayList<Material>();
         expResult.add(new Material(1, "stolpe", "stolpe", 200, 10.00, 4));
-        expResult.add(new Material(4, "Plastik brædde2", "brædde", 200, 5*length/100, 2));
+        expResult.add(new Material(4, "Plastik brædde2", "brædde", 200, 5.00*length/100, 2));
         expResult.add(new Material(3, "Træ brædde", "brædde", 500, 10.00, 2));
-        expResult.add(new Material(5, "Normalt tag", "tag", 500, 200, (10.00*length*width)/10000, 2));        
-        
-                
-                //           list.add(new Material(id, name, type, size, price, 4));
+        expResult.add(new Material(5, "Normalt tag", "tag", 500, 200, (10.00*length*width)/10000, 1));
         ArrayList<Material> result = instance.CreateMaterialList(length, width, skur, heigth);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of CreateOrderItems method, of class MaterialMapper.
-     */
-    @Test
-    public void testCreateOrderItems() throws Exception {
-        System.out.println("CreateOrderItems");
-        ArrayList<Material> list = null;
-        int orderID = 1;
-        MaterialMapper instance = null;
-        instance.CreateOrderItems(list, orderID);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-    
+      // Assert.assertArrayEquals(expResult.toArray(), result.toArray());
+        for (int i = 0; i < expResult.size(); i++) {
+            Assert.assertEquals(expResult.get(i).toString(), result.get(i).toString());   
+        }
+    }    
 }
