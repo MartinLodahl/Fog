@@ -33,9 +33,4 @@ public class DeleteControl extends HttpServlet {
             Logger.getLogger(DeleteControl.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-
-    @Override
-    public String getServletInfo() {
-        return "Login Servlet";
-    }
 }

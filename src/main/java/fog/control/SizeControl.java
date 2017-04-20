@@ -64,9 +64,4 @@ public class SizeControl extends HttpServlet {
             Logger.getLogger(SizeControl.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-
-    @Override
-    public String getServletInfo() {
-        return "Size Servlet";
-    }
 }
