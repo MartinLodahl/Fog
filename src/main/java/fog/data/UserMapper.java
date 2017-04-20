@@ -36,4 +36,19 @@ public class UserMapper
             throw new CustomException(ex.getMessage());
         }
     }
+    
+    public void createUser(User user) throws CustomException {
+        try
+        {
+            String query = "insert into materials (name, type, size, price) "
+                    + "values (?,?,?,?);";
+            PreparedStatement stmt = connector.getConnection().prepareStatement(query);
+            stmt.setString(1, user.getUsername());
+            stmt.setString(2, user.getPassword());
+            stmt.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(MaterialMapper.class.getName()).log(Level.SEVERE, null, ex);
+            throw new CustomException(ex.getMessage());
+        }
+    }
 }
