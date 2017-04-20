@@ -6,6 +6,7 @@
         <title>Bestilling Godkendt</title>
     </head>
     <body>
+        <p><a href="./index">Menuen</a></p>
         <h1>Bestilling godkendt</h1>
         <c:set var="b" value="${0}"/>
         <c:forEach items="${orderItems}" var="item">

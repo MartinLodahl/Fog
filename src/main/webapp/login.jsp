@@ -5,6 +5,7 @@
         <title>Log ind</title>
     </head>
     <body>
+        <p><a href="./index">Menuen</a></p>
         <form method="post">
             <p>
                 <label for="username">Brugernavn:</label>
