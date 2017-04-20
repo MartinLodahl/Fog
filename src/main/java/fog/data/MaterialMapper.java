@@ -86,7 +86,7 @@ public class MaterialMapper
 
                 }
             }
-            query = "SELECT * FROM materials where type='brædde';";
+            query = "SELECT * FROM materials where type='braedde';";
             stmt = connector.getConnection().prepareStatement(query);
             res = stmt.executeQuery();
             wasInDB = false;
@@ -94,7 +94,7 @@ public class MaterialMapper
             {
                 if (res.getInt("size") == length)
                 {
-                    query = "SELECT * FROM materials where type='brædde' and size=?;";
+                    query = "SELECT * FROM materials where type='braedde' and size=?;";
                     stmt = connector.getConnection().prepareStatement(query);
                     stmt.setInt(1, length);
                     res = stmt.executeQuery();
@@ -112,7 +112,7 @@ public class MaterialMapper
             }
             if (!wasInDB)
             {
-                query = "SELECT * FROM materials where type='brædde' and size=?;";
+                query = "SELECT * FROM materials where type='braedde' and size=?;";
                 stmt = connector.getConnection().prepareStatement(query);
                 stmt.setInt(1, 0);
                 res = stmt.executeQuery();
@@ -125,7 +125,7 @@ public class MaterialMapper
                     list.add(new Material(id, name, type, length, price * length / 100, 2));
                 }
             }
-            query = "SELECT * FROM materials where type='brædde' and size=?;";
+            query = "SELECT * FROM materials where type='braedde' and size=?;";
             stmt = connector.getConnection().prepareStatement(query);
             stmt.setInt(1, width);
             res = stmt.executeQuery();
@@ -134,7 +134,7 @@ public class MaterialMapper
             {
                 if (res.getInt("size") == width)
                 {
-                    query = "SELECT * FROM materials where type='brædde' and size=?;";
+                    query = "SELECT * FROM materials where type='braedde' and size=?;";
                     stmt = connector.getConnection().prepareStatement(query);
                     stmt.setInt(1, width);
                     res = stmt.executeQuery();
@@ -153,7 +153,7 @@ public class MaterialMapper
             }
             if (!wasInDB)
             {
-                query = "SELECT * FROM materials where type='brædde' and size=?;";
+                query = "SELECT * FROM materials where type='braedde' and size=?;";
                 stmt = connector.getConnection().prepareStatement(query);
                 stmt.setInt(1, 0);
                 res = stmt.executeQuery();
