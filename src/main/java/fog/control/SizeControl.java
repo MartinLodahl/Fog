@@ -47,10 +47,12 @@ public class SizeControl extends HttpServlet {
             int height = Integer.parseInt(request.getParameter("height"));
             boolean skur = request.getParameter("skur") != null;
 
-            Order order = new Order(0, name, email, phone, false, width, length, height, skur);
+            Order order = new Order(0, name, email, phone, false, width, length, height, skur, false);
             Connector connector = new Connector();
             OrderMapper mapper = new OrderMapper(connector);
+            System.out.println("create order");
             int orderID = mapper.createOrder(order);
+             System.out.println("end create order");
             MaterialMapper mm = new MaterialMapper(connector);
             ArrayList<Material> list = mm.CreateMaterialList(length, width, skur, height);
             mm.CreateOrderItems(list, orderID);

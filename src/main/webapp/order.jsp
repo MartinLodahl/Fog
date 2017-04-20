@@ -24,7 +24,7 @@
                 <td>${order.customerName}</td>
                 <td>${order.customerMail}</td>
                 <td>${order.customerPhone}</td>
-                <td>${order.isFinished}</td>
+                <td>${order.status}</td>
                 <td>${order.width}</td>
                 <td>${order.length}</td>
                 <td>${order.height}</td>
@@ -34,7 +34,7 @@
         <form method="post">
             <input type="hidden" name="id" value="${order.id}">
             <c:choose>
-                <c:when test="${order.isFinished}">
+                <c:when test="${order.status}">
                     <label>Order done :<input type="checkbox" name="orderDone" checked="checked"></label> 
 
                     <br />

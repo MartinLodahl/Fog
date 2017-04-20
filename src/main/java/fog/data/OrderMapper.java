@@ -32,20 +32,21 @@ public class OrderMapper {
     
     public void updateOrder (Order order) throws SQLException{
         try {
-            String query = "UPDATE orders SET customer_name = ? , customer_email = ?, customer_phone = ?, isFinished = ?"
-                    + ", width = ? , height = ?, length = ?, skur = ? "
+            String query = "UPDATE orders SET customer_name = ? , customer_email = ?, customer_phone = ?, status = ?"
+                    + ", width = ? , height = ?, length = ?, skur = ?, deleted = ? "
                     + " WHERE id = ?;";
 
             PreparedStatement stmt = connector.getConnection().prepareStatement(query);
             stmt.setString(1, order.getCustomerName());
             stmt.setString(2, order.getCustomerMail());
             stmt.setString(3, order.getCustomerPhone());
-            stmt.setBoolean(4, order.isIsFinished());
+            stmt.setBoolean(4, order.isStatus());
             stmt.setInt(5, order.getWidth());
             stmt.setInt(6, order.getHeight());
             stmt.setInt(7, order.getLength());
             stmt.setBoolean(8, order.isSkur());
-            stmt.setInt(9, order.getId());
+            stmt.setBoolean(9, order.isDeleted());
+            stmt.setInt(10, order.getId());
 
             stmt.executeUpdate();
         } catch (SQLException ex) {
@@ -56,7 +57,7 @@ public class OrderMapper {
 
     public Order getOrderById(int id) throws SQLException {
         try {
-            String query = "SELECT * FROM orders  WHERE id = ?;";
+            String query = "SELECT * FROM orders  WHERE id = ? and deleted = false;";
             PreparedStatement stmt = connector.getConnection().prepareStatement(query);
             stmt.setInt(1, id);
             ResultSet res = stmt.executeQuery();
@@ -66,13 +67,14 @@ public class OrderMapper {
                 String customerName = res.getString("customer_name");
                 String customerEmail = res.getString("customer_email");
                 String customerPhone = res.getString("customer_phone");
-                boolean isFinished = res.getBoolean("isFinished");
+                boolean status = res.getBoolean("status");
                 int width = res.getInt("width");
                 int length = res.getInt("length");
                 int height = res.getInt("height");
                 boolean isSkur = res.getBoolean("skur");
+                boolean deleted = res.getBoolean("deleted");
                 Order newOrder = new Order(orderId, customerName, customerEmail, customerPhone,
-                        isFinished, width, length, height, isSkur);
+                        status, width, length, height, isSkur,deleted);
 
                 return newOrder;
 
@@ -89,14 +91,14 @@ public class OrderMapper {
         try {
             String query = "INSERT INTO orders "
                     + "(customer_name, customer_email, customer_phone, "
-                    + "isFinished, width, length, height, skur) "
-                    + "VALUES (?, ?, ?, ?, ?, ?, ?, ?);";
+                    + "status, width, length, height, skur, deleted) "
+                    + "VALUES (?, ?, ?, ?, ?, ?, ?, ?,false);";
             Connection connection = connector.getConnection();
             PreparedStatement stmt = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
             stmt.setString(1, order.getCustomerName());
             stmt.setString(2, order.getCustomerMail());
             stmt.setString(3, order.getCustomerPhone());
-            stmt.setBoolean(4, order.isIsFinished());
+            stmt.setBoolean(4, order.isStatus());
             stmt.setInt(5, order.getWidth());
             stmt.setInt(6, order.getLength());
             stmt.setInt(7, order.getHeight());
@@ -115,7 +117,7 @@ public class OrderMapper {
 
     public void deleteOrderById(int id) throws SQLException {
         try {
-            String query = "DELETE FROM orders where id = ?";
+            String query = "UPDATE orders SET deleted = true where id = ?";
             PreparedStatement stmt = connector.getConnection().prepareStatement(query);
             stmt.setInt(1, id);
             stmt.executeUpdate();
@@ -127,7 +129,7 @@ public class OrderMapper {
 
     public void finishOrder(int id) throws SQLException {
         try {
-            String query = "UPDATE orders SET isFinished=true where id = ?";
+            String query = "UPDATE orders SET status = true where id = ?";
             PreparedStatement stmt = connector.getConnection().prepareStatement(query);
             stmt.setInt(1, id);
             stmt.executeUpdate();
@@ -139,7 +141,7 @@ public class OrderMapper {
 
     public void unFinishOrder(int id) throws SQLException {
         try {
-            String query = "UPDATE orders SET isFinished=false where id = ?";
+            String query = "UPDATE orders SET status=false where id = ?";
             PreparedStatement stmt = connector.getConnection().prepareStatement(query);
             stmt.setInt(1, id);
             stmt.executeUpdate();

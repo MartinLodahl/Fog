@@ -12,7 +12,7 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <p><a href="./index">Menuen</a></p>
+        <p><a href="./">Menuen</a></p>
         <h1>Ordernumber doesnt exist</h1>
     </body>
 </html>

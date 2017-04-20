@@ -11,24 +11,25 @@ package fog.domain;
  */
 public class Order
 {
-    private int id;
+    private final int id;
     private String customerName,customerMail,customerPhone;
-    private boolean isFinished;
+    private boolean status;
     private int width, length, height;
-    private boolean skur;
+    private boolean skur, deleted;
 
     public Order(int id, String customerName, String customerMail, String customerPhone,
-            boolean isFinished, int width, int length, int height, boolean skur)
+            boolean status, int width, int length, int height, boolean skur, boolean deleted)
     {
         this.id = id;
         this.customerName = customerName;
         this.customerMail = customerMail;
         this.customerPhone = customerPhone;
-        this.isFinished = isFinished;
+        this.status = status;
         this.width = width;
         this.length = length;
         this.height = height;
         this.skur = skur;
+        this.deleted = deleted;
     }
 
     public int getId()
@@ -66,12 +67,12 @@ public class Order
         this.customerPhone = customerPhone;
     } 
 
-    public boolean isIsFinished() {
-        return isFinished;
+    public boolean isStatus() {
+        return status;
     }
 
-    public void setIsFinished(boolean isFinished) {
-        this.isFinished = isFinished;
+    public void setStatus(boolean status) {
+        this.status = status;
     }
 
     public int getWidth() {
@@ -105,4 +106,15 @@ public class Order
     public void setSkur(boolean skur) {
         this.skur = skur;
     }
+
+    public boolean isDeleted()
+    {
+        return deleted;
+    }
+
+    public void setDeleted(boolean deleted)
+    {
+        this.deleted = deleted;
+    }
+    
 }

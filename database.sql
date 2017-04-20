@@ -36,11 +36,12 @@ CREATE TABLE orders (
 	customer_name VARCHAR(100) NOT NULL,
 	customer_email VARCHAR(100) NOT NULL,
 	customer_phone VARCHAR(100) NOT NULL, 
-	isFinished BOOLEAN NOT NULL,
+	status BOOLEAN NOT NULL,
 	width INTEGER NOT NULL,
 	length INTEGER NOT NULL,
 	height INTEGER NOT NULL,
-	skur BOOLEAN NOT NULL
+	skur BOOLEAN NOT NULL,
+	deleted BOOLEAN NOT NULL
 );
 
 CREATE TABLE orderitems (

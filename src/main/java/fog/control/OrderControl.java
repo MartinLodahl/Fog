@@ -119,7 +119,7 @@ public class OrderControl extends HttpServlet
         {
            Order order = mapper.getOrderById(id);
             
-                order.setIsFinished(orderDone!=null);
+                order.setStatus(orderDone!=null);
                 mapper.updateOrder(order);
                 response.sendRedirect("order?orderid="+id);
                 //request.getRequestDispatcher("order.jsp").forward(request, response);
