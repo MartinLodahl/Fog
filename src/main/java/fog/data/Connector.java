@@ -7,7 +7,6 @@ package fog.data;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.PreparedStatement;
 
 /**
  *
@@ -15,13 +14,13 @@ import java.sql.PreparedStatement;
  */
 public class Connector {
       
-    private Connection con;
-    private static Connector instance;
-    private static PreparedStatement stmt;
-    private static String driver = "com.mysql.jdbc.Driver";
-    private static String URL = "jdbc:mysql://localhost:3306/fog";
-    private static String id = "root";
-    private static String pw = "fuck";
+   
+    
+    
+    private final String driver = "com.mysql.jdbc.Driver";
+    private final String URL = "jdbc:mysql://localhost:3306/fog";
+    private final String id = "root";
+    private final String pw = "fuck";
 
     public Connection getConnection() {
         Connection con = null;
