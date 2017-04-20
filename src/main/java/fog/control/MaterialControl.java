@@ -10,6 +10,9 @@ import fog.data.MaterialMapper;
 import fog.domain.Material;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -38,25 +41,29 @@ public class MaterialControl extends HttpServlet
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException
     {
-        HttpSession session = request.getSession();
-
-        // Checks if user is logged in
-        if(session.getAttribute("username")==null){
-            response.sendRedirect("./login");
-            return;
+        try {
+            HttpSession session = request.getSession();
+            
+            // Checks if user is logged in
+            if(session.getAttribute("username")==null){
+                response.sendRedirect("./login");
+                return;
+            }
+            
+            String name = request.getParameter("materialname");
+            String type  = request.getParameter("select");
+            int size = Integer.parseInt(request.getParameter("size"));
+            int price = Integer.parseInt(request.getParameter("price"));
+            Material material = new Material (name,type,size,price);
+            
+            
+            Connector connector  = new Connector();
+            MaterialMapper materialMapper = new MaterialMapper(connector);
+            materialMapper.insertMatrial(material);
+            
+            response.sendRedirect("index.html");
+        } catch (SQLException ex) {
+            Logger.getLogger(MaterialControl.class.getName()).log(Level.SEVERE, null, ex);
         }
-
-        String name = request.getParameter("materialname");
-        String type  = request.getParameter("select");
-        int size = Integer.parseInt(request.getParameter("size"));
-        int price = Integer.parseInt(request.getParameter("price"));
-        Material material = new Material (name,type,size,price);
-        
-        
-        Connector connector  = new Connector();
-        MaterialMapper materialMapper = new MaterialMapper(connector);
-        materialMapper.insertMatrial(material);
-        
-        response.sendRedirect("index.html");
     }
 }
