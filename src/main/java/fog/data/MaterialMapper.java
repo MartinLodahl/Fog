@@ -177,7 +177,7 @@ public class MaterialMapper
                 String name = res.getString("name");
                 String type = res.getString("type");
                 Double price = res.getDouble("price");
-                list.add(new Material(id, name, type, width, length, price * (width * heigth) / 10000, 1));
+                list.add(new Material(id, name, type, width, length, price * (length * width) / 10000, 1));
             }
             return list;
         } catch (SQLException ex) {
@@ -199,7 +199,7 @@ public class MaterialMapper
                 String name = res.getString("name");
                 String type = res.getString("type");
                 Double price = res.getDouble("price");
-                list.add(new Material(id, name, type, width, length, price * (width * heigth) / 10000, 1));
+                list.add(new Material(id, name, type, width, length, price * (length * width) / 10000, 1));
             }
             query = "SELECT * FROM materials where type='plade';";
             stmt = connector.getConnection().prepareStatement(query);
