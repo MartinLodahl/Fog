@@ -1,0 +1,83 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package fog.data;
+
+import fog.domain.Material;
+import java.util.ArrayList;
+import org.junit.After;
+import org.junit.AfterClass;
+import org.junit.Before;
+import org.junit.BeforeClass;
+import org.junit.Test;
+import static org.junit.Assert.*;
+
+/**
+ *
+ * @author MartinLodahl
+ */
+public class MaterialMapperTest {
+    
+    public MaterialMapperTest() {
+    }
+    
+    @BeforeClass
+    public static void setUpClass() {
+    }
+    
+    @AfterClass
+    public static void tearDownClass() {
+    }
+    
+    @Before
+    public void setUp() {
+    }
+    
+    @After
+    public void tearDown() {
+    }
+
+    /**
+     * Test of CreateMaterialList method, of class MaterialMapper.
+     */
+    @Test
+    public void testCreateMaterialList() throws Exception {
+        
+        Connector con = new Connector();
+        System.out.println("CreateMaterialList");
+        int length = 200;
+        int width = 500;
+        boolean skur = false;
+        int heigth = 200;
+        MaterialMapper instance = new MaterialMapper(con);
+        ArrayList<Material> expResult = new ArrayList<Material>();
+        expResult.add(new Material(1, "stolpe", "stolpe", 200, 10.00, 4));
+        expResult.add(new Material(4, "Plastik brædde2", "brædde", 200, 5*length/100, 2));
+        expResult.add(new Material(3, "Træ brædde", "brædde", 500, 10.00, 2));
+        expResult.add(new Material(5, "Normalt tag", "tag", 500, 200, (10.00*length*width)/10000, 2));        
+        
+                
+                //           list.add(new Material(id, name, type, size, price, 4));
+        ArrayList<Material> result = instance.CreateMaterialList(length, width, skur, heigth);
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of CreateOrderItems method, of class MaterialMapper.
+     */
+    @Test
+    public void testCreateOrderItems() throws Exception {
+        System.out.println("CreateOrderItems");
+        ArrayList<Material> list = null;
+        int orderID = 1;
+        MaterialMapper instance = null;
+        instance.CreateOrderItems(list, orderID);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+    
+}
