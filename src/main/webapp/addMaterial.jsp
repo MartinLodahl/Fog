@@ -12,7 +12,7 @@
         <title>JSP Page</title>
     </head>
     <body> 
-        <p><a href="./index">Menuen</a></p>
+        <p><a href=".">Menuen</a></p>
         <form action="./addMaterial" method="post">
         <label for="name">navn:</label> <input type="text" name="materialname"><br>
         <select name="select">

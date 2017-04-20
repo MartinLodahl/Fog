@@ -12,6 +12,7 @@
         <title>JSP Page</title>
     </head>
     <body>
+        <p><a href=".">Menuen</a></p>
         <p><a href="./addMaterial">Tilføj materialer</a></p>
          <form action="./order" method="get">
             <p>
