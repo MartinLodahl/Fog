@@ -7,6 +7,7 @@
         <title>Ordre ${order.id}</title>
     </head>
     <body>
+        <p><a href="./index">Menuen</a></p>
         <table>
             <tr>
                 <th>OrderId</th>
