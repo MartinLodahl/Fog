@@ -12,7 +12,8 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <p><a href="./index.html">Menuen</a></p>
+        <p><a href=".">Menuen</a></p>
+        <p><a href="./addMaterial">Tilføj materialer</a></p>
          <form action="./order" method="get">
             <p>
                 <label for="orderid">Orderid:</label>
