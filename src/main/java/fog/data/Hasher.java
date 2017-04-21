@@ -1,4 +1,4 @@
-package org.cba.model;
+package fog.data;;
 
 import java.math.BigInteger;
 import java.security.MessageDigest;
