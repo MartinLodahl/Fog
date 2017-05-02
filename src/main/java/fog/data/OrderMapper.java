@@ -34,7 +34,7 @@ public class OrderMapper {
     public void updateOrder (Order order) throws SQLException{
         try {
             String query = "UPDATE orders SET customer_name = ? , customer_email = ?, customer_phone = ?, status = ?"
-                    + ", width = ? , height = ?, length = ?, skur = ?, deleted = ? "
+                    + ", width = ? , height = ?, length = ?, skur = ?, build = ? ,deleted = ? "
                     + " WHERE id = ?;";
 
             PreparedStatement stmt = connector.getConnection().prepareStatement(query);
@@ -46,8 +46,9 @@ public class OrderMapper {
             stmt.setInt(6, order.getHeight());
             stmt.setInt(7, order.getLength());
             stmt.setBoolean(8, order.isSkur());
-            stmt.setBoolean(9, order.isDeleted());
-            stmt.setInt(10, order.getId());
+            stmt.setBoolean(9, order.isBuild());
+            stmt.setBoolean(10, order.isDeleted());
+            stmt.setInt(11, order.getId());
 
             stmt.executeUpdate();
         } catch (SQLException ex) {
@@ -107,9 +108,10 @@ public class OrderMapper {
                 int length = res.getInt("length");
                 int height = res.getInt("height");
                 boolean isSkur = res.getBoolean("skur");
+                boolean build = res.getBoolean("build");
                 boolean deleted = res.getBoolean("deleted");
                 Order newOrder = new Order(orderId, customerName, customerEmail, customerPhone,
-                        status, width, length, height, isSkur,deleted);
+                        status, width, length, height, isSkur,build,deleted);
                 
                 list.add(newOrder);
 

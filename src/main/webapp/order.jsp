@@ -14,7 +14,7 @@
                 <th>name</th>
                 <th>mail</th>
                 <th>phone</th>
-                <th>finished</th>
+                <th>Arkiveret</th>
                 <th>width</th>
                 <th>length</th>
                 <th>height</th>

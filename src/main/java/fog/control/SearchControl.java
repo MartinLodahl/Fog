@@ -65,7 +65,6 @@ public class SearchControl extends HttpServlet
         try
         {
             List<Order> orders = orderMapper.getAllActiveOrders();
-            System.out.println("id "+orders.get(0).getId());
             request.setAttribute("orders", orders);
             connector.releaseConnection(connector.getConnection());
             request.getRequestDispatcher("search.jsp").forward(request, response);

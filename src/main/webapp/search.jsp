@@ -11,6 +11,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <%@ taglib prefix="c" 
                    uri="http://java.sun.com/jsp/jstl/core" %>
+        <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
         <title>Søgning</title>
     </head>
     <body>
@@ -27,6 +28,8 @@
             </p>
         </form>
         <table>
+            <c:choose>
+            <c:when test="${fn:length(orders) gt 0}">    
             <tr>
                 <th>OrderId</th>
                 <th>name</th>
@@ -52,6 +55,11 @@
                 </tr>
 
             </c:forEach>
+            </c:when>
+            <c:otherwise>
+                <p>Ingen ordre</p>
+            </c:otherwise>
+            </c:choose>    
         </table> 
     </body>
 </html>
