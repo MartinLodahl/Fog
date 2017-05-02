@@ -41,6 +41,7 @@ CREATE TABLE orders (
 	length INTEGER NOT NULL,
 	height INTEGER NOT NULL,
 	skur BOOLEAN NOT NULL,
+	build BOOLEAN NOT NULL,
 	deleted BOOLEAN NOT NULL
 );
 
