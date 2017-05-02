@@ -2,9 +2,11 @@ package fog.control;
 
 import fog.data.Connector;
 import fog.data.OrderMapper;
+import fog.domain.Order;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
@@ -33,15 +35,7 @@ public class SearchControl extends HttpServlet
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException
     {
-        HttpSession session = request.getSession();
         
-        // Checks if user is logged in
-        if(session.getAttribute("username")==null){
-            response.sendRedirect("./login");
-            return;
-        }
-        // redirects to search.jsp
-        request.getRequestDispatcher("search.jsp").forward(request, response);
     }
 
     /**
@@ -56,7 +50,29 @@ public class SearchControl extends HttpServlet
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException
     {
-        processRequest(request, response);
+        
+        
+        HttpSession session = request.getSession();
+        
+        // Checks if user is logged in
+        if(session.getAttribute("username")==null){
+            response.sendRedirect("./login");
+            return;
+        }
+        
+        Connector connector = new Connector();
+        OrderMapper orderMapper = new OrderMapper(connector);
+        try
+        {
+            List<Order> orders = orderMapper.getAllActiveOrders();
+            System.out.println("id "+orders.get(0).getId());
+            request.setAttribute("orders", orders);
+            connector.releaseConnection(connector.getConnection());
+            request.getRequestDispatcher("search.jsp").forward(request, response);
+        } catch (SQLException ex)
+        {
+            Logger.getLogger(SearchControl.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**

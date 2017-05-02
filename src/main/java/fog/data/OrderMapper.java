@@ -14,6 +14,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -86,6 +87,42 @@ public class OrderMapper {
             throw ex;
         }
     }
+    
+    public List<Order> getAllActiveOrders() throws SQLException {
+        
+        List<Order> list = new ArrayList();
+        try {
+            String query = "SELECT * FROM orders  WHERE deleted = false;";
+            PreparedStatement stmt = connector.getConnection().prepareStatement(query);
+            ResultSet res = stmt.executeQuery();
+
+            while (res.next()) {
+                int orderId = res.getInt("id");
+                String customerName = res.getString("customer_name");
+                String customerEmail = res.getString("customer_email");
+                String customerPhone = res.getString("customer_phone");
+                boolean status = res.getBoolean("status");
+                int width = res.getInt("width");
+                int length = res.getInt("length");
+                int height = res.getInt("height");
+                boolean isSkur = res.getBoolean("skur");
+                boolean deleted = res.getBoolean("deleted");
+                Order newOrder = new Order(orderId, customerName, customerEmail, customerPhone,
+                        status, width, length, height, isSkur,deleted);
+                
+                list.add(newOrder);
+
+                
+
+            }
+            return list;
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(MaterialMapper.class.getName()).log(Level.SEVERE, null, ex);
+            throw ex;
+        }
+        
+    }
 
     public int createOrder(Order order) throws SQLException {
         try {
@@ -118,30 +155,6 @@ public class OrderMapper {
     public void deleteOrderById(int id) throws SQLException {
         try {
             String query = "UPDATE orders SET deleted = true where id = ?";
-            PreparedStatement stmt = connector.getConnection().prepareStatement(query);
-            stmt.setInt(1, id);
-            stmt.executeUpdate();
-        } catch (SQLException ex) {
-            Logger.getLogger(MaterialMapper.class.getName()).log(Level.SEVERE, null, ex);
-            throw ex;
-        }
-    }
-
-    public void finishOrder(int id) throws SQLException {
-        try {
-            String query = "UPDATE orders SET status = true where id = ?";
-            PreparedStatement stmt = connector.getConnection().prepareStatement(query);
-            stmt.setInt(1, id);
-            stmt.executeUpdate();
-        } catch (SQLException ex) {
-            Logger.getLogger(MaterialMapper.class.getName()).log(Level.SEVERE, null, ex);
-            throw ex;
-        }
-    }
-
-    public void unFinishOrder(int id) throws SQLException {
-        try {
-            String query = "UPDATE orders SET status=false where id = ?";
             PreparedStatement stmt = connector.getConnection().prepareStatement(query);
             stmt.setInt(1, id);
             stmt.executeUpdate();
