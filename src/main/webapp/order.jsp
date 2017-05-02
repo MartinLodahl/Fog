@@ -18,6 +18,7 @@
                 <th>width</th>
                 <th>length</th>
                 <th>height</th>
+                <th>Fog skal bygge</th>
             </tr>
             <tr>
                 <td>${order.id}</td>
@@ -28,6 +29,7 @@
                 <td>${order.width}</td>
                 <td>${order.length}</td>
                 <td>${order.height}</td>
+                <td>${order.build}</td>
             </tr>
         </table>
 
@@ -60,7 +62,6 @@
                 <th>price (for each)</th>
                 <th>price (total)</th>
             </tr>
-            <c:set var ="b" value = "${0}"/>
             <c:forEach items="${orderItems}" var="item">
                 <tr>
                     <td><c:out value="${item.materialId}"/></td>
@@ -69,20 +70,17 @@
                     <td><c:out value="${item.width}"/></td>
                     <td><c:out value="${item.price}"/></td>
                     <td><c:out value="${item.price*item.quantity}"/></td>
-                    <c:set var = "b" value = "${b+(item.price*item.quantity)}" />
                 </tr>
             </c:forEach>
         </table>
-        <c:if test="${b>0}"> 
-            <table>
-                <tr>
-                    <th>total Order price</th>
-                </tr>
-                <tr>
-                    <td><c:out value="${b}"/></td>
-                </tr>
-            </table>
-        </c:if>
+        <table>
+            <tr>
+                <th>total Order price</th>
+            </tr>
+            <tr>
+                <td><c:out value="${total}"/></td>
+            </tr>
+        </table>
 
 
     </body>

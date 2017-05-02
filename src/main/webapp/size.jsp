@@ -36,6 +36,10 @@
                 <label for="skur">Skur</label>
             </p>
             <p>
+                <input type="checkbox" name="build" id="build">
+                <label for="build">Fog skal bygge carporten</label>
+            </p>
+            <p>
                 <button>Bestil</button>
             </p>
         </form>

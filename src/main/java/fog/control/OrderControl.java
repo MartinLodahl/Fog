@@ -80,6 +80,15 @@ public class OrderControl extends HttpServlet
 
                 request.setAttribute("order", order);
                 request.setAttribute("orderItems", orderItems);
+                double total = 0;
+                for (OrderItem orderItem : orderItems) {
+                    total += orderItem.getQuantity() * orderItem.getPrice();
+                }
+                if (order.isBuild()) {
+                    total += 1700;
+                }
+                request.setAttribute("total", total);
+
                 request.getRequestDispatcher("order.jsp").forward(request, response);
                 }
 

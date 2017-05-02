@@ -72,9 +72,10 @@ public class OrderMapper {
                 int length = res.getInt("length");
                 int height = res.getInt("height");
                 boolean isSkur = res.getBoolean("skur");
+                boolean isBuild = res.getBoolean("build");
                 boolean deleted = res.getBoolean("deleted");
                 Order newOrder = new Order(orderId, customerName, customerEmail, customerPhone,
-                        status, width, length, height, isSkur,deleted);
+                        status, width, length, height, isSkur, isBuild, deleted);
 
                 return newOrder;
 
@@ -91,8 +92,8 @@ public class OrderMapper {
         try {
             String query = "INSERT INTO orders "
                     + "(customer_name, customer_email, customer_phone, "
-                    + "status, width, length, height, skur, deleted) "
-                    + "VALUES (?, ?, ?, ?, ?, ?, ?, ?,false);";
+                    + "status, width, length, height, skur, build, deleted) "
+                    + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, false);";
             Connection connection = connector.getConnection();
             PreparedStatement stmt = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
             stmt.setString(1, order.getCustomerName());
@@ -103,6 +104,7 @@ public class OrderMapper {
             stmt.setInt(6, order.getLength());
             stmt.setInt(7, order.getHeight());
             stmt.setBoolean(8, order.isSkur());
+            stmt.setBoolean(9, order.isBuild());
             stmt.executeUpdate();
             ResultSet generatedKeys = stmt.getGeneratedKeys();
             if (generatedKeys.next()) {
