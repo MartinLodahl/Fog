@@ -14,6 +14,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -174,5 +175,18 @@ public class OrderMapper {
             Logger.getLogger(MaterialMapper.class.getName()).log(Level.SEVERE, null, ex);
             throw ex;
         }
+    }
+    
+    public double getOrderTotal(int id) throws SQLException {
+        Order order = this.getOrderById(id);
+        List<OrderItem> orderItems = this.getOrderItems(id);
+        double total = 0;
+        for (OrderItem orderItem : orderItems) {
+            total += orderItem.getQuantity() * orderItem.getPrice();
+        }
+        if (order.isBuild()) {
+            total += 1700;
+        }
+        return total;
     }
 }

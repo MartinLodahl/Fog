@@ -61,13 +61,7 @@ public class SizeControl extends HttpServlet {
             //Sends the materiallist to the frontend
             ArrayList<OrderItem> orderItems = mapper.getOrderItems(orderID);
             request.setAttribute("orderItems", orderItems);
-            double total = 0;
-            for (OrderItem orderItem : orderItems) {
-                total += orderItem.getQuantity() * orderItem.getPrice();
-            }
-            if (order.isBuild()) {
-                total += 1700;
-            }
+            double total = mapper.getOrderTotal(orderID);
             request.setAttribute("total", total);
 
             request.getRequestDispatcher("bestil.jsp").forward(request, response);
