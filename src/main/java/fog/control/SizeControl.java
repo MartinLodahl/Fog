@@ -46,8 +46,9 @@ public class SizeControl extends HttpServlet {
             int length = Integer.parseInt(request.getParameter("length"));
             int height = Integer.parseInt(request.getParameter("height"));
             boolean skur = request.getParameter("skur") != null;
+            boolean build = request.getParameter("build") != null;
 
-            Order order = new Order(0, name, email, phone, false, width, length, height, skur, false);
+            Order order = new Order(0, name, email, phone, false, width, length, height, skur, build, false);
             Connector connector = new Connector();
             OrderMapper mapper = new OrderMapper(connector);
             System.out.println("create order");
@@ -60,6 +61,8 @@ public class SizeControl extends HttpServlet {
             //Sends the materiallist to the frontend
             ArrayList<OrderItem> orderItems = mapper.getOrderItems(orderID);
             request.setAttribute("orderItems", orderItems);
+            double total = mapper.getOrderTotal(orderID);
+            request.setAttribute("total", total);
 
             request.getRequestDispatcher("bestil.jsp").forward(request, response);
         } catch (SQLException ex) {

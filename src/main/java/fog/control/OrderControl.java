@@ -58,7 +58,7 @@ public class OrderControl extends HttpServlet
     {
         connector = new Connector();
         oM = new OrderMapper(connector);
-        String orderid = request.getParameter("orderid");
+        int orderId = Integer.parseInt(request.getParameter("orderid"));
 
         HttpSession session = request.getSession();
         //Checks if user is logged in, else redirect them to the login page
@@ -69,8 +69,9 @@ public class OrderControl extends HttpServlet
         {
             try
             {
-                Order order = oM.getOrderById(Integer.parseInt(orderid));
-                ArrayList<OrderItem> orderItems = oM.getOrderItems(Integer.parseInt(orderid)); 
+                Order order = oM.getOrderById(orderId);
+                ArrayList<OrderItem> orderItems = oM.getOrderItems(orderId); 
+                double total = oM.getOrderTotal(orderId);
                 if(order==null){
                  
                 request.getRequestDispatcher("/searchError.jsp").forward(request, response);
@@ -80,6 +81,8 @@ public class OrderControl extends HttpServlet
 
                 request.setAttribute("order", order);
                 request.setAttribute("orderItems", orderItems);
+                request.setAttribute("total", total);
+
                 request.getRequestDispatcher("order.jsp").forward(request, response);
                 }
 

@@ -15,10 +15,10 @@ public class Order
     private String customerName,customerMail,customerPhone;
     private boolean status;
     private int width, length, height;
-    private boolean skur, deleted;
+    private boolean skur, build, deleted;
 
     public Order(int id, String customerName, String customerMail, String customerPhone,
-            boolean status, int width, int length, int height, boolean skur, boolean deleted)
+            boolean status, int width, int length, int height, boolean skur, boolean build, boolean deleted)
     {
         this.id = id;
         this.customerName = customerName;
@@ -29,6 +29,7 @@ public class Order
         this.length = length;
         this.height = height;
         this.skur = skur;
+        this.build = build;
         this.deleted = deleted;
     }
 
@@ -105,6 +106,14 @@ public class Order
 
     public void setSkur(boolean skur) {
         this.skur = skur;
+    }
+
+    public boolean isBuild() {
+        return build;
+    }
+
+    public void setBuild(boolean build) {
+        this.build = build;
     }
 
     public boolean isDeleted()
