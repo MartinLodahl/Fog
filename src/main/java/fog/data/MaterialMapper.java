@@ -99,7 +99,6 @@ public class MaterialMapper {
 
     private Material getByType(String type, int size, int quantity) {
         try {
-            System.out.println("Type getbytype: " + type);
             String query = "SELECT * FROM materials where type=?;";
             PreparedStatement stmt = connector.getConnection().prepareStatement(query);
             stmt.setString(1, type);
@@ -115,7 +114,6 @@ public class MaterialMapper {
                         int id = res.getInt("id");
                         String name = res.getString("name");
                         Double price = res.getDouble("price");
-                        System.out.println("I am returning premade size");
                         return (new Material(id, name, type, size, price, quantity));
                     }
                 }
@@ -130,7 +128,6 @@ public class MaterialMapper {
                 int id = res.getInt("id");
                 String name = res.getString("name");
                 Double price = res.getDouble("price");
-                System.out.println("I am returning custom made size " + size + "with the type: " + type);
                 return (new Material(id, name, type, size, price * size / 100, quantity));
 
             }
@@ -142,7 +139,6 @@ public class MaterialMapper {
                 Logger.getLogger(MaterialMapper.class.getName()).log(Level.SEVERE, null, ex1);
             }
         }
-        System.out.println("I am returning null");
         return null;
     }
 
@@ -156,7 +152,6 @@ public class MaterialMapper {
                 int id = res.getInt("id");
                 String name = res.getString("name");
                 Double price = res.getDouble("price");
-                System.out.println("I am returning type: " + type + " size1: " + size1 + " size2: " + size2);
                 return (new Material(id, name, type, size1, size2, price * (size2 * size1) / 10000, quantity));
             }
 
@@ -168,7 +163,6 @@ public class MaterialMapper {
                 Logger.getLogger(MaterialMapper.class.getName()).log(Level.SEVERE, null, ex1);
             }
         }
-        System.out.println("I am returning null");
         return null;
     }
 
