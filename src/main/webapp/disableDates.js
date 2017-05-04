@@ -3,7 +3,7 @@ var disableddates = ["05-05-2017"];
 var i = ($('input[id="i"]').val());
 //loop igennem nogle forskellige inputs (hidden), vi har navngivet efter deres placering i tidligere ArrayList.
 for(var j=0; j<i; j++){
-     disableddates.push($('input[id="date'+j+'"]').val())
+     disableddates.push($('input[id="date'+j+'"]').val());
  } 
 
 

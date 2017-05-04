@@ -57,6 +57,7 @@
                     <th>width</th>
                     <th>length</th>
                     <th>height</th>
+                    <th>call date</th>
                 </tr>
                 <c:forEach items="${orders}" var="orders">
 
@@ -69,6 +70,7 @@
                         <td>${orders.width}</td>
                         <td>${orders.length}</td>
                         <td>${orders.height}</td>
+                        <td>${orders.callDate}</td>
                     </tr>
 
                 </c:forEach>
