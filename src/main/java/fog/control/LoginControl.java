@@ -1,10 +1,8 @@
 package fog.control;
 
-import fog.data.Connector;
-import fog.data.UserMapper;
+import fog.data.FacadeMapper;
 import fog.domain.User;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -32,14 +30,13 @@ public class LoginControl extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         try {
-            Connector connector = new Connector();
-            UserMapper mapper = new UserMapper(connector);
+            FacadeMapper fm = new FacadeMapper();
             HttpSession session = request.getSession();
             
             String username = request.getParameter("username");
             String password = request.getParameter("password");
             
-            User user = mapper.getUserByUsername(username);
+            User user = fm.getUserByUsername(username);
             
             if (user != null && password.equals(user.getPassword())) {
                 session.setAttribute("username", username);

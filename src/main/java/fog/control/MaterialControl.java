@@ -5,11 +5,9 @@
  */
 package fog.control;
 
-import fog.data.Connector;
-import fog.data.MaterialMapper;
+import fog.data.FacadeMapper;
 import fog.domain.Material;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -65,9 +63,8 @@ public class MaterialControl extends HttpServlet
             Material material = new Material (name,type,size,price);
             
             
-            Connector connector  = new Connector();
-            MaterialMapper materialMapper = new MaterialMapper(connector);
-            materialMapper.insertMatrial(material);
+            FacadeMapper fm = new FacadeMapper();
+            fm.insertMatrial(material);
             
             response.sendRedirect("index.html");
         } catch (SQLException ex) {
