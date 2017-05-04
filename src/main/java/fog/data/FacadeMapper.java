@@ -20,10 +20,10 @@ import java.util.List;
 public class FacadeMapper {
 
     private final Connector con;
-    private OrderMapper OM;
-    private MaterialMapper MM;
-    private OrderItemsMapper OIM;
-    private UserMapper UM;
+    private final OrderMapper OM;
+    private final MaterialMapper MM;
+    private final OrderItemsMapper OIM;
+    private final UserMapper UM;
 
     public FacadeMapper() {
         this.con = new Connector();
