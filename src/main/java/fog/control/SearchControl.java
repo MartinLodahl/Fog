@@ -1,10 +1,8 @@
 package fog.control;
 
-import fog.data.Connector;
-import fog.data.OrderMapper;
+import fog.data.FacadeMapper;
 import fog.domain.Order;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.logging.Level;
@@ -60,13 +58,11 @@ public class SearchControl extends HttpServlet
             return;
         }
         
-        Connector connector = new Connector();
-        OrderMapper orderMapper = new OrderMapper(connector);
+        FacadeMapper fm = new FacadeMapper();
         try
         {
-            List<Order> orders = orderMapper.getAllActiveOrders();
+            List<Order> orders = fm.getAllActiveOrders();
             request.setAttribute("orders", orders);
-            connector.releaseConnection(connector.getConnection());
             request.getRequestDispatcher("search.jsp").forward(request, response);
         } catch (SQLException ex)
         {
