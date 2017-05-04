@@ -206,5 +206,8 @@ public class OrderMapper {
             total += 1700;
         }
         return total;
+        
     }
 }
+
+
