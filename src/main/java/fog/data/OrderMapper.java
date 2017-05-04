@@ -213,7 +213,7 @@ public class OrderMapper {
     public ArrayList<String> getBookedDates () throws SQLException{
         try {
             ArrayList<String> list = new ArrayList<>();
-            String query = "SELECT calldate FROM orders;";
+            String query = "SELECT DISTINCT calldate FROM orders;";
             PreparedStatement stmt = connector.getConnection().prepareStatement(query);
             
             ResultSet res = stmt.executeQuery();

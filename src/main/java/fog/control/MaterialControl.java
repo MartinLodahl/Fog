@@ -33,7 +33,6 @@ public class MaterialControl extends HttpServlet
             throws ServletException, IOException
     {
         HttpSession session = request.getSession();
-
         // Checks if user is logged in
         if(session.getAttribute("username")==null){
             response.sendRedirect("./login");

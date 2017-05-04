@@ -35,12 +35,12 @@ public class SizeControl extends HttpServlet {
         
         try
         {
-            
+             HttpSession session = request.getSession();
             Connector connector = new Connector();
             OrderMapper om = new OrderMapper(connector);
             System.out.println("test"+om.getBookedDates().size());
             ArrayList<String> callDates = om.getBookedDates();
-            request.setAttribute("calldate", callDates);
+            session.setAttribute("calldate", callDates);
             System.out.println("test");
             request.getRequestDispatcher("size.jsp").forward(request, response);
         } catch (SQLException ex)

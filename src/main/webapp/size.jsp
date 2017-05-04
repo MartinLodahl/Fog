@@ -1,3 +1,4 @@
+<%@page import="java.util.ArrayList"%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -51,6 +52,22 @@
             <p>
                 <button>Bestil</button>
             </p>
+            
+            
+            
+            <%
+                    // retrieve your list from the request, with casting 
+                    
+                    ArrayList<String> calldate = (ArrayList<String>)request.getSession().getAttribute("calldate");
+                    int i = 0;
+                    
+                    System.out.println(calldate.get(0));
+                    for (String s : calldate) {
+                        out.println("<td><input type=\"hidden\" name=\"date\" id=\"date"+i+"\" value=\"" + calldate.get(i) + "\" ></td>");
+                        i += 1;
+                    }
+                    out.println("<td><input type=\"hidden\" name=\"i\" id=\"i\" value=\"" + i + "\" ></td>");
+                %>
         </form>
         <script src="disableDates.js" ></script>
     </body>
