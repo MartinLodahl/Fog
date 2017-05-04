@@ -95,7 +95,7 @@ public class OrderMapper {
         
         List<Order> list = new ArrayList();
         try {
-            String query = "SELECT * FROM orders  WHERE deleted = false;";
+            String query = "SELECT * FROM orders  WHERE status = false;";
             PreparedStatement stmt = connector.getConnection().prepareStatement(query);
             ResultSet res = stmt.executeQuery();
 
@@ -213,7 +213,7 @@ public class OrderMapper {
     public ArrayList<String> getBookedDates () throws SQLException{
         try {
             ArrayList<String> list = new ArrayList<>();
-            String query = "SELECT DISTINCT calldate FROM orders;";
+            String query = "SELECT DISTINCT calldate FROM orders where status = FALSE;";
             PreparedStatement stmt = connector.getConnection().prepareStatement(query);
             
             ResultSet res = stmt.executeQuery();

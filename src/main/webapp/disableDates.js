@@ -10,7 +10,7 @@ for(var j=0; j<i; j++){
 function DisableSpecificDates(date) {
   
     var string = jQuery.datepicker.formatDate('dd-mm-yy', date);
-    return [disableddates.indexOf(string) == -1];
+    return [disableddates.indexOf(string) === -1];
   }
 
 
