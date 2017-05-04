@@ -12,13 +12,13 @@ package fog.domain;
 public class Order
 {
     private final int id;
-    private String customerName,customerMail,customerPhone;
+    private String customerName,customerMail,customerPhone,callDate;
     private boolean status;
     private int width, length, height;
     private boolean skur, build, deleted;
 
     public Order(int id, String customerName, String customerMail, String customerPhone,
-            boolean status, int width, int length, int height, boolean skur, boolean build, boolean deleted)
+            boolean status, int width, int length, int height, boolean skur, boolean build, boolean deleted,String callDate)
     {
         this.id = id;
         this.customerName = customerName;
@@ -31,6 +31,7 @@ public class Order
         this.skur = skur;
         this.build = build;
         this.deleted = deleted;
+        this.callDate=callDate;
     }
 
     public int getId()
@@ -125,5 +126,16 @@ public class Order
     {
         this.deleted = deleted;
     }
+
+    public String getCallDate()
+    {
+        return callDate;
+    }
+
+    public void setCallDate(String callDate)
+    {
+        this.callDate = callDate;
+    }
+    
     
 }

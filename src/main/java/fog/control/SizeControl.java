@@ -42,8 +42,10 @@ public class SizeControl extends HttpServlet {
             int height = Integer.parseInt(request.getParameter("height"));
             boolean skur = request.getParameter("skur") != null;
             boolean build = request.getParameter("build") != null;
+            String callDate = request.getParameter("callDate");
+            System.out.println(callDate);
 
-            Order order = new Order(0, name, email, phone, false, width, length, height, skur, build, false);
+            Order order = new Order(0, name, email, phone, false, width, length, height, skur, build, false,callDate);
             FacadeMapper fm = new FacadeMapper();
             System.out.println("create order");
             int orderID = fm.createOrder(order);

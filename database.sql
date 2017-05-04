@@ -42,7 +42,8 @@ CREATE TABLE orders (
 	height INTEGER NOT NULL,
 	skur BOOLEAN NOT NULL,
 	build BOOLEAN NOT NULL,
-	deleted BOOLEAN NOT NULL
+	deleted BOOLEAN NOT NULL,
+	calldate VARCHAR(100) NOT NULL
 );
 
 CREATE TABLE orderitems (

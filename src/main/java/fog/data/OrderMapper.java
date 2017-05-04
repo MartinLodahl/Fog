@@ -76,8 +76,9 @@ public class OrderMapper {
                 boolean isSkur = res.getBoolean("skur");
                 boolean isBuild = res.getBoolean("build");
                 boolean deleted = res.getBoolean("deleted");
+                String callDate = res.getString("calldate");
                 Order newOrder = new Order(orderId, customerName, customerEmail, customerPhone,
-                        status, width, length, height, isSkur, isBuild, deleted);
+                        status, width, length, height, isSkur, isBuild, deleted,callDate);
 
                 return newOrder;
 
@@ -110,8 +111,9 @@ public class OrderMapper {
                 boolean isSkur = res.getBoolean("skur");
                 boolean build = res.getBoolean("build");
                 boolean deleted = res.getBoolean("deleted");
+                String callDate = res.getString("calldate");
                 Order newOrder = new Order(orderId, customerName, customerEmail, customerPhone,
-                        status, width, length, height, isSkur,build,deleted);
+                        status, width, length, height, isSkur,build,deleted,callDate);
                 
                 list.add(newOrder);
 
@@ -131,8 +133,8 @@ public class OrderMapper {
         try {
             String query = "INSERT INTO orders "
                     + "(customer_name, customer_email, customer_phone, "
-                    + "status, width, length, height, skur, build, deleted) "
-                    + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, false);";
+                    + "status, width, length, height, skur, build, calldate ,deleted) "
+                    + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?,? ,false);";
             Connection connection = connector.getConnection();
             PreparedStatement stmt = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
             stmt.setString(1, order.getCustomerName());
@@ -144,6 +146,8 @@ public class OrderMapper {
             stmt.setInt(7, order.getHeight());
             stmt.setBoolean(8, order.isSkur());
             stmt.setBoolean(9, order.isBuild());
+            stmt.setString(10,order.getCallDate());
+            
             stmt.executeUpdate();
             ResultSet generatedKeys = stmt.getGeneratedKeys();
             if (generatedKeys.next()) {

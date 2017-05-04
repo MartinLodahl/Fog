@@ -5,6 +5,23 @@
         <%@ taglib prefix="c" 
                    uri="http://java.sun.com/jsp/jstl/core" %>
         <title>Ordre ${order.id}</title>
+          <style>
+            table {
+                font-family: arial, sans-serif;
+                border-collapse: collapse;
+                width: 100%;
+            }
+
+            td, th {
+                border: 1px solid #dddddd;
+                text-align: left;
+                padding: 8px;
+            }
+
+            tr:nth-child(even) {
+                background-color: #dddddd;
+            }
+        </style>
     </head>
     <body>
         <p><a href=".">Menuen</a></p>
@@ -37,7 +54,7 @@
             <input type="hidden" name="id" value="${order.id}">
             <c:choose>
                 <c:when test="${order.status}">
-                    <label>Order done :<input type="checkbox" name="orderDone" checked="checked"></label> 
+                    <label>Order done :<input type="checkbox" name="Arkiver" checked="checked"></label> 
 
                     <br />
                 </c:when>    
@@ -49,10 +66,7 @@
             <div><button>Save changes</button></div>
         </form>   
 
-        <form method="post" action="delete" onsubmit="return confirm('Er du sikker p? du vil slette denne ordre?');">
-            <input type="hidden" name="id" value="${order.id}">
-            <div><button>Slet</button></div>
-        </form>
+        
         <table>
             <tr>
                 <th>material_id</th>

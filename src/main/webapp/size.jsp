@@ -3,6 +3,9 @@
     <head>
         <meta charset="UTF-8">
         <title>Bestil Carport</title>
+        <link href="http://code.jquery.com/ui/1.11.3/themes/smoothness/jquery-ui.css" rel="stylesheet">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+        <script src="http://code.jquery.com/ui/1.11.3/jquery-ui.min.js"></script>
     </head>
     <body>
         <p><a href=".">Menuen</a></p>
@@ -39,9 +42,16 @@
                 <input type="checkbox" name="build" id="build">
                 <label for="build">Fog skal bygge carporten</label>
             </p>
+
+            <p>
+                <input name="callDate" id="callDate">
+                <label for="build">Fog skal bygge carporten</label>
+            </p>
+
             <p>
                 <button>Bestil</button>
             </p>
         </form>
+        <script src="disableDates.js" ></script>
     </body>
 </html>
