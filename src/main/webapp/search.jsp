@@ -13,53 +13,71 @@
                    uri="http://java.sun.com/jsp/jstl/core" %>
         <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
         <title>Søgning</title>
-    </head>
-    <body>
-        <p><a href=".">Menuen</a></p>
-        <p><a href="./addMaterial">Tilføj materialer</a></p>
-        <form action="./order" method="get">
-            <p>
-                <label for="orderid">Orderid:</label>
-                <input type="text" name="orderid" id="orderid">
-            </p>
+        <style>
+            table {
+                font-family: arial, sans-serif;
+                border-collapse: collapse;
+                width: 100%;
+            }
 
-            <p>
-                <button>Search</button>
-            </p>
-        </form>
-        <table>
-            <c:choose>
+            td, th {
+                border: 1px solid #dddddd;
+                text-align: left;
+                padding: 8px;
+            }
+
+            tr:nth-child(even) {
+                background-color: #dddddd;
+            }
+        </style>
+    </style>
+</head>
+<body>
+    <p><a href=".">Menuen</a></p>
+    <p><a href="./addMaterial">Tilføj materialer</a></p>
+    <form action="./order" method="get">
+        <p>
+            <label for="orderid">Orderid:</label>
+            <input type="text" name="orderid" id="orderid">
+        </p>
+
+        <p>
+            <button>Search</button>
+        </p>
+    </form>
+    <table>
+        <c:choose>
             <c:when test="${fn:length(orders) gt 0}">    
-            <tr>
-                <th>OrderId</th>
-                <th>name</th>
-                <th>mail</th>
-                <th>phone</th>
-                <th>finished</th>
-                <th>width</th>
-                <th>length</th>
-                <th>height</th>
-            </tr>
-            <c:forEach items="${orders}" var="orders">
-
                 <tr>
-                    <td><a href="./order?orderid=${orders.id}">${orders.id}</a></td>
-                    <td>${orders.id}</td>
-                    <td>${orders.customerName}</td>
-                    <td>${orders.customerMail}</td>
-                    <td>${orders.customerPhone}</td>
-                    <td>${orders.status}</td>
-                    <td>${orders.width}</td>
-                    <td>${orders.length}</td>
-                    <td>${orders.height}</td>
+                    <th>OrderId</th>
+                    <th>name</th>
+                    <th>mail</th>
+                    <th>phone</th>
+                    <th>status</th>
+                    <th>width</th>
+                    <th>length</th>
+                    <th>height</th>
                 </tr>
+                <c:forEach items="${orders}" var="orders">
 
-            </c:forEach>
+                    <tr>
+                        <td><a href="./order?orderid=${orders.id}">${orders.id}</a></td>
+                        <td>${orders.customerName}</td>
+                        <td>${orders.customerMail}</td>
+                        <td>${orders.customerPhone}</td>
+                        <td>${orders.status}</td>
+                        <td>${orders.width}</td>
+                        <td>${orders.length}</td>
+                        <td>${orders.height}</td>
+                    </tr>
+
+                </c:forEach>
             </c:when>
             <c:otherwise>
                 <p>Ingen ordre</p>
             </c:otherwise>
-            </c:choose>    
-        </table> 
-    </body>
+        </c:choose> 
+
+    </table> 
+</body>
 </html>
