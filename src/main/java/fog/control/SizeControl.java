@@ -1,6 +1,8 @@
 package fog.control;
 
+import fog.data.Connector;
 import fog.data.FacadeMapper;
+import fog.data.OrderMapper;
 import fog.domain.Material;
 import fog.domain.Order;
 import fog.domain.OrderItem;
@@ -14,19 +16,38 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 @WebServlet(name = "SizeControl", urlPatterns = {"/size"})
 public class SizeControl extends HttpServlet {
+    FacadeMapper fm;
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        
+       
 
     }
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        request.getRequestDispatcher("size.jsp").forward(request, response);
+        
+        try
+        {
+            
+            Connector connector = new Connector();
+            OrderMapper om = new OrderMapper(connector);
+            System.out.println("test"+om.getBookedDates().size());
+            ArrayList<String> callDates = om.getBookedDates();
+            request.setAttribute("calldate", callDates);
+            System.out.println("test");
+            request.getRequestDispatcher("size.jsp").forward(request, response);
+        } catch (SQLException ex)
+        {
+            Logger.getLogger(SizeControl.class.getName()).log(Level.SEVERE, null, ex);
+        }
+           
     }
 
     @Override
@@ -62,7 +83,7 @@ dag-måned-år
             System.out.println(callDate);
 
             Order order = new Order(0, name, email, phone, false, width, length, height, skur, build, false, callDate);
-            FacadeMapper fm = new FacadeMapper();
+            fm = new FacadeMapper();
             System.out.println("create order");
             int orderID = fm.createOrder(order);
             System.out.println("end create order");

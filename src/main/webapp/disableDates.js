@@ -1,4 +1,4 @@
-var disableddates = ["20-05-2017", "12-11-2014", "12-25-2014", "12-20-2014"];
+var disableddates = ["05-05-2017"];
 
 
 function DisableSpecificDates(date) {

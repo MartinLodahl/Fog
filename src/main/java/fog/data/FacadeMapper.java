@@ -75,6 +75,10 @@ public class FacadeMapper {
     public ArrayList<OrderItem> getOrderItems(int id) throws SQLException {
         return OM.getOrderItems(id);
     }
+    
+    public ArrayList<String> getBookedDates () throws SQLException{
+        return OM.getBookedDates();
+    }
 
     public double getOrderTotal(int id) throws SQLException {
         return OM.getOrderTotal(id);

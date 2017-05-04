@@ -208,6 +208,25 @@ public class OrderMapper {
         return total;
         
     }
+    
+    
+    public ArrayList<String> getBookedDates () throws SQLException{
+        try {
+            ArrayList<String> list = new ArrayList<>();
+            String query = "SELECT calldate FROM orders;";
+            PreparedStatement stmt = connector.getConnection().prepareStatement(query);
+            
+            ResultSet res = stmt.executeQuery();
+            while (res.next()) {
+                String date = res.getString("calldate");
+                list.add(date);
+            }
+            return list;
+        } catch (SQLException ex) {
+            Logger.getLogger(MaterialMapper.class.getName()).log(Level.SEVERE, null, ex);
+            throw ex;
+        }
+    }
 }
 
 
