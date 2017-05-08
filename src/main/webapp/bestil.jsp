@@ -3,28 +3,28 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>Bestilling Godkendt</title>
+        <title></title>
     </head>
     <body>
     
         <p><a href=".">Menuen</a></p>
     <center>    
-        <h1>Bestilling godkendt</h1>
+        <h1>Forespørgsel godkendt</h1>
         <c:forEach items="${orderItems}" var="item">
             <c:set var = "b" value = "${b+(item.price*item.quantity)}" />
         </c:forEach>
         <table>
             <tr>
-                <th>total price</th>
+                <th>Total pris</th>
             </tr>
             <tr>
-                <td><c:out value="${total}"/></td>
+                <td text-anchor="middle" alignment-baseline="central"><c:out value="${total}"/></td>
             </tr>
         </table>
             </center>
     <center>
 
-        <h1>Plan tegning fugle perspektiv</h1>
+        <h1>Plantegning fugleperspektiv</h1>
         <svg height="800" width="600">
         <line x1="${(300-order.length/2)}" y1="0" x2="${(300-order.length/2)}" y2="${order.width}" style="stroke:rgb(0,0,0);stroke-width:2" />
         <line x1="${(300-order.length/2)}" y1="0" x2="${(300-order.length/2)+order.length}" y2="0" style="stroke:rgb(0,0,0);stroke-width:2" />
@@ -36,7 +36,7 @@
         </svg>
 
 
-        <h1>Plan tegning set fra siden</h1>
+        <h1>Plantegning set fra siden</h1>
         <svg height="800" width="600">
         <line x1="${(300-order.length/2)}" y1="0" x2="${(300-order.length/2)}" y2="${order.height}" style="stroke:rgb(0,0,0);stroke-width:2" />
         <line x1="${(300-order.length/2)}" y1="0" x2="${(300-order.length/2)+order.length}" y2="0" style="stroke:rgb(0,0,0);stroke-width:2" />

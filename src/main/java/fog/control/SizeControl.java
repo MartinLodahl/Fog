@@ -42,7 +42,7 @@ public class SizeControl extends HttpServlet {
             ArrayList<String> callDates = om.getBookedDates();
             session.setAttribute("calldate", callDates);
             System.out.println("test");
-            request.getRequestDispatcher("size.jsp").forward(request, response);
+            //request.getRequestDispatcher("size.jsp").forward(request, response);
         } catch (SQLException ex)
         {
             Logger.getLogger(SizeControl.class.getName()).log(Level.SEVERE, null, ex);
