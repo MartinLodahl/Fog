@@ -91,11 +91,16 @@ public class OrderMapper {
         }
     }
     
-    public List<Order> getAllActiveOrders() throws SQLException {
+    public List<Order> getAllActiveOrders(boolean check) throws SQLException {
         
         List<Order> list = new ArrayList();
         try {
-            String query = "SELECT * FROM orders  WHERE status = false;";
+            String query;
+            if(check){
+            query = "SELECT * FROM orders  WHERE status = false;";}
+            else{
+              query = "SELECT * FROM orders  WHERE status = true;";  
+            }
             PreparedStatement stmt = connector.getConnection().prepareStatement(query);
             ResultSet res = stmt.executeQuery();
 

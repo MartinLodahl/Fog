@@ -61,9 +61,13 @@ public class SearchControl extends HttpServlet
         FacadeMapper fm = new FacadeMapper();
         try
         {
-            List<Order> orders = fm.getAllActiveOrders();
-            request.setAttribute("orders", orders);
-            request.getRequestDispatcher("search.jsp").forward(request, response);
+            List<Order> newOrders = fm.getAllActiveOrders(true);
+            List<Order> arkiveretOrders = fm.getAllActiveOrders(false);
+            request.setAttribute("newOrders", newOrders);
+            request.setAttribute("arkiveretOrders", arkiveretOrders);
+            
+            //response.sendRedirect("mainpage.jsp");
+            //request.getRequestDispatcher("search.jsp").forward(request, response);
         } catch (SQLException ex)
         {
             Logger.getLogger(SearchControl.class.getName()).log(Level.SEVERE, null, ex);
@@ -82,6 +86,6 @@ public class SearchControl extends HttpServlet
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException
     {
-        processRequest(request, response);
+         
     }
 }

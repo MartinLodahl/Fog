@@ -19,9 +19,10 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
         <script src="http://code.jquery.com/ui/1.11.3/jquery-ui.min.js"></script>
         <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js" ></script>
+        <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
         <link rel = "stylesheet" type = "text/css" href = "styletable.css" />
-        <title>Søgning</title>
-        
+        <title>adminmain</title>
+      
 </head>
 <body>
     <div class="container">
@@ -29,64 +30,64 @@
         <div class="row">
             <div class="col-sm-12">
                 <center>
-                <h1>Arkiverede ordre</h1>
+                    <h1>Fog admin page</h1>
                 </center>
             </div>
         </div>
         <div class="row top-buffer">
-            
             <div class="col-sm-3">
                 <p><a href="./addMaterial">Tilføj materialer</a></p>
                 <p><a href="./search.jsp">Arkiverede ordre</a></p>
                 <p><a href="./addMaterial">Tilføj materialer</a></p>
-                <p><a href="./mainpage.jsp">nye ordre</a></p>
                 <p><a href="./size">Bestilling</a></p>
             </div>
             <div class="col-sm-9">
                 <div class="input-group">
                     <!-- USE TWITTER TYPEAHEAD JSON WITH API TO SEARCH -->
-                    <input class="form-control" id="system-search" name="q" placeholder="Search for" required>
+                    <input class="form-control" id="system-search" name="q" placeholder="Search for" required style="color:white">
                     <span class="input-group-btn">
                         <button type="submit" class="btn btn-default mybtn-white"><i class="glyphicon glyphicon-search"></i></button>
                     </span>
                 </div>
+                <div class="panel panel-default">
 
-            <table class="table table-list-search table-bordered" >
-                <c:choose>
-                    <c:when test="${fn:length(arkiveretOrders) gt 0}">    
-                        <tr>
-                            <th>OrderId</th>
-                            <th>name</th>
-                            <th>mail</th>
-                            <th>phone</th>
-                            <th>status</th>
-                            <th>width</th>
-                            <th>length</th>
-                            <th>height</th>
-                            <th>call date</th>
-                        </tr>
-                        <c:forEach items="${arkiveretOrders}" var="arkiveretOrders">
+                    <table class="table table-list-search table-bordered" >
+                        <c:choose>
+                            <c:when test="${fn:length(newOrders) gt 0}">    
+                                <tr>
+                                    <th>OrderId</th>
+                                    <th>name</th>
+                                    <th>mail</th>
+                                    <th>phone</th>
+                                    <th>arkiveret</th>
+                                    <th>width</th>
+                                    <th>length</th>
+                                    <th>height</th>
+                                    <th>call date</th>
+                                </tr>
+                                <c:forEach items="${newOrders}" var="newOrders">
 
-                            <tr>
-                                <td><a href="./order?orderid=${arkiveretOrders.id}">${arkiveretOrders.id}</a></td>
-                                <td>${arkiveretOrders.customerName}</td>
-                                <td>${arkiveretOrders.customerMail}</td>
-                                <td>${arkiveretOrders.customerPhone}</td>
-                                <td>${arkiveretOrders.status}</td>
-                                <td>${arkiveretOrders.width}</td>
-                                <td>${arkiveretOrders.length}</td>
-                                <td>${arkiveretOrders.height}</td>
-                                <td>${arkiveretOrders.callDate}</td>
-                            </tr>
+                                    <tr>
+                                        <td><a href="./order?orderid=${newOrders.id}">${newOrders.id}</a></td>
+                                        <td>${newOrders.customerName}</td>
+                                        <td>${newOrders.customerMail}</td>
+                                        <td>${newOrders.customerPhone}</td>
+                                        <td>${newOrders.status}</td>
+                                        <td>${newOrders.width}</td>
+                                        <td>${newOrders.length}</td>
+                                        <td>${newOrders.height}</td>
+                                        <td>${newOrders.callDate}</td>
+                                    </tr>
 
-                        </c:forEach>
-                    </c:when>
-                    <c:otherwise>
-                        <p>Ingen ordre</p>
-                    </c:otherwise>
-                </c:choose> 
+                                </c:forEach>
+                            </c:when>
+                            <c:otherwise>
+                                <p>Ingen ordre</p>
+                            </c:otherwise>
+                        </c:choose> 
 
-            </table>
+                    </table>
+                </div>
             </div>
         </div>
     </div>

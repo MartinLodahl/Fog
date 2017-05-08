@@ -1,0 +1,50 @@
+
+            * {
+                font-family: 'Roboto', sans-serif;
+            }
+            h1 {
+                color:#0c2069;
+                float:left;
+            }
+            a {
+                color:#0c2069;
+            }
+            table {
+                font-family: arial, sans-serif;
+                border-collapse: collapse;
+                border-style: solid;
+                border-color: red;
+                width: 100%;
+            }
+
+            td, th {
+                border: 1px solid #dddddd;
+                text-align: left;
+                padding: 8px;
+            }
+
+            th{
+                color:#ffffff;
+                background:#0c2069;
+            }
+
+            tr:nth-child(even) {
+                background-color: #dddddd;
+            }
+            .top-buffer { margin-top:20px; }
+
+            .form-control {
+                background-color: #0c2069;
+            }
+            
+            .mybtn-white {
+                color: white;
+                background-color: #0c2069;
+            }
+            .input-group{
+                color : white;
+            }
+            
+            input::-webkit-input-placeholder {
+                color: white !important;
+            }

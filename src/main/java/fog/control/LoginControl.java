@@ -40,7 +40,7 @@ public class LoginControl extends HttpServlet {
             
             if (user != null && password.equals(user.getPassword())) {
                 session.setAttribute("username", username);
-                response.sendRedirect("./search");
+                response.sendRedirect("./mainpage.jsp");
             } else {
                 request.getRequestDispatcher("login.jsp").forward(request, response);
             }

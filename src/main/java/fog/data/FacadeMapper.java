@@ -60,8 +60,8 @@ public class FacadeMapper {
         return OM.getOrderById(id);
     }
 
-    public List<Order> getAllActiveOrders() throws SQLException {
-        return OM.getAllActiveOrders();
+    public List<Order> getAllActiveOrders(boolean check) throws SQLException {
+        return OM.getAllActiveOrders(check);
     }
 
     public int createOrder(Order order) throws SQLException {
