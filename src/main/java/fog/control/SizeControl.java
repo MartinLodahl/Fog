@@ -84,6 +84,7 @@ dag-måned-år
 
             Order order = new Order(0, name, email, phone, false, width, length, height, skur, build, false, callDate);
             fm = new FacadeMapper();
+            request.setAttribute("order", order);
             System.out.println("create order");
             int orderID = fm.createOrder(order);
             System.out.println("end create order");

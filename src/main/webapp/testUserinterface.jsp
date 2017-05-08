@@ -4,6 +4,7 @@
     Author     : Pravien
 --%>
 
+<%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -12,13 +13,17 @@
         <title>JSP Page</title>
         <link rel="stylesheet" type="text/css" href="style.css">
         <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js" ></script>
+        <link href="http://code.jquery.com/ui/1.11.3/themes/smoothness/jquery-ui.css" rel="stylesheet">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+        <script src="http://code.jquery.com/ui/1.11.3/jquery-ui.min.js"></script>
         
         <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js" ></script>
     </head>
     <body>
-        
+       
         <!-- multistep form -->
         <form id="msform">
+            <form method="post" action="./size">
             <!-- progressbar -->
             <ul id="progressbar">
                 <li class="active">Carport</li>
@@ -64,15 +69,30 @@
             </fieldset>
             <fieldset>
                 <h2 class="fs-title">Personal Details</h2>
-                <h3 class="fs-subtitle">We will never sell it</h3>
-                <input type="text" name="fname" placeholder="First Name" />
-                <input type="text" name="lname" placeholder="Last Name" />
-                <input type="text" name="phone" placeholder="Phone" />
-                <textarea name="address" placeholder="Address"></textarea>
+                <h3 class="fs-subtitle">Jeg vil gerne ringes op den</h3>
+                <input name="callDate" id="callDate">
                 <input type="button" name="previous" class="previous action-button" value="Previous" />
-                <input type="submit" name="submit" class="submit action-button" value="Submit" />
+                <button>Bestil</button>
             </fieldset>
+            
+             <%
+                    // retrieve your list from the request, with casting 
+                    
+                    ArrayList<String> calldate = (ArrayList<String>)request.getSession().getAttribute("calldate");
+                    int i = 0;
+                    
+                    System.out.println(calldate.get(0));
+                    for (String s : calldate) {
+                        out.println("<td><input type=\"hidden\" name=\"date\" id=\"date"+i+"\" value=\"" + calldate.get(i) + "\" ></td>");
+                        i += 1;
+                    }
+                    out.println("<td><input type=\"hidden\" name=\"i\" id=\"i\" value=\"" + i + "\" ></td>");
+                %>
+                
+            </form>     
         </form>
+       
+        <script src="disableDates.js" ></script>
         <script src="interfaceScript.js"></script>
     </body>
 </html>
