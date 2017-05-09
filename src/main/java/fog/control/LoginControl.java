@@ -30,14 +30,20 @@ public class LoginControl extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         try {
+
             FacadeMapper fm = new FacadeMapper();
             HttpSession session = request.getSession();
-            
+            if (request.getParameter("logOut") != null) {
+                session.removeAttribute("username");
+                response.sendRedirect("login");
+                return;
+            }
+
             String username = request.getParameter("username");
             String password = request.getParameter("password");
-            
+
             User user = fm.getUserByUsername(username);
-            
+
             if (user != null && password.equals(user.getPassword())) {
                 session.setAttribute("username", username);
                 response.sendRedirect("./mainpage.jsp");

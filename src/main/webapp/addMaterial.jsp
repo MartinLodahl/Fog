@@ -13,18 +13,24 @@
     </head>
     <body> 
         <p><a href=".">Menuen</a></p>
-        <form action="./addMaterial" method="post">
-        <label for="name">navn:</label> <input type="text" name="materialname"><br>
-        <select name="select">
-            <option value="stolpe">stolpe</option>
-            <option value="brædde">brædde</option>
-            <option value="tag">tag</option>
-            <option value="plade" selected>plade</option>
-        </select>
-        <label>størrelse:</label> <input type="text" name="size"><br>
-        <label>pris:</label><input type="text" name="price"><br>
-        <button>add</button>
+        <form method="post" action="login">
+            <input type="hidden" name="logOut" id="logOut" value="logOut">
+            <p>
+                <button>Log out</button>
+            </p>
         </form>
-        
+        <form action="./addMaterial" method="post">
+            <label for="name">navn:</label> <input type="text" name="materialname"><br>
+            <select name="select">
+                <option value="stolpe">stolpe</option>
+                <option value="brædde">brædde</option>
+                <option value="tag">tag</option>
+                <option value="plade" selected>plade</option>
+            </select>
+            <label>størrelse:</label> <input type="text" name="size"><br>
+            <label>pris:</label><input type="text" name="price"><br>
+            <button>add</button>
+        </form>
+
     </body>
 </html>

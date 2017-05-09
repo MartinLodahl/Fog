@@ -22,75 +22,83 @@
         <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
         <link rel = "stylesheet" type = "text/css" href = "styletable.css" />
         <title>adminmain</title>
-      
-</head>
-<body>
-    <div class="container">
-        <jsp:include page="./search" />
-        <div class="row">
-            <div class="col-sm-12">
-                <center>
-                    <h1>Fog admin page</h1>
-                </center>
-            </div>
-        </div>
-        <div class="row top-buffer">
-            <div class="col-sm-3">
-                <p><a href="./addMaterial">Tilføj materialer</a></p>
-                <p><a href="./search.jsp">Arkiverede ordre</a></p>
-                <p><a href="./addMaterial">Tilføj materialer</a></p>
-                <p><a href="./size">Bestilling</a></p>
-            </div>
-            <div class="col-sm-9">
-                <div class="input-group">
-                    <!-- USE TWITTER TYPEAHEAD JSON WITH API TO SEARCH -->
-                    <input class="form-control" id="system-search" name="q" placeholder="Search for" required style="color:white">
-                    <span class="input-group-btn">
-                        <button type="submit" class="btn btn-default mybtn-white"><i class="glyphicon glyphicon-search"></i></button>
-                    </span>
+
+    </head>
+    <body>
+        <div class="container">
+            <jsp:include page="./search" />
+            <div class="row">
+                <div class="col-sm-12">
+                    <center>
+                        <h1>Fog admin page</h1>
+                    </center>
                 </div>
-                <div class="panel panel-default">
+            </div>
+            <div class="row top-buffer">
+                <div class="col-sm-3">
+                    <p><a href="./addMaterial">Tilføj materialer</a></p>
+                    <p><a href="./search.jsp">Arkiverede ordre</a></p>
+                    <p><a href="./addMaterial">Tilføj materialer</a></p>
+                    <p><a href="./size">Bestilling</a></p>
 
-                    <table class="table table-list-search table-bordered" >
-                        <c:choose>
-                            <c:when test="${fn:length(newOrders) gt 0}">    
-                                <tr>
-                                    <th>OrderId</th>
-                                    <th>name</th>
-                                    <th>mail</th>
-                                    <th>phone</th>
-                                    <th>arkiveret</th>
-                                    <th>width</th>
-                                    <th>length</th>
-                                    <th>height</th>
-                                    <th>call date</th>
-                                </tr>
-                                <c:forEach items="${newOrders}" var="newOrders">
+                    <form method="post" action="login">
+                        <input type="hidden" name="logOut" id="logOut" value="logOut">
+                        <p>
+                            <button>Log out</button>
+                        </p>
+                    </form>
 
+                </div>
+                <div class="col-sm-9">
+                    <div class="input-group">
+                        <!-- USE TWITTER TYPEAHEAD JSON WITH API TO SEARCH -->
+                        <input class="form-control" id="system-search" name="q" placeholder="Search for" required style="color:white">
+                        <span class="input-group-btn">
+                            <button type="submit" class="btn btn-default mybtn-white"><i class="glyphicon glyphicon-search"></i></button>
+                        </span>
+                    </div>
+                    <div class="panel panel-default">
+
+                        <table class="table table-list-search table-bordered" >
+                            <c:choose>
+                                <c:when test="${fn:length(newOrders) gt 0}">    
                                     <tr>
-                                        <td><a href="./order?orderid=${newOrders.id}">${newOrders.id}</a></td>
-                                        <td>${newOrders.customerName}</td>
-                                        <td>${newOrders.customerMail}</td>
-                                        <td>${newOrders.customerPhone}</td>
-                                        <td>${newOrders.status}</td>
-                                        <td>${newOrders.width}</td>
-                                        <td>${newOrders.length}</td>
-                                        <td>${newOrders.height}</td>
-                                        <td>${newOrders.callDate}</td>
+                                        <th>OrderId</th>
+                                        <th>name</th>
+                                        <th>mail</th>
+                                        <th>phone</th>
+                                        <th>arkiveret</th>
+                                        <th>width</th>
+                                        <th>length</th>
+                                        <th>height</th>
+                                        <th>call date</th>
                                     </tr>
+                                    <c:forEach items="${newOrders}" var="newOrders">
 
-                                </c:forEach>
-                            </c:when>
-                            <c:otherwise>
-                                <p>Ingen ordre</p>
-                            </c:otherwise>
-                        </c:choose> 
+                                        <tr>
+                                            <td><a href="./order?orderid=${newOrders.id}">${newOrders.id}</a></td>
+                                            <td>${newOrders.customerName}</td>
+                                            <td>${newOrders.customerMail}</td>
+                                            <td>${newOrders.customerPhone}</td>
+                                            <td>${newOrders.status}</td>
+                                            <td>${newOrders.width}</td>
+                                            <td>${newOrders.length}</td>
+                                            <td>${newOrders.height}</td>
+                                            <td>${newOrders.callDate}</td>
+                                        </tr>
 
-                    </table>
+                                    </c:forEach>
+                                </c:when>
+                                <c:otherwise>
+                                    <p>Ingen ordre</p>
+                                </c:otherwise>
+                            </c:choose> 
+
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-    <script src="searchfilter.js" ></script>
-</body>
+        <script src="searchfilter.js" ></script>
+    </body>
 </html>
