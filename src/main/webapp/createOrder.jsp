@@ -19,7 +19,6 @@
         <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js" ></script>
     </head>
     <body>
-        <jsp:include page="./size" />
         <!-- multistep form -->
         <form id="msform" method="post" action="./size">
             <!-- progressbar -->

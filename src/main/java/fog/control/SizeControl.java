@@ -18,7 +18,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-@WebServlet(name = "SizeControl", urlPatterns = {"/size"})
+@WebServlet(name = "SizeControl", urlPatterns = {
+    "/createOrder"
+})
 public class SizeControl extends HttpServlet {
     FacadeMapper fm;
 
@@ -98,7 +100,7 @@ dag-måned-år
             double total = fm.getOrderTotal(orderID);
             request.setAttribute("total", total);
 
-            request.getRequestDispatcher("bestil.jsp").forward(request, response);
+            request.getRequestDispatcher("createOrder.jsp").forward(request, response);
         } catch (SQLException ex) {
             Logger.getLogger(SizeControl.class.getName()).log(Level.SEVERE, null, ex);
         }

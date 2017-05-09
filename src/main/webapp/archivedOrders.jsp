@@ -21,82 +21,73 @@
         <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js" ></script>
         <link rel = "stylesheet" type = "text/css" href = "styletable.css" />
         <title>Søgning</title>
-
-    </head>
-    <body>
-        <div class="container">
-            <jsp:include page="./search" />
-            <div class="row">
-                <div class="col-sm-12">
-                    <center>
-                        <h1>Arkiverede ordre</h1>
-                    </center>
-                </div>
-            </div>
-            <div class="row top-buffer">
-
-                <div class="col-sm-3">
-                    <p><a href="./addMaterial">Tilføj materialer</a></p>
-                    <p><a href="./search.jsp">Arkiverede ordre</a></p>
-                    <p><a href="./addMaterial">Tilføj materialer</a></p>
-                    <p><a href="./mainpage.jsp">nye ordre</a></p>
-                    <p><a href="./size">Bestilling</a></p>
-                    <form method="post" action="login">
-                        <input type="hidden" name="logOut" id="logOut" value="logOut">
-                        <p>
-                            <button>Log out</button>
-                        </p>
-                    </form>
-                    
-                </div>
-                <div class="col-sm-9">
-                    <div class="input-group">
-                        <!-- USE TWITTER TYPEAHEAD JSON WITH API TO SEARCH -->
-                        <input class="form-control" id="system-search" name="q" placeholder="Search for" required>
-                        <span class="input-group-btn">
-                            <button type="submit" class="btn btn-default mybtn-white"><i class="glyphicon glyphicon-search"></i></button>
-                        </span>
-                    </div>
-
-                    <table class="table table-list-search table-bordered" >
-                        <c:choose>
-                            <c:when test="${fn:length(arkiveretOrders) gt 0}">    
-                                <tr>
-                                    <th>OrderId</th>
-                                    <th>name</th>
-                                    <th>mail</th>
-                                    <th>phone</th>
-                                    <th>status</th>
-                                    <th>width</th>
-                                    <th>length</th>
-                                    <th>height</th>
-                                    <th>call date</th>
-                                </tr>
-                                <c:forEach items="${arkiveretOrders}" var="arkiveretOrders">
-
-                                    <tr>
-                                        <td><a href="./order?orderid=${arkiveretOrders.id}">${arkiveretOrders.id}</a></td>
-                                        <td>${arkiveretOrders.customerName}</td>
-                                        <td>${arkiveretOrders.customerMail}</td>
-                                        <td>${arkiveretOrders.customerPhone}</td>
-                                        <td>${arkiveretOrders.status}</td>
-                                        <td>${arkiveretOrders.width}</td>
-                                        <td>${arkiveretOrders.length}</td>
-                                        <td>${arkiveretOrders.height}</td>
-                                        <td>${arkiveretOrders.callDate}</td>
-                                    </tr>
-
-                                </c:forEach>
-                            </c:when>
-                            <c:otherwise>
-                                <p>Ingen ordre</p>
-                            </c:otherwise>
-                        </c:choose> 
-
-                    </table>
-                </div>
+        
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <center>
+                <h1>Arkiverede ordre</h1>
+                </center>
             </div>
         </div>
-        <script src="searchfilter.js" ></script>
-    </body>
+        <div class="row top-buffer">
+            
+            <div class="col-sm-3">
+                <p><a href="./addMaterial">Tilføj materialer</a></p>
+                <p><a href="./search.jsp">Arkiverede ordrer</a></p>
+                <p><a href="./activeOrders">Nye ordrer</a></p>
+                <p><a href="./size">Bestilling</a></p>
+            </div>
+            <div class="col-sm-9">
+                <div class="input-group">
+                    <!-- USE TWITTER TYPEAHEAD JSON WITH API TO SEARCH -->
+                    <input class="form-control" id="system-search" name="q" placeholder="Search for" required>
+                    <span class="input-group-btn">
+                        <button type="submit" class="btn btn-default mybtn-white"><i class="glyphicon glyphicon-search"></i></button>
+                    </span>
+                </div>
+
+            <table class="table table-list-search table-bordered" >
+                <c:choose>
+                    <c:when test="${fn:length(arkiveretOrders) gt 0}">    
+                        <tr>
+                            <th>OrderId</th>
+                            <th>name</th>
+                            <th>mail</th>
+                            <th>phone</th>
+                            <th>status</th>
+                            <th>width</th>
+                            <th>length</th>
+                            <th>height</th>
+                            <th>call date</th>
+                        </tr>
+                        <c:forEach items="${arkiveretOrders}" var="arkiveretOrders">
+
+                            <tr>
+                                <td><a href="./order?orderid=${arkiveretOrders.id}">${arkiveretOrders.id}</a></td>
+                                <td>${arkiveretOrders.customerName}</td>
+                                <td>${arkiveretOrders.customerMail}</td>
+                                <td>${arkiveretOrders.customerPhone}</td>
+                                <td>${arkiveretOrders.status}</td>
+                                <td>${arkiveretOrders.width}</td>
+                                <td>${arkiveretOrders.length}</td>
+                                <td>${arkiveretOrders.height}</td>
+                                <td>${arkiveretOrders.callDate}</td>
+                            </tr>
+
+                        </c:forEach>
+                    </c:when>
+                    <c:otherwise>
+                        <p>Ingen ordre</p>
+                    </c:otherwise>
+                </c:choose> 
+
+            </table>
+            </div>
+        </div>
+    </div>
+    <script src="searchfilter.js" ></script>
+</body>
 </html>
