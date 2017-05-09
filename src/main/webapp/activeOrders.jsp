@@ -22,16 +22,14 @@
         <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
         <link rel = "stylesheet" type = "text/css" href = "styletable.css" />
         <title>adminmain</title>
-
-    </head>
-    <body>
-        <div class="container">
-            <jsp:include page="./search" />
-            <div class="row">
-                <div class="col-sm-12">
-                    <center>
-                        <h1>Fog admin page</h1>
-                    </center>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <center>
+                    <h1>Fog admin page</h1>
+                </center>
                 </div>
             </div>
             <div class="row top-buffer">

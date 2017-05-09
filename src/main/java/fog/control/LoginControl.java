@@ -46,7 +46,7 @@ public class LoginControl extends HttpServlet {
 
             if (user != null && password.equals(user.getPassword())) {
                 session.setAttribute("username", username);
-                response.sendRedirect("./mainpage.jsp");
+                response.sendRedirect("./activeOrders");
             } else {
                 request.getRequestDispatcher("login.jsp").forward(request, response);
             }

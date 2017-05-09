@@ -16,7 +16,8 @@ import javax.servlet.http.HttpSession;
 
 @WebServlet(name = "SearchControl", urlPatterns =
 {
-   "/search"
+    "/activeOrders",
+    "/archivedOrders"
 })
 public class SearchControl extends HttpServlet
 {
@@ -66,8 +67,14 @@ public class SearchControl extends HttpServlet
             request.setAttribute("newOrders", newOrders);
             request.setAttribute("arkiveretOrders", arkiveretOrders);
             
-            //response.sendRedirect("mainpage.jsp");
-            //request.getRequestDispatcher("search.jsp").forward(request, response);
+            switch (request.getServletPath()) {
+                case "/activeOrders":
+                    request.getRequestDispatcher("activeOrders.jsp").forward(request, response);
+                    break;
+                case "/archivedOrders":
+                    request.getRequestDispatcher("archivedOrders.jsp").forward(request, response);
+                    break;
+            }
         } catch (SQLException ex)
         {
             Logger.getLogger(SearchControl.class.getName()).log(Level.SEVERE, null, ex);
