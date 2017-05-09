@@ -100,7 +100,7 @@ dag-måned-år
             double total = fm.getOrderTotal(orderID);
             request.setAttribute("total", total);
 
-            request.getRequestDispatcher("createOrder.jsp").forward(request, response);
+            request.getRequestDispatcher("bestil.jsp").forward(request, response);
         } catch (SQLException ex) {
             Logger.getLogger(SizeControl.class.getName()).log(Level.SEVERE, null, ex);
         }

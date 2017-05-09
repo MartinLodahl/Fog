@@ -1,6 +1,6 @@
 <%-- 
-    Document   : addMatrial
-    Created on : 18-04-2017, 10:26:18
+    Document   : Order
+    Created on : 03-04-2017, 11:37:36
     Author     : Pravien
 --%>
 
@@ -9,15 +9,22 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <%@ taglib prefix="c" 
+                   uri="http://java.sun.com/jsp/jstl/core" %>
+        <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+        <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js" ></script>
+        <link href="http://code.jquery.com/ui/1.11.3/themes/smoothness/jquery-ui.css" rel="stylesheet">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+        <script src="http://code.jquery.com/ui/1.11.3/jquery-ui.min.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js" ></script>
+        <link rel = "stylesheet" type = "text/css" href = "styletable.css" />
         <title>Tilføj materialer</title>
     </head>
     <body> 
         <p><a href=".">Menuen</a></p>
-        <form method="post" action="login">
-            <input type="hidden" name="logOut" id="logOut" value="logOut">
-            <p>
-                <button>Log out</button>
-            </p>
+        <%@include file = "menu.jsp" %>
         </form>
         <form action="./addMaterial" method="post">
             <label for="name">navn:</label> <input type="text" name="materialname"><br>

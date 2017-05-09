@@ -20,7 +20,7 @@
     </head>
     <body>
         <!-- multistep form -->
-        <form id="msform" method="post" action="./size">
+        <form id="msform" method="post" action="./createOrder">
             <!-- progressbar -->
             <center><ul id="progressbar">
                     <li class="active">Mål</li>
