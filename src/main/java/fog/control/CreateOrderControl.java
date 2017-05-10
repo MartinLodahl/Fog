@@ -1,8 +1,6 @@
 package fog.control;
 
-import fog.data.Connector;
 import fog.data.FacadeMapper;
-import fog.data.OrderMapper;
 import fog.domain.Material;
 import fog.domain.Order;
 import fog.domain.OrderItem;
