@@ -22,7 +22,7 @@ import javax.servlet.http.HttpSession;
  *
  * @author Pravien
  */
-@WebServlet(name = "MaterialControl", urlPatterns =
+@WebServlet(urlPatterns =
 {
     "/addMaterial"
 })

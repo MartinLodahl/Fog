@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-@WebServlet(name = "LoginControl", urlPatterns = {"/login"})
+@WebServlet(urlPatterns = {"/login"})
 public class LoginControl extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
