@@ -10,6 +10,7 @@
     </head>
     <body>
         <p><a href=".">Menuen</a></p>
+        <%@include file = "menu.jsp" %>
         <table>
             <tr>
                 <th>OrderId</th>
