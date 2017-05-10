@@ -18,8 +18,8 @@
                 <th>Mail</th>
                 <th>Telefon</th>
                 <th>Bredde</th>
-                <th>Lï¿½ngde</th>
-                <th>Hï¿½jde</th>
+                <th>Længde</th>
+                <th>Højde</th>
                 <th>Fog bygger carporten</th>
             </tr>
             <tr>
@@ -50,7 +50,7 @@
                     <br />
                 </c:when>    
                 <c:otherwise>
-                    <label>ï¿½nskes orderen arkiveret : <input type="checkbox" name="orderDone"> </label>
+                    <label>Ønskes orderen arkiveret : <input type="checkbox" name="orderDone"> </label>
                     <br />
                 </c:otherwise>
             </c:choose>
@@ -62,7 +62,7 @@
             <tr>
                 <th>Materiale ID</th>
                 <th>Antal</th>
-                <th>Lï¿½ngde</th>
+                <th>Længde</th>
                 <th>Bredde</th>
                 <th>Stk pris</th>
                 <th>Total pris</th>
