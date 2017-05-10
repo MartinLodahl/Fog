@@ -5,48 +5,38 @@
         <%@ taglib prefix="c" 
                    uri="http://java.sun.com/jsp/jstl/core" %>
         <title>Ordre ${order.id}</title>
-          <style>
-            table {
-                font-family: arial, sans-serif;
-                border-collapse: collapse;
-                width: 100%;
-            }
-
-            td, th {
-                border: 1px solid #dddddd;
-                text-align: left;
-                padding: 8px;
-            }
-
-            tr:nth-child(even) {
-                background-color: #dddddd;
-            }
-        </style>
+        <link rel = "stylesheet" type = "text/css" href = "styletable.css" />
+         
     </head>
     <body>
         <p><a href=".">Menuen</a></p>
         <table>
             <tr>
                 <th>OrderId</th>
-                <th>name</th>
-                <th>mail</th>
-                <th>phone</th>
-                <th>Arkiveret</th>
-                <th>width</th>
-                <th>length</th>
-                <th>height</th>
-                <th>Fog skal bygge</th>
+                <th>Navn</th>
+                <th>Mail</th>
+                <th>Telefon</th>
+                <th>Bredde</th>
+                <th>Længde</th>
+                <th>Højde</th>
+                <th>Fog bygger carporten</th>
             </tr>
             <tr>
                 <td>${order.id}</td>
                 <td>${order.customerName}</td>
                 <td>${order.customerMail}</td>
                 <td>${order.customerPhone}</td>
-                <td>${order.status}</td>
                 <td>${order.width}</td>
                 <td>${order.length}</td>
                 <td>${order.height}</td>
-                <td>${order.build}</td>
+                <c:choose>
+                <c:when test="${order.build eq false}">
+                    <td>Nej</td>
+                </c:when>    
+                <c:otherwise>
+                    <td>Ja</td>
+                </c:otherwise>
+              </c:choose>      
             </tr>
         </table>
 
@@ -54,12 +44,12 @@
             <input type="hidden" name="id" value="${order.id}">
             <c:choose>
                 <c:when test="${order.status}">
-                    <label>Order done :<input type="checkbox" name="Arkiver" checked="checked"></label> 
+                    <label> :<input type="checkbox" name="Arkiver" checked="checked"></label> 
 
                     <br />
                 </c:when>    
                 <c:otherwise>
-                    <label>Order done : <input type="checkbox" name="orderDone"> </label>
+                    <label>Ønskes orderen arkiveret : <input type="checkbox" name="orderDone"> </label>
                     <br />
                 </c:otherwise>
             </c:choose>
@@ -69,12 +59,12 @@
         
         <table>
             <tr>
-                <th>material_id</th>
-                <th>quantity</th>
-                <th>length</th>
-                <th>width</th>
-                <th>price (for each)</th>
-                <th>price (total)</th>
+                <th>Materiale ID</th>
+                <th>Antal</th>
+                <th>Længde</th>
+                <th>Bredde</th>
+                <th>Stk pris</th>
+                <th>Total pris</th>
             </tr>
             <c:forEach items="${orderItems}" var="item">
                 <tr>
@@ -89,7 +79,7 @@
         </table>
         <table>
             <tr>
-                <th>total Order price</th>
+                <th>Total pris</th>
             </tr>
             <tr>
                 <td><c:out value="${total}"/></td>

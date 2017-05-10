@@ -15,12 +15,17 @@ function DisableSpecificDates(date) {
   
   
 
-n =  new Date();
-y = n.getFullYear();
-m = n.getMonth() + 1;
-d = n.getDate();
-document.getElementById('callDate').value=m + "/" + d + "/" + y;
 
+var MyDate = new Date();
+var MyDateString;
+
+MyDate.setDate(MyDate.getDate() + 20);
+
+MyDateString = ('0' + (MyDate.getMonth()+1)).slice(-2) + '/'
+             + ('0' + MyDate.getDate()).slice(-2)  + '/'
+             + MyDate.getFullYear();
+
+document.getElementById('callDate').value=MyDateString;
 
 
 

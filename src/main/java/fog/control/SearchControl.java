@@ -59,11 +59,11 @@ public class SearchControl extends HttpServlet
             return;
         }
         
-        FacadeMapper fm = new FacadeMapper();
+        FacadeMapper facadeMapper = new FacadeMapper();
         try
         {
-            List<Order> newOrders = fm.getAllActiveOrders(true);
-            List<Order> arkiveretOrders = fm.getAllActiveOrders(false);
+            List<Order> newOrders = facadeMapper.getAllActiveOrders(true);
+            List<Order> arkiveretOrders = facadeMapper.getAllActiveOrders(false);
             request.setAttribute("newOrders", newOrders);
             request.setAttribute("arkiveretOrders", arkiveretOrders);
             

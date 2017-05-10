@@ -62,8 +62,8 @@ public class MaterialControl extends HttpServlet
             Material material = new Material (name,type,size,price);
             
             
-            FacadeMapper fm = new FacadeMapper();
-            fm.insertMatrial(material);
+            FacadeMapper facadeMapper = new FacadeMapper();
+            facadeMapper.insertMatrial(material);
             
             response.sendRedirect("index.html");
         } catch (CustomException ex) {

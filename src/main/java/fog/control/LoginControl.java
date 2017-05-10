@@ -31,7 +31,7 @@ public class LoginControl extends HttpServlet {
             throws ServletException, IOException {
         try {
 
-            FacadeMapper fm = new FacadeMapper();
+            FacadeMapper facadeMapper = new FacadeMapper();
             HttpSession session = request.getSession();
             if (request.getParameter("logOut") != null) {
                 session.removeAttribute("username");
@@ -42,7 +42,7 @@ public class LoginControl extends HttpServlet {
             String username = request.getParameter("username");
             String password = request.getParameter("password");
 
-            User user = fm.getUserByUsername(username);
+            User user = facadeMapper.getUserByUsername(username);
 
             if (user != null && password.equals(user.getPassword())) {
                 session.setAttribute("username", username);
