@@ -52,7 +52,7 @@ public class MaterialMapper {
         ArrayList<Material> list = new ArrayList<>();
         //Get tag
         list.add(get2DimensionalItem("tag", width, length, 1));
-        //Get plade by size width and length
+        //Get plade by size width and heigth
         list.add(get2DimensionalItem("plade", width, heigth, 2));
         //Get plade by size length and heigth
         list.add(get2DimensionalItem("plade", length, heigth, 2));
