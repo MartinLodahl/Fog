@@ -9,7 +9,6 @@ import fog.domain.Material;
 import fog.domain.Order;
 import fog.domain.OrderItem;
 import fog.domain.User;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
