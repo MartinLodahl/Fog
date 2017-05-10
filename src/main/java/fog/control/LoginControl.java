@@ -1,9 +1,9 @@
 package fog.control;
 
+import fog.data.CustomException;
 import fog.data.FacadeMapper;
 import fog.domain.User;
 import java.io.IOException;
-import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
@@ -50,7 +50,7 @@ public class LoginControl extends HttpServlet {
             } else {
                 request.getRequestDispatcher("login.jsp").forward(request, response);
             }
-        } catch (SQLException ex) {
+        } catch (CustomException ex) {
             Logger.getLogger(LoginControl.class.getName()).log(Level.SEVERE, null, ex);
         }
     }

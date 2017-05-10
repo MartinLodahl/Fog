@@ -1,13 +1,13 @@
 package fog.control;
 
 import fog.data.Connector;
+import fog.data.CustomException;
 import fog.data.FacadeMapper;
 import fog.data.OrderMapper;
 import fog.domain.Material;
 import fog.domain.Order;
 import fog.domain.OrderItem;
 import java.io.IOException;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -43,7 +43,7 @@ public class CreateOrderControl extends HttpServlet {
             session.setAttribute("calldate", callDates);
             
             request.getRequestDispatcher("createOrder.jsp").forward(request, response);
-        } catch (SQLException ex)
+        } catch (CustomException ex)
         {
             Logger.getLogger(CreateOrderControl.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -98,7 +98,7 @@ dag-måned-år
             request.setAttribute("total", total);
 
             request.getRequestDispatcher("bestil.jsp").forward(request, response);
-        } catch (SQLException ex) {
+        } catch (CustomException ex) {
             Logger.getLogger(CreateOrderControl.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
