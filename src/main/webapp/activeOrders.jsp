@@ -22,14 +22,14 @@
         <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
         <link rel = "stylesheet" type = "text/css" href = "styletable.css" />
         <title>adminmain</title>
-</head>
-<body>
-    <div class="container">
-        <div class="row">
-            <div class="col-sm-12">
-                <center>
-                    <h1>Fog admin page</h1>
-                </center>
+    </head>
+    <body>
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12">
+                    <center>
+                        <h1>Fog admin page</h1>
+                    </center>
                 </div>
             </div>
             <div class="row top-buffer">
@@ -37,7 +37,7 @@
                 <div class="col-sm-9">
                     <div class="input-group">
                         <!-- USE TWITTER TYPEAHEAD JSON WITH API TO SEARCH -->
-                        <input class="form-control" id="system-search" name="q" placeholder="Search for" required style="color:white">
+                        <input class="form-control" id="system-search" name="q" placeholder="Søg efter" required style="color:white">
                         <span class="input-group-btn">
                             <button type="submit" class="btn btn-default mybtn-white"><i class="glyphicon glyphicon-search"></i></button>
                         </span>
@@ -48,15 +48,15 @@
                             <c:choose>
                                 <c:when test="${fn:length(newOrders) gt 0}">    
                                     <tr>
-                                        <th>OrderId</th>
-                                        <th>name</th>
-                                        <th>mail</th>
-                                        <th>phone</th>
-                                        <th>arkiveret</th>
-                                        <th>width</th>
-                                        <th>length</th>
-                                        <th>height</th>
-                                        <th>call date</th>
+                                        <th>Ordre ID</th>
+                                        <th>Navn</th>
+                                        <th>Mail</th>
+                                        <th>Telefon</th>
+                                        <th>Arkiveret</th>
+                                        <th>Bredde</th>
+                                        <th>Længde</th>
+                                        <th>Højde</th>
+                                        <th>Kontakt kunde den</th>
                                     </tr>
                                     <c:forEach items="${newOrders}" var="newOrders">
 
@@ -65,7 +65,14 @@
                                             <td>${newOrders.customerName}</td>
                                             <td>${newOrders.customerMail}</td>
                                             <td>${newOrders.customerPhone}</td>
-                                            <td>${newOrders.status}</td>
+                                            <c:choose>
+                                                <c:when test="${newOrders.status eq false}">
+                                                    <td>Nej</td>
+                                                </c:when>    
+                                                <c:otherwise>
+                                                    <td>Ja</td>
+                                                </c:otherwise>
+                                            </c:choose>
                                             <td>${newOrders.width}</td>
                                             <td>${newOrders.length}</td>
                                             <td>${newOrders.height}</td>

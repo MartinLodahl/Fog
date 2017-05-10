@@ -21,67 +21,74 @@
         <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js" ></script>
         <link rel = "stylesheet" type = "text/css" href = "styletable.css" />
         <title>Søgning</title>
-        
-</head>
-<body>
-    <div class="container">
-        <div class="row">
-            <div class="col-sm-12">
-                <center>
-                <h1>Arkiverede ordre</h1>
-                </center>
-            </div>
-        </div>
-        <div class="row top-buffer">
-            <%@include file = "menu.jsp" %>
-            <div class="col-sm-9">
-                <div class="input-group">
-                    <!-- USE TWITTER TYPEAHEAD JSON WITH API TO SEARCH -->
-                    <input class="form-control" id="system-search" name="q" placeholder="Search for" required>
-                    <span class="input-group-btn">
-                        <button type="submit" class="btn btn-default mybtn-white"><i class="glyphicon glyphicon-search"></i></button>
-                    </span>
+
+    </head>
+    <body>
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12">
+                    <center>
+                        <h1>Arkiverede ordre</h1>
+                    </center>
                 </div>
+            </div>
+            <div class="row top-buffer">
+                <%@include file = "menu.jsp" %>
+                <div class="col-sm-9">
+                    <div class="input-group">
+                        <!-- USE TWITTER TYPEAHEAD JSON WITH API TO SEARCH -->
+                        <input class="form-control" id="system-search" name="q" placeholder="Søg efter" required>
+                        <span class="input-group-btn">
+                            <button type="submit" class="btn btn-default mybtn-white"><i class="glyphicon glyphicon-search"></i></button>
+                        </span>
+                    </div>
 
-            <table class="table table-list-search table-bordered" >
-                <c:choose>
-                    <c:when test="${fn:length(arkiveretOrders) gt 0}">    
-                        <tr>
-                            <th>OrderId</th>
-                            <th>name</th>
-                            <th>mail</th>
-                            <th>phone</th>
-                            <th>status</th>
-                            <th>width</th>
-                            <th>length</th>
-                            <th>height</th>
-                            <th>call date</th>
-                        </tr>
-                        <c:forEach items="${arkiveretOrders}" var="arkiveretOrders">
+                    <table class="table table-list-search table-bordered" >
+                        <c:choose>
+                            <c:when test="${fn:length(arkiveretOrders) gt 0}">    
+                                <tr>
+                                    <th>Ordre ID</th>
+                                    <th>Navn</th>
+                                    <th>Mail</th>
+                                    <th>Telefon</th>
+                                    <th>Arkiveret</th>
+                                    <th>Bredde</th>
+                                    <th>Længde</th>
+                                    <th>Højde</th>
+                                    <th>Kontakt kunde den</th>
+                                </tr>
+                                <c:forEach items="${arkiveretOrders}" var="arkiveretOrders">
 
-                            <tr>
-                                <td><a href="./order?orderid=${arkiveretOrders.id}">${arkiveretOrders.id}</a></td>
-                                <td>${arkiveretOrders.customerName}</td>
-                                <td>${arkiveretOrders.customerMail}</td>
-                                <td>${arkiveretOrders.customerPhone}</td>
-                                <td>${arkiveretOrders.status}</td>
-                                <td>${arkiveretOrders.width}</td>
-                                <td>${arkiveretOrders.length}</td>
-                                <td>${arkiveretOrders.height}</td>
-                                <td>${arkiveretOrders.callDate}</td>
-                            </tr>
+                                    <tr>
+                                        <td><a href="./order?orderid=${arkiveretOrders.id}">${arkiveretOrders.id}</a></td>
+                                        <td>${arkiveretOrders.customerName}</td>
+                                        <td>${arkiveretOrders.customerMail}</td>
+                                        <td>${arkiveretOrders.customerPhone}</td>
+                                        <c:choose>
+                                            <c:when test="${arkiveret.status eq false}">
+                                                <td>Nej</td>
+                                            </c:when>    
+                                            <c:otherwise>
+                                                <td>Ja</td>
+                                            </c:otherwise>
+                                        </c:choose>
+                                        <td>${arkiveretOrders.width}</td>
+                                        <td>${arkiveretOrders.length}</td>
+                                        <td>${arkiveretOrders.height}</td>
+                                        <td>${arkiveretOrders.callDate}</td>
+                                    </tr>
 
-                        </c:forEach>
-                    </c:when>
-                    <c:otherwise>
-                        <p>Ingen ordre</p>
-                    </c:otherwise>
-                </c:choose> 
+                                </c:forEach>
+                            </c:when>
+                            <c:otherwise>
+                                <p>Ingen ordre</p>
+                            </c:otherwise>
+                        </c:choose> 
 
-            </table>
+                    </table>
+                </div>
             </div>
         </div>
-    </div>
-    <script src="searchfilter.js" ></script>
-</body>
+        <script src="searchfilter.js" ></script>
+    </body>
 </html>
