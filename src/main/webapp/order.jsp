@@ -83,7 +83,7 @@
                 <th>Total pris</th>
             </tr>
             <tr>
-                <td><c:out value="${total}"/></td>
+                <td><fmt:formatNumber value="${total}" type="currency"/></td>
             </tr>
         </table>
 

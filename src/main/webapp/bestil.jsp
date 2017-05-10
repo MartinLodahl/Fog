@@ -23,12 +23,14 @@
                     <c:forEach items="${orderItems}" var="item">
                         <c:set var = "b" value = "${b+(item.price*item.quantity)}" />
                     </c:forEach>
+
                     <table>
                         <tr>
                             <th>Total pris</th>
                         </tr>
                         <tr>
-                            <td><c:out value="${total}"/></td>
+                            <td><c:out value="out + ${total}"/></td>
+                            <td><fmt:formatNumber value="fmt + ${total}" type="currency"/></td>
                         </tr>
                     </table>
                 </div>            
