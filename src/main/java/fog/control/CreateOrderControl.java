@@ -21,7 +21,7 @@ import javax.servlet.http.HttpSession;
 @WebServlet(name = "SizeControl", urlPatterns = {
     "/createOrder"
 })
-public class SizeControl extends HttpServlet {
+public class CreateOrderControl extends HttpServlet {
     FacadeMapper fm;
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
@@ -47,7 +47,7 @@ public class SizeControl extends HttpServlet {
             //request.getRequestDispatcher("size.jsp").forward(request, response);
         } catch (SQLException ex)
         {
-            Logger.getLogger(SizeControl.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(CreateOrderControl.class.getName()).log(Level.SEVERE, null, ex);
         }
            
     }
@@ -102,7 +102,7 @@ dag-måned-år
 
             request.getRequestDispatcher("bestil.jsp").forward(request, response);
         } catch (SQLException ex) {
-            Logger.getLogger(SizeControl.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(CreateOrderControl.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 }
