@@ -40,10 +40,10 @@ public class SizeControl extends HttpServlet {
              HttpSession session = request.getSession();
             Connector connector = new Connector();
             OrderMapper om = new OrderMapper(connector);
-            System.out.println("test"+om.getBookedDates().size());
+            
             ArrayList<String> callDates = om.getBookedDates();
             session.setAttribute("calldate", callDates);
-            System.out.println("test");
+            
             //request.getRequestDispatcher("size.jsp").forward(request, response);
         } catch (SQLException ex)
         {
@@ -65,7 +65,7 @@ public class SizeControl extends HttpServlet {
             boolean skur = request.getParameter("skur") != null;
             boolean build = request.getParameter("build") != null;
             String callDate = request.getParameter("callDate");
-            System.out.println(callDate);
+            
             /*
 mm/dd/yyyy
 måned/dag/år
@@ -87,9 +87,9 @@ dag-måned-år
             Order order = new Order(0, name, email, phone, false, width, length, height, skur, build, false, callDate);
             fm = new FacadeMapper();
             request.setAttribute("order", order);
-            System.out.println("create order");
+            
             int orderID = fm.createOrder(order);
-            System.out.println("end create order");
+            
 
             ArrayList<Material> list = fm.CreateMaterialList(length, width, skur, height);
             fm.CreateOrderItems(list, orderID);
