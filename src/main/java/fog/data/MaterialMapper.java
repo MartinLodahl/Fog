@@ -13,10 +13,6 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-/**
- *
- * @author MartinLodahl
- */
 public class MaterialMapper {
 
     private final Connector connector;

@@ -1,6 +1,5 @@
 package fog.control;
 
-
 import fog.data.CustomException;
 import fog.data.FacadeMapper;
 import fog.domain.Material;
