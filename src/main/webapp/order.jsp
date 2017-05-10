@@ -4,6 +4,7 @@
         <meta charset="UTF-8">
         <%@ taglib prefix="c" 
                    uri="http://java.sun.com/jsp/jstl/core" %>
+        <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
         <title>Ordre ${order.id}</title>
         <link rel = "stylesheet" type = "text/css" href = "styletable.css" />
          
@@ -72,8 +73,8 @@
                     <td><c:out value="${item.quantity}"/></td>
                     <td><c:out value="${item.length}"/></td>
                     <td><c:out value="${item.width}"/></td>
-                    <td><c:out value="${item.price}"/></td>
-                    <td><c:out value="${item.price*item.quantity}"/></td>
+                    <td><fmt:formatNumber value="${item.price}" type="currency"/></td>
+                    <td><fmt:formatNumber value="${item.price*item.quantity}" type="currency"/></td>
                 </tr>
             </c:forEach>
         </table>
