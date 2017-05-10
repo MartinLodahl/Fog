@@ -91,8 +91,8 @@ dag-måned-år
             int orderID = fm.createOrder(order);
             
 
-            ArrayList<Material> list = fm.CreateMaterialList(length, width, skur, height);
-            fm.CreateOrderItems(list, orderID);
+            ArrayList<Material> list = fm.createMaterialList(length, width, skur, height);
+            fm.createOrderItems(list, orderID);
 
             //Sends the materiallist to the frontend
             ArrayList<OrderItem> orderItems = fm.getOrderItems(orderID);
