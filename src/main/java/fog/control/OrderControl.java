@@ -5,11 +5,11 @@
  */
 package fog.control;
 
+import fog.data.CustomException;
 import fog.data.FacadeMapper;
 import fog.domain.Order;
 import fog.domain.OrderItem;
 import java.io.IOException;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -74,7 +74,7 @@ public class OrderControl extends HttpServlet {
                     request.getRequestDispatcher("order.jsp").forward(request, response);
                 }
 
-            } catch (SQLException ex) {
+            } catch (CustomException ex) {
                 Logger.getLogger(OrderControl.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
@@ -111,7 +111,7 @@ public class OrderControl extends HttpServlet {
             response.sendRedirect("order?orderid=" + id);
             //request.getRequestDispatcher("order.jsp").forward(request, response);
 
-        } catch (SQLException ex) {
+        } catch (CustomException ex) {
             Logger.getLogger(OrderControl.class.getName()).log(Level.SEVERE, null, ex);
         }
     }

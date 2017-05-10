@@ -25,7 +25,7 @@ public class Connector {
     private final String id = "root";
     private final String pw = "fuck";
 
-    public Connection getConnection() throws SQLException {
+    public Connection getConnection() throws CustomException {
         Connection con = null;
         try {
             Class.forName(driver);
@@ -33,9 +33,10 @@ public class Connector {
 
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(MaterialMapper.class.getName()).log(Level.SEVERE, null, ex);
+            throw new CustomException(ex.getMessage());
         } catch (SQLException ex) {
             Logger.getLogger(MaterialMapper.class.getName()).log(Level.SEVERE, null, ex);
-            throw ex;
+            throw new CustomException(ex.getMessage());
         }
 
         return con;

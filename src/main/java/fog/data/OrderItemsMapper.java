@@ -27,7 +27,7 @@ public class OrderItemsMapper
        
     }
     
-    public ArrayList<OrderItem> getOrderItemsByOrderId(int orderId) throws SQLException{
+    public ArrayList<OrderItem> getOrderItemsByOrderId(int orderId) throws CustomException {
         try {
             ArrayList<OrderItem> list = new ArrayList();
             OrderItem orderItem;
@@ -51,7 +51,7 @@ public class OrderItemsMapper
             return list;
         } catch (SQLException ex) {
             Logger.getLogger(MaterialMapper.class.getName()).log(Level.SEVERE, null, ex);
-            throw ex;
+            throw new CustomException(ex.getMessage());
         }
     }
     

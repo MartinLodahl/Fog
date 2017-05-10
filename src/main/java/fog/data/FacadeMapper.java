@@ -34,58 +34,58 @@ public class FacadeMapper {
     }
 //MaterialMapper
 
-    public ArrayList<Material> createMaterialList(int length, int width, boolean skur, int heigth) throws SQLException {
+    public ArrayList<Material> createMaterialList(int length, int width, boolean skur, int heigth) throws CustomException {
         return MM.CreateMaterialList(length, width, skur, heigth);
     }
 
-    public void createOrderItems(ArrayList<Material> list, int orderID) throws SQLException {
+    public void createOrderItems(ArrayList<Material> list, int orderID) throws CustomException {
         MM.CreateOrderItems(list, orderID);
     }
 
-    public void insertMatrial(Material material) throws SQLException {
+    public void insertMatrial(Material material) throws CustomException {
         MM.insertMatrial(material);
     }
 //OrderItemsMapper
 
-    public ArrayList<OrderItem> getOrderItemsByOrderId(int orderId) throws SQLException {
+    public ArrayList<OrderItem> getOrderItemsByOrderId(int orderId) throws CustomException {
         return OIM.getOrderItemsByOrderId(orderId);
     }
 //Order Mapper
 
-    public void updateOrder(Order order) throws SQLException {
+    public void updateOrder(Order order) throws CustomException {
         OM.updateOrder(order);
     }
 
-    public Order getOrderById(int id) throws SQLException {
+    public Order getOrderById(int id) throws CustomException {
         return OM.getOrderById(id);
     }
 
-    public List<Order> getAllActiveOrders(boolean check) throws SQLException {
+    public List<Order> getAllActiveOrders(boolean check) throws CustomException {
         return OM.getAllActiveOrders(check);
     }
 
-    public int createOrder(Order order) throws SQLException {
+    public int createOrder(Order order) throws CustomException {
         return OM.createOrder(order);
     }
 
-    public void deleteOrderById(int id) throws SQLException {
+    public void deleteOrderById(int id) throws CustomException {
         OM.deleteOrderById(id);
     }
 
-    public ArrayList<OrderItem> getOrderItems(int id) throws SQLException {
+    public ArrayList<OrderItem> getOrderItems(int id) throws CustomException {
         return OM.getOrderItems(id);
     }
     
-    public ArrayList<String> getBookedDates () throws SQLException{
+    public ArrayList<String> getBookedDates () throws CustomException {
         return OM.getBookedDates();
     }
 
-    public double getOrderTotal(int id) throws SQLException {
+    public double getOrderTotal(int id) throws CustomException {
         return OM.getOrderTotal(id);
     }
 
     //UserMapper
-    public User getUserByUsername(String username) throws SQLException {
+    public User getUserByUsername(String username) throws CustomException {
         return UM.getUserByUsername(username);
     }
 }

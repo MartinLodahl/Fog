@@ -16,7 +16,7 @@ public class UserMapper
         this.connector = connector;
     }
 
-    public User getUserByUsername(String username) throws SQLException {
+    public User getUserByUsername(String username) throws CustomException {
         try {
             String query = "SELECT * FROM users  WHERE username = ?;";
             Connection connection = connector.getConnection();
@@ -33,7 +33,7 @@ public class UserMapper
             }
         } catch (SQLException ex) {
             Logger.getLogger(MaterialMapper.class.getName()).log(Level.SEVERE, null, ex);
-            throw ex;
+            throw new CustomException(ex.getMessage());
         }
     }
 }

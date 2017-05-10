@@ -1,9 +1,9 @@
 package fog.control;
 
+import fog.data.CustomException;
 import fog.data.FacadeMapper;
 import fog.domain.Order;
 import java.io.IOException;
-import java.sql.SQLException;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -75,7 +75,7 @@ public class SearchControl extends HttpServlet
                     request.getRequestDispatcher("archivedOrders.jsp").forward(request, response);
                     break;
             }
-        } catch (SQLException ex)
+        } catch (CustomException ex)
         {
             Logger.getLogger(SearchControl.class.getName()).log(Level.SEVERE, null, ex);
         }

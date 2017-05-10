@@ -31,7 +31,7 @@ public class OrderMapper {
 
     }
     
-    public void updateOrder (Order order) throws SQLException{
+    public void updateOrder (Order order) throws CustomException {
         try {
             String query = "UPDATE orders SET customer_name = ? , customer_email = ?, customer_phone = ?, status = ?"
                     + ", width = ? , height = ?, length = ?, skur = ?, build = ? ,deleted = ? "
@@ -53,11 +53,11 @@ public class OrderMapper {
             stmt.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(MaterialMapper.class.getName()).log(Level.SEVERE, null, ex);
-            throw ex;
+            throw new CustomException(ex.getMessage());
         }
     }
 
-    public Order getOrderById(int id) throws SQLException {
+    public Order getOrderById(int id) throws CustomException {
         try {
             String query = "SELECT * FROM orders  WHERE id = ? and deleted = false;";
             PreparedStatement stmt = connector.getConnection().prepareStatement(query);
@@ -87,11 +87,11 @@ public class OrderMapper {
             }
         } catch (SQLException ex) {
             Logger.getLogger(MaterialMapper.class.getName()).log(Level.SEVERE, null, ex);
-            throw ex;
+            throw new CustomException(ex.getMessage());
         }
     }
     
-    public List<Order> getAllActiveOrders(boolean check) throws SQLException {
+    public List<Order> getAllActiveOrders(boolean check) throws CustomException {
         
         List<Order> list = new ArrayList();
         try {
@@ -129,12 +129,12 @@ public class OrderMapper {
             
         } catch (SQLException ex) {
             Logger.getLogger(MaterialMapper.class.getName()).log(Level.SEVERE, null, ex);
-            throw ex;
+            throw new CustomException(ex.getMessage());
         }
         
     }
 
-    public int createOrder(Order order) throws SQLException {
+    public int createOrder(Order order) throws CustomException {
         try {
             String query = "INSERT INTO orders "
                     + "(customer_name, customer_email, customer_phone, "
@@ -161,11 +161,11 @@ public class OrderMapper {
             return 0;
         } catch (SQLException ex) {
             Logger.getLogger(MaterialMapper.class.getName()).log(Level.SEVERE, null, ex);
-            throw ex;
+            throw new CustomException(ex.getMessage());
         }
     }
 
-    public void deleteOrderById(int id) throws SQLException {
+    public void deleteOrderById(int id) throws CustomException {
         try {
             String query = "UPDATE orders SET deleted = true where id = ?";
             PreparedStatement stmt = connector.getConnection().prepareStatement(query);
@@ -173,11 +173,11 @@ public class OrderMapper {
             stmt.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(MaterialMapper.class.getName()).log(Level.SEVERE, null, ex);
-            throw ex;
+            throw new CustomException(ex.getMessage());
         }
     }
 
-    public ArrayList<OrderItem> getOrderItems(int id) throws SQLException {
+    public ArrayList<OrderItem> getOrderItems(int id) throws CustomException {
         try {
             ArrayList<OrderItem> list = new ArrayList<>();
             String query = "SELECT * FROM orderitems  WHERE order_id = ?;";
@@ -196,11 +196,11 @@ public class OrderMapper {
             return list;
         } catch (SQLException ex) {
             Logger.getLogger(MaterialMapper.class.getName()).log(Level.SEVERE, null, ex);
-            throw ex;
+            throw new CustomException(ex.getMessage());
         }
     }
     
-    public double getOrderTotal(int id) throws SQLException {
+    public double getOrderTotal(int id) throws CustomException {
         Order order = this.getOrderById(id);
         List<OrderItem> orderItems = this.getOrderItems(id);
         double total = 0;
@@ -215,7 +215,7 @@ public class OrderMapper {
     }
     
     
-    public ArrayList<String> getBookedDates () throws SQLException{
+    public ArrayList<String> getBookedDates () throws CustomException {
         try {
             ArrayList<String> list = new ArrayList<>();
             String query = "SELECT DISTINCT calldate FROM orders where status = FALSE;";
@@ -229,7 +229,7 @@ public class OrderMapper {
             return list;
         } catch (SQLException ex) {
             Logger.getLogger(MaterialMapper.class.getName()).log(Level.SEVERE, null, ex);
-            throw ex;
+            throw new CustomException(ex.getMessage());
         }
     }
 }

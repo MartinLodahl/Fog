@@ -25,7 +25,7 @@ public class MaterialMapper {
         this.connector = connector;
     }
 
-    public ArrayList<Material> CreateMaterialList(int length, int width, boolean skur, int heigth) throws SQLException {
+    public ArrayList<Material> CreateMaterialList(int length, int width, boolean skur, int heigth) throws CustomException {
 
         if (skur == false) {
             return CalculateCarport(length, width, heigth);
@@ -35,7 +35,7 @@ public class MaterialMapper {
 
     }
 
-    private ArrayList<Material> CalculateCarport(int length, int width, int heigth) throws SQLException {
+    private ArrayList<Material> CalculateCarport(int length, int width, int heigth) throws CustomException {
         ArrayList<Material> list = new ArrayList<>();
         //get stolper med size heigth
         list.add(getByType("stolpe", heigth, 4));
@@ -48,7 +48,7 @@ public class MaterialMapper {
         return list;
     }
 
-    private ArrayList<Material> CalculateSkur(int length, int width, int heigth) throws SQLException {
+    private ArrayList<Material> CalculateSkur(int length, int width, int heigth) throws CustomException {
         ArrayList<Material> list = new ArrayList<>();
         //Get tag
         list.add(get2DimensionalItem("tag", width, length, 1));
@@ -59,7 +59,7 @@ public class MaterialMapper {
         return list;
     }
 
-    public void CreateOrderItems(ArrayList<Material> list, int orderID) throws SQLException {
+    public void CreateOrderItems(ArrayList<Material> list, int orderID) throws CustomException {
         try {
             for (int i = 0; i < list.size(); i++) {
                 String query = "INSERT INTO orderitems "
@@ -76,11 +76,11 @@ public class MaterialMapper {
             }
         } catch (SQLException ex) {
             Logger.getLogger(MaterialMapper.class.getName()).log(Level.SEVERE, null, ex);
-            throw ex;
+            throw new CustomException(ex.getMessage());
         }
     }
 
-    public void insertMatrial(Material material) throws SQLException {
+    public void insertMatrial(Material material) throws CustomException {
         String query = "insert into materials (name, type, size, price) "
                 + "values (?,?,?,?);";
         PreparedStatement stmt;
@@ -93,11 +93,11 @@ public class MaterialMapper {
             stmt.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(MaterialMapper.class.getName()).log(Level.SEVERE, null, ex);
-            throw ex;
+            throw new CustomException(ex.getMessage());
         }
     }
 
-    private Material getByType(String type, int size, int quantity) {
+    private Material getByType(String type, int size, int quantity) throws CustomException {
         try {
             String query = "SELECT * FROM materials where type=?;";
             PreparedStatement stmt = connector.getConnection().prepareStatement(query);
@@ -133,16 +133,12 @@ public class MaterialMapper {
             }
         } catch (SQLException ex) {
             Logger.getLogger(MaterialMapper.class.getName()).log(Level.SEVERE, null, ex);
-            try {
-                throw ex;
-            } catch (SQLException ex1) {
-                Logger.getLogger(MaterialMapper.class.getName()).log(Level.SEVERE, null, ex1);
-            }
+            throw new CustomException(ex.getMessage());
         }
         return null;
     }
 
-    private Material get2DimensionalItem(String type, int size1, int size2, int quantity) {
+    private Material get2DimensionalItem(String type, int size1, int size2, int quantity) throws CustomException {
         try {
             String query = "SELECT * FROM materials where type=?;";
             PreparedStatement stmt = connector.getConnection().prepareStatement(query);
@@ -157,11 +153,7 @@ public class MaterialMapper {
 
         } catch (SQLException ex) {
             Logger.getLogger(MaterialMapper.class.getName()).log(Level.SEVERE, null, ex);
-            try {
-                throw ex;
-            } catch (SQLException ex1) {
-                Logger.getLogger(MaterialMapper.class.getName()).log(Level.SEVERE, null, ex1);
-            }
+            throw new CustomException(ex.getMessage());
         }
         return null;
     }
