@@ -34,11 +34,11 @@ public class FacadeMapper {
     }
 //MaterialMapper
 
-    public ArrayList<Material> CreateMaterialList(int length, int width, boolean skur, int heigth) throws SQLException {
+    public ArrayList<Material> createMaterialList(int length, int width, boolean skur, int heigth) throws SQLException {
         return MM.CreateMaterialList(length, width, skur, heigth);
     }
 
-    public void CreateOrderItems(ArrayList<Material> list, int orderID) throws SQLException {
+    public void createOrderItems(ArrayList<Material> list, int orderID) throws SQLException {
         MM.CreateOrderItems(list, orderID);
     }
 

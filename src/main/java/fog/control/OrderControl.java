@@ -36,7 +36,7 @@ public class OrderControl extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    private FacadeMapper fm;
+    private FacadeMapper facadeMapper;
 
     /**
      * Handles the HTTP <code>GET</code> method.
@@ -49,7 +49,7 @@ public class OrderControl extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        fm = new FacadeMapper();
+        facadeMapper = new FacadeMapper();
         int orderId = Integer.parseInt(request.getParameter("orderid"));
 
         HttpSession session = request.getSession();
@@ -58,9 +58,9 @@ public class OrderControl extends HttpServlet {
             response.sendRedirect("./login");
         } else {
             try {
-                Order order = fm.getOrderById(orderId);
-                ArrayList<OrderItem> orderItems = fm.getOrderItems(orderId);
-                double total = fm.getOrderTotal(orderId);
+                Order order = facadeMapper.getOrderById(orderId);
+                ArrayList<OrderItem> orderItems = facadeMapper.getOrderItems(orderId);
+                double total = facadeMapper.getOrderTotal(orderId);
                 if (order == null) {
 
                     request.getRequestDispatcher("/searchError.jsp").forward(request, response);
@@ -104,10 +104,10 @@ public class OrderControl extends HttpServlet {
         
 
         try {
-            Order order = fm.getOrderById(id);
+            Order order = facadeMapper.getOrderById(id);
 
             order.setStatus(orderDone != null);
-            fm.updateOrder(order);
+            facadeMapper.updateOrder(order);
             response.sendRedirect("order?orderid=" + id);
             //request.getRequestDispatcher("order.jsp").forward(request, response);
 

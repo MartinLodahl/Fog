@@ -18,7 +18,7 @@
                 <th>Total pris</th>
             </tr>
             <tr>
-                <td text-anchor="middle" alignment-baseline="central"><c:out value="${total}"/></td>
+            <td><c:out value="${total}"/></td>
             </tr>
         </table>
             </center>
