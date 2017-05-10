@@ -40,8 +40,7 @@ public class UserMapper
     public void createUser(User user) throws CustomException {
         try
         {
-            String query = "insert into materials (name, type, size, price) "
-                    + "values (?,?,?,?);";
+            String query = "insert into users (username, password) values (?, ?);";
             PreparedStatement stmt = connector.getConnection().prepareStatement(query);
             stmt.setString(1, user.getUsername());
             stmt.setString(2, user.getPassword());
