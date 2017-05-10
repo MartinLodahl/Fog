@@ -44,7 +44,7 @@ public class CreateOrderControl extends HttpServlet {
             ArrayList<String> callDates = om.getBookedDates();
             session.setAttribute("calldate", callDates);
             
-            //request.getRequestDispatcher("size.jsp").forward(request, response);
+            request.getRequestDispatcher("createOrder.jsp").forward(request, response);
         } catch (SQLException ex)
         {
             Logger.getLogger(CreateOrderControl.class.getName()).log(Level.SEVERE, null, ex);
