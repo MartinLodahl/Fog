@@ -24,7 +24,7 @@ import javax.servlet.http.HttpSession;
  *
  * @author Pravien
  */
-@WebServlet(name = "OrderControl", urlPatterns = {"/order"})
+@WebServlet(urlPatterns = {"/order"})
 public class OrderControl extends HttpServlet {
 
     /**
