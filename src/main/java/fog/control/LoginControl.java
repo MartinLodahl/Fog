@@ -3,6 +3,7 @@ package fog.control;
 import fog.data.CustomException;
 import fog.data.FacadeMapper;
 import fog.domain.User;
+import fog.helper.PasswordAuthentication;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -13,7 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-@WebServlet(name = "LoginControl", urlPatterns = {"/login"})
+@WebServlet(urlPatterns = {"/login"})
 public class LoginControl extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
@@ -44,7 +45,8 @@ public class LoginControl extends HttpServlet {
 
             User user = facadeMapper.getUserByUsername(username);
 
-            if (user != null && password.equals(user.getPassword())) {
+            PasswordAuthentication auth = new PasswordAuthentication();
+            if (user != null && auth.authenticate(password.toCharArray(), user.getPassword())) {
                 session.setAttribute("username", username);
                 response.sendRedirect("./activeOrders");
             } else {

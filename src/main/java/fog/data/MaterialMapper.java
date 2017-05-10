@@ -13,10 +13,6 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-/**
- *
- * @author MartinLodahl
- */
 public class MaterialMapper {
 
     private final Connector connector;
@@ -52,7 +48,7 @@ public class MaterialMapper {
         ArrayList<Material> list = new ArrayList<>();
         //Get tag
         list.add(get2DimensionalItem("tag", width, length, 1));
-        //Get plade by size width and length
+        //Get plade by size width and heigth
         list.add(get2DimensionalItem("plade", width, heigth, 2));
         //Get plade by size length and heigth
         list.add(get2DimensionalItem("plade", length, heigth, 2));

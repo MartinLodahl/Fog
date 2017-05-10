@@ -10,7 +10,7 @@ CREATE TABLE users (
 );
 
 INSERT INTO users (username, password)
-VALUES ('admin', '12345');
+VALUES ('admin', '$31$16$IDdp8ejfM_DJ9-RYIAJzk97UFKefyR1HEL3t3apnL2U');
 
 CREATE TABLE materials (
 	id INTEGER PRIMARY KEY NOT NULL,

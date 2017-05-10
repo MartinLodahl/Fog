@@ -1,6 +1,5 @@
 package fog.control;
 
-
 import fog.data.CustomException;
 import fog.data.FacadeMapper;
 import fog.domain.Material;
@@ -17,7 +16,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-@WebServlet(name = "SizeControl", urlPatterns = {
+@WebServlet(urlPatterns = {
     "/createOrder"
 })
 public class CreateOrderControl extends HttpServlet {
@@ -102,3 +101,6 @@ dag-måned-år
         }
     }
 }
+
+// How to update an order??!
+// Get orderID -> Delete orderItems -> Update orderNumbers -> Create new orderItems 

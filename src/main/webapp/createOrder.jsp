@@ -93,7 +93,7 @@
                 ArrayList<String> calldate = (ArrayList<String>) request.getSession().getAttribute("calldate");
                 int i = 0;
 
-                System.out.println(calldate.get(0));
+                
                 for (String s : calldate)
                 {
                     out.println("<td><input type=\"hidden\" name=\"date\" id=\"date" + i + "\" value=\"" + calldate.get(i) + "\" ></td>");
