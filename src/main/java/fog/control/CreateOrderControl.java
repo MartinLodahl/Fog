@@ -37,11 +37,9 @@ public class CreateOrderControl extends HttpServlet {
         
         try
         {
-             HttpSession session = request.getSession();
-            Connector connector = new Connector();
-            OrderMapper om = new OrderMapper(connector);
-            
-            ArrayList<String> callDates = om.getBookedDates();
+            HttpSession session = request.getSession();
+            fm = new FacadeMapper();
+            ArrayList<String> callDates = fm.getBookedDates();
             session.setAttribute("calldate", callDates);
             
             request.getRequestDispatcher("createOrder.jsp").forward(request, response);
@@ -82,7 +80,6 @@ dag-måned-år
             
             SBcallDate.append(tempDay + "-" + tempMonth + "-" + tempYear);
             callDate = SBcallDate.toString();
-            System.out.println(callDate);
 
             Order order = new Order(0, name, email, phone, false, width, length, height, skur, build, false, callDate);
             fm = new FacadeMapper();
