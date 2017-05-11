@@ -1,7 +1,7 @@
 package fog.control;
 
 import fog.business.BusinessFacadeMapper;
-import fog.data.CustomException;
+import fog.business.BusinessException;
 import fog.domain.Material;
 import fog.domain.Order;
 import fog.domain.OrderItem;
@@ -41,7 +41,7 @@ public class CreateOrderControl extends HttpServlet {
             session.setAttribute("calldate", callDates);
             
             request.getRequestDispatcher("createOrder.jsp").forward(request, response);
-        } catch (CustomException ex)
+        } catch (BusinessException ex)
         {
             Logger.getLogger(CreateOrderControl.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -96,7 +96,7 @@ dag-måned-år
             request.setAttribute("total", total);
 
             request.getRequestDispatcher("bestil.jsp").forward(request, response);
-        } catch (CustomException ex) {
+        } catch (BusinessException ex) {
             Logger.getLogger(CreateOrderControl.class.getName()).log(Level.SEVERE, null, ex);
         }
     }

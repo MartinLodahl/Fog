@@ -1,5 +1,6 @@
 package fog.control;
 
+import fog.business.BusinessException;
 import fog.business.BusinessFacadeMapper;
 import fog.data.CustomException;
 import fog.data.FacadeMapper;
@@ -67,7 +68,7 @@ public class OrderControl extends HttpServlet {
                     request.getRequestDispatcher("order.jsp").forward(request, response);
                 }
 
-            } catch (CustomException ex) {
+            } catch (BusinessException ex) {
                 Logger.getLogger(OrderControl.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
@@ -104,7 +105,7 @@ public class OrderControl extends HttpServlet {
             response.sendRedirect("order?orderid=" + id);
             //request.getRequestDispatcher("order.jsp").forward(request, response);
 
-        } catch (CustomException ex) {
+        } catch (BusinessException ex) {
             Logger.getLogger(OrderControl.class.getName()).log(Level.SEVERE, null, ex);
         }
     }

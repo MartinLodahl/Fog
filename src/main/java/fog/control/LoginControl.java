@@ -1,7 +1,7 @@
 package fog.control;
 
+import fog.business.BusinessException;
 import fog.business.BusinessFacadeMapper;
-import fog.data.CustomException;
 import fog.domain.User;
 import fog.helper.PasswordAuthentication;
 import java.io.IOException;
@@ -52,7 +52,7 @@ public class LoginControl extends HttpServlet {
             } else {
                 request.getRequestDispatcher("login.jsp").forward(request, response);
             }
-        } catch (CustomException ex) {
+        } catch (BusinessException ex) {
             Logger.getLogger(LoginControl.class.getName()).log(Level.SEVERE, null, ex);
         }
     }

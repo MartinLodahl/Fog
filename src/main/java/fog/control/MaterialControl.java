@@ -1,7 +1,7 @@
 package fog.control;
 
+import fog.business.BusinessException;
 import fog.business.BusinessFacadeMapper;
-import fog.data.CustomException;
 import fog.domain.Material;
 import java.io.IOException;
 import java.util.logging.Level;
@@ -57,7 +57,7 @@ public class MaterialControl extends HttpServlet
             bFacadeMapper.insertMatrial(material);
             
             response.sendRedirect("index.html");
-        } catch (CustomException ex) {
+        } catch (BusinessException ex) {
             Logger.getLogger(MaterialControl.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
