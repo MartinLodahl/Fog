@@ -1,11 +1,16 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<<<<<<< Updated upstream
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+=======
+ <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+>>>>>>> Stashed changes
 <!DOCTYPE html>
 <html>
     <head>
         <meta charset="UTF-8">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
         <link rel = "stylesheet" type = "text/css" href = "styletable.css" />
+        
         <title></title>
     </head>
     <body>
@@ -21,9 +26,6 @@
             <div class="row">
                 <div class="col-sm-3"></div>
                 <div class="col-sm-6">
-                    <c:forEach items="${orderItems}" var="item">
-                        <c:set var = "b" value = "${b+(item.price*item.quantity)}" />
-                    </c:forEach>
 
                     <table>
                         <tr>

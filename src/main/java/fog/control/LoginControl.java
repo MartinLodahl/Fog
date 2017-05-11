@@ -1,5 +1,6 @@
 package fog.control;
 
+import fog.business.BusinessFacadeMapper;
 import fog.data.CustomException;
 import fog.data.FacadeMapper;
 import fog.domain.User;
@@ -32,7 +33,7 @@ public class LoginControl extends HttpServlet {
             throws ServletException, IOException {
         try {
 
-            FacadeMapper facadeMapper = new FacadeMapper();
+            BusinessFacadeMapper bFacadeMapper = new BusinessFacadeMapper();
             HttpSession session = request.getSession();
             if (request.getParameter("logOut") != null) {
                 session.removeAttribute("username");
@@ -43,7 +44,7 @@ public class LoginControl extends HttpServlet {
             String username = request.getParameter("username");
             String password = request.getParameter("password");
 
-            User user = facadeMapper.getUserByUsername(username);
+            User user = bFacadeMapper.getUserByUsername(username);
 
             PasswordAuthentication auth = new PasswordAuthentication();
             if (user != null && auth.authenticate(password.toCharArray(), user.getPassword())) {

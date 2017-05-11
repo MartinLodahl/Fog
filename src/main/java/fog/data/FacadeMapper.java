@@ -70,10 +70,6 @@ public class FacadeMapper {
         return orderMapper.getBookedDates();
     }
 
-    public double getOrderTotal(int id) throws CustomException {
-        return orderMapper.getOrderTotal(id);
-    }
-
     //UserMapper
     public User getUserByUsername(String username) throws CustomException {
         return userMapper.getUserByUsername(username);

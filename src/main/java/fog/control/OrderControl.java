@@ -1,5 +1,6 @@
 package fog.control;
 
+import fog.business.BusinessFacadeMapper;
 import fog.data.CustomException;
 import fog.data.FacadeMapper;
 import fog.domain.Order;
@@ -28,6 +29,7 @@ public class OrderControl extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     private FacadeMapper facadeMapper;
+    private BusinessFacadeMapper bFacadeMapper;
 
     /**
      * Handles the HTTP <code>GET</code> method.
@@ -40,7 +42,8 @@ public class OrderControl extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        facadeMapper = new FacadeMapper();
+        bFacadeMapper = new BusinessFacadeMapper();
+        
         int orderId = Integer.parseInt(request.getParameter("orderid"));
 
         HttpSession session = request.getSession();
@@ -51,7 +54,7 @@ public class OrderControl extends HttpServlet {
             try {
                 Order order = facadeMapper.getOrderById(orderId);
                 ArrayList<OrderItem> orderItems = facadeMapper.getOrderItems(orderId);
-                double total = facadeMapper.getOrderTotal(orderId);
+                double total = bFacadeMapper.getOrderTotal(orderId);
                 if (order == null) {
 
                     request.getRequestDispatcher("/searchError.jsp").forward(request, response);

@@ -1,5 +1,6 @@
 package fog.control;
 
+import fog.business.BusinessFacadeMapper;
 import fog.data.CustomException;
 import fog.data.FacadeMapper;
 import fog.domain.Material;
@@ -53,8 +54,8 @@ public class MaterialControl extends HttpServlet
             Material material = new Material (name,type,size,price);
             
             
-            FacadeMapper facadeMapper = new FacadeMapper();
-            facadeMapper.insertMatrial(material);
+            BusinessFacadeMapper bFacadeMapper = new BusinessFacadeMapper();
+            bFacadeMapper.insertMatrial(material);
             
             response.sendRedirect("index.html");
         } catch (CustomException ex) {

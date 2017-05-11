@@ -21,39 +21,7 @@ public class MaterialMapper {
         this.connector = connector;
     }
 
-    public ArrayList<Material> CreateMaterialList(int length, int width, boolean skur, int heigth) throws CustomException {
 
-        if (skur == false) {
-            return CalculateCarport(length, width, heigth);
-        } else {
-            return CalculateSkur(length, width, heigth);
-        }
-
-    }
-
-    private ArrayList<Material> CalculateCarport(int length, int width, int heigth) throws CustomException {
-        ArrayList<Material> list = new ArrayList<>();
-        //get stolper med size heigth
-        list.add(getByType("stolpe", heigth, 4));
-        //get braedde med size length
-        list.add(getByType("braedde", length, 2));
-        //get braedde med size width
-        list.add(getByType("braedde", width, 2));
-        //get tag
-        list.add(get2DimensionalItem("tag", width, length, 1));
-        return list;
-    }
-
-    private ArrayList<Material> CalculateSkur(int length, int width, int heigth) throws CustomException {
-        ArrayList<Material> list = new ArrayList<>();
-        //Get tag
-        list.add(get2DimensionalItem("tag", width, length, 1));
-        //Get plade by size width and heigth
-        list.add(get2DimensionalItem("plade", width, heigth, 2));
-        //Get plade by size length and heigth
-        list.add(get2DimensionalItem("plade", length, heigth, 2));
-        return list;
-    }
 
     public void CreateOrderItems(ArrayList<Material> list, int orderID) throws CustomException {
         try {
@@ -93,7 +61,7 @@ public class MaterialMapper {
         }
     }
 
-    private Material getByType(String type, int size, int quantity) throws CustomException {
+    public Material getByType(String type, int size, int quantity) throws CustomException {
         try {
             String query = "SELECT * FROM materials where type=?;";
             PreparedStatement stmt = connector.getConnection().prepareStatement(query);

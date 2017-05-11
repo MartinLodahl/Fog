@@ -1,5 +1,6 @@
 package fog.control;
 
+import fog.business.BusinessFacadeMapper;
 import fog.data.CustomException;
 import fog.data.FacadeMapper;
 import fog.domain.Material;
@@ -20,7 +21,7 @@ import javax.servlet.http.HttpSession;
     "/createOrder"
 })
 public class CreateOrderControl extends HttpServlet {
-    FacadeMapper fm;
+    BusinessFacadeMapper bFacadeMapper = new BusinessFacadeMapper();
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -36,8 +37,8 @@ public class CreateOrderControl extends HttpServlet {
         try
         {
             HttpSession session = request.getSession();
-            fm = new FacadeMapper();
-            ArrayList<String> callDates = fm.getBookedDates();
+           
+            ArrayList<String> callDates = bFacadeMapper.getBookedDates();
             session.setAttribute("calldate", callDates);
             
             request.getRequestDispatcher("createOrder.jsp").forward(request, response);
@@ -80,19 +81,19 @@ dag-måned-år
             callDate = SBcallDate.toString();
 
             Order order = new Order(0, name, email, phone, false, width, length, height, skur, build, false, callDate);
-            fm = new FacadeMapper();
+            
             request.setAttribute("order", order);
             
-            int orderID = fm.createOrder(order);
+            int orderID = bFacadeMapper.createOrder(order);
             
 
-            ArrayList<Material> list = fm.createMaterialList(length, width, skur, height);
-            fm.createOrderItems(list, orderID);
+            ArrayList<Material> list = bFacadeMapper.createMaterialList(length, width, skur, height);
+            bFacadeMapper.createOrderItems(list, orderID);
 
             //Sends the materiallist to the frontend
-            ArrayList<OrderItem> orderItems = fm.getOrderItems(orderID);
+            ArrayList<OrderItem> orderItems = bFacadeMapper.getOrderItems(orderID);
             request.setAttribute("orderItems", orderItems);
-            double total = fm.getOrderTotal(orderID);
+            double total = bFacadeMapper.getOrderTotal(orderID);
             request.setAttribute("total", total);
 
             request.getRequestDispatcher("bestil.jsp").forward(request, response);

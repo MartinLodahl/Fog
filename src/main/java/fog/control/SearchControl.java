@@ -1,5 +1,6 @@
 package fog.control;
 
+import fog.business.BusinessFacadeMapper;
 import fog.data.CustomException;
 import fog.data.FacadeMapper;
 import fog.domain.Order;
@@ -58,12 +59,12 @@ public class SearchControl extends HttpServlet
             response.sendRedirect("./login");
             return;
         }
+        BusinessFacadeMapper bFacadeMapper = new BusinessFacadeMapper();
         
-        FacadeMapper facadeMapper = new FacadeMapper();
         try
         {
-            List<Order> newOrders = facadeMapper.getAllActiveOrders(true);
-            List<Order> arkiveretOrders = facadeMapper.getAllActiveOrders(false);
+            List<Order> newOrders = bFacadeMapper.getAllActiveOrders(true);
+            List<Order> arkiveretOrders = bFacadeMapper.getAllActiveOrders(false);
             request.setAttribute("newOrders", newOrders);
             request.setAttribute("arkiveretOrders", arkiveretOrders);
             
