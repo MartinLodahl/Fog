@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -29,8 +30,7 @@
                             <th>Total pris</th>
                         </tr>
                         <tr>
-                            <td><c:out value="out + ${total}"/></td>
-                            <td><fmt:formatNumber value="fmt + ${total}" type="currency"/></td>
+                            <td><fmt:formatNumber value="${total}" type="currency"/></td>
                         </tr>
                     </table>
                 </div>            
