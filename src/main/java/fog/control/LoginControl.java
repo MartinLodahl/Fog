@@ -4,6 +4,7 @@ import fog.business.BusinessFacadeMapper;
 import fog.data.CustomException;
 import fog.data.FacadeMapper;
 import fog.domain.User;
+import fog.helper.MapperHelp;
 import fog.helper.PasswordAuthentication;
 import java.io.IOException;
 import java.util.logging.Level;
@@ -17,6 +18,7 @@ import javax.servlet.http.HttpSession;
 
 @WebServlet(urlPatterns = {"/login"})
 public class LoginControl extends HttpServlet {
+    private MapperHelp mapperHelp = new MapperHelp();
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -43,8 +45,8 @@ public class LoginControl extends HttpServlet {
 
             String username = request.getParameter("username");
             String password = request.getParameter("password");
-
-            User user = bFacadeMapper.getUserByUsername(username);
+            mapperHelp.setImapper(bFacadeMapper);
+            User user = mapperHelp.getImapper().getUserByUsername(username);
 
             PasswordAuthentication auth = new PasswordAuthentication();
             if (user != null && auth.authenticate(password.toCharArray(), user.getPassword())) {

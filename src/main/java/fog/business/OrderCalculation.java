@@ -19,14 +19,14 @@ import java.util.ArrayList;
  */
 public class OrderCalculation
 {
-    private FacadeMapper fMapper;
+    private  FacadeMapper fMapper;
     
     public OrderCalculation(){
         fMapper = new FacadeMapper();
     }
     
      public double getOrderTotal(int id) throws CustomException {
-        FacadeMapper fMapper = new FacadeMapper();
+        fMapper = new FacadeMapper();
          Order order = fMapper.getOrderById(id);
         List<OrderItem> orderItems = fMapper.getOrderItems(id);
         double total = 0;

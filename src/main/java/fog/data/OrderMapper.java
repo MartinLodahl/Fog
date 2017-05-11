@@ -191,19 +191,7 @@ public class OrderMapper {
         }
     }
     
-    public double getOrderTotal(int id) throws CustomException {
-        Order order = this.getOrderById(id);
-        List<OrderItem> orderItems = this.getOrderItems(id);
-        double total = 0;
-        for (OrderItem orderItem : orderItems) {
-            total += orderItem.getQuantity() * orderItem.getPrice();
-        }
-        if (order.isBuild()) {
-            total += 1700;
-        }
-        return total;
-        
-    }
+   
     
     
     public ArrayList<String> getBookedDates () throws CustomException {

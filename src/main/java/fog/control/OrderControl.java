@@ -5,6 +5,7 @@ import fog.data.CustomException;
 import fog.data.FacadeMapper;
 import fog.domain.Order;
 import fog.domain.OrderItem;
+import fog.helper.MapperHelp;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.logging.Level;
@@ -28,7 +29,7 @@ public class OrderControl extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    private FacadeMapper facadeMapper;
+    private MapperHelp mapperHelp = new MapperHelp();
     private BusinessFacadeMapper bFacadeMapper;
 
     /**
@@ -42,7 +43,9 @@ public class OrderControl extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        
         bFacadeMapper = new BusinessFacadeMapper();
+        mapperHelp.setImapper(bFacadeMapper);
         
         int orderId = Integer.parseInt(request.getParameter("orderid"));
 
@@ -52,8 +55,8 @@ public class OrderControl extends HttpServlet {
             response.sendRedirect("./login");
         } else {
             try {
-                Order order = facadeMapper.getOrderById(orderId);
-                ArrayList<OrderItem> orderItems = facadeMapper.getOrderItems(orderId);
+                Order order = mapperHelp.getImapper().getOrderById(orderId);
+                ArrayList<OrderItem> orderItems = mapperHelp.getImapper().getOrderItems(orderId);
                 double total = bFacadeMapper.getOrderTotal(orderId);
                 if (order == null) {
 
@@ -91,17 +94,18 @@ public class OrderControl extends HttpServlet {
             response.sendRedirect("./login");
             return;
         }
-
+        bFacadeMapper = new BusinessFacadeMapper();
+        mapperHelp.setImapper(bFacadeMapper);
         int id = Integer.parseInt(request.getParameter("id"));
         String orderDone = request.getParameter("orderDone");
 
         
 
         try {
-            Order order = facadeMapper.getOrderById(id);
+            Order order = mapperHelp.getImapper().getOrderById(id);
 
             order.setStatus(orderDone != null);
-            facadeMapper.updateOrder(order);
+            mapperHelp.getImapper().updateOrder(order);
             response.sendRedirect("order?orderid=" + id);
             //request.getRequestDispatcher("order.jsp").forward(request, response);
 

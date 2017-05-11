@@ -5,6 +5,7 @@
  */
 package fog.business;
 
+import fog.IMapper;
 import fog.data.CustomException;
 import fog.data.FacadeMapper;
 import fog.domain.Material;
@@ -18,7 +19,7 @@ import java.util.List;
  *
  * @author Pravien
  */
-public class BusinessFacadeMapper {
+public class BusinessFacadeMapper implements IMapper {
 
     private final OrderCalculation orderCalculation;
     private final FacadeMapper facadeMapper;
@@ -82,6 +83,18 @@ public class BusinessFacadeMapper {
     //UserMapper
     public User getUserByUsername(String username) throws CustomException {
         return facadeMapper.getUserByUsername(username);
+    }
+
+    @Override
+    public Material getByType(String type, int size, int quantity) throws CustomException
+    {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public Material get2DimensionalItem(String type, int size1, int size2, int quantity) throws CustomException
+    {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }

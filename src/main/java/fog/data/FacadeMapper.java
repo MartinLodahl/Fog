@@ -1,5 +1,6 @@
 package fog.data;
 
+import fog.IMapper;
 import fog.domain.Material;
 import fog.domain.Order;
 import fog.domain.OrderItem;
@@ -7,7 +8,7 @@ import fog.domain.User;
 import java.util.ArrayList;
 import java.util.List;
 
-public class FacadeMapper {
+public class FacadeMapper implements IMapper {
 
     private final Connector connector;
     private final OrderMapper orderMapper;

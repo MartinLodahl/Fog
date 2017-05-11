@@ -4,6 +4,7 @@ import fog.business.BusinessFacadeMapper;
 import fog.data.CustomException;
 import fog.data.FacadeMapper;
 import fog.domain.Order;
+import fog.helper.MapperHelp;
 import java.io.IOException;
 import java.util.List;
 import java.util.logging.Level;
@@ -22,7 +23,7 @@ import javax.servlet.http.HttpSession;
 })
 public class SearchControl extends HttpServlet
 {
-
+   private MapperHelp mapperHelp = new MapperHelp();
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -60,11 +61,12 @@ public class SearchControl extends HttpServlet
             return;
         }
         BusinessFacadeMapper bFacadeMapper = new BusinessFacadeMapper();
-        
+        System.out.println(bFacadeMapper);
+        mapperHelp.setImapper(bFacadeMapper);
         try
         {
-            List<Order> newOrders = bFacadeMapper.getAllActiveOrders(true);
-            List<Order> arkiveretOrders = bFacadeMapper.getAllActiveOrders(false);
+            List<Order> newOrders = mapperHelp.getImapper().getAllActiveOrders(true);
+            List<Order> arkiveretOrders = mapperHelp.getImapper().getAllActiveOrders(false);
             request.setAttribute("newOrders", newOrders);
             request.setAttribute("arkiveretOrders", arkiveretOrders);
             

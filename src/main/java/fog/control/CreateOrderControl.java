@@ -6,6 +6,7 @@ import fog.data.FacadeMapper;
 import fog.domain.Material;
 import fog.domain.Order;
 import fog.domain.OrderItem;
+import fog.helper.MapperHelp;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.logging.Level;
@@ -21,7 +22,8 @@ import javax.servlet.http.HttpSession;
     "/createOrder"
 })
 public class CreateOrderControl extends HttpServlet {
-    BusinessFacadeMapper bFacadeMapper = new BusinessFacadeMapper();
+    private MapperHelp mapperHelp = new MapperHelp();
+    private BusinessFacadeMapper bFacadeMapper = new BusinessFacadeMapper();
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -33,12 +35,12 @@ public class CreateOrderControl extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+        mapperHelp.setImapper(bFacadeMapper);
         try
         {
             HttpSession session = request.getSession();
            
-            ArrayList<String> callDates = bFacadeMapper.getBookedDates();
+            ArrayList<String> callDates = mapperHelp.getImapper().getBookedDates();
             session.setAttribute("calldate", callDates);
             
             request.getRequestDispatcher("createOrder.jsp").forward(request, response);
@@ -83,15 +85,15 @@ dag-måned-år
             Order order = new Order(0, name, email, phone, false, width, length, height, skur, build, false, callDate);
             
             request.setAttribute("order", order);
-            
-            int orderID = bFacadeMapper.createOrder(order);
+            mapperHelp.setImapper(bFacadeMapper);
+            int orderID = mapperHelp.getImapper().createOrder(order);
             
 
             ArrayList<Material> list = bFacadeMapper.createMaterialList(length, width, skur, height);
-            bFacadeMapper.createOrderItems(list, orderID);
+            mapperHelp.getImapper().createOrderItems(list, orderID);
 
             //Sends the materiallist to the frontend
-            ArrayList<OrderItem> orderItems = bFacadeMapper.getOrderItems(orderID);
+            ArrayList<OrderItem> orderItems = mapperHelp.getImapper().getOrderItems(orderID);
             request.setAttribute("orderItems", orderItems);
             double total = bFacadeMapper.getOrderTotal(orderID);
             request.setAttribute("total", total);

@@ -4,6 +4,7 @@ import fog.business.BusinessFacadeMapper;
 import fog.data.CustomException;
 import fog.data.FacadeMapper;
 import fog.domain.Material;
+import fog.helper.MapperHelp;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -20,6 +21,7 @@ import javax.servlet.http.HttpSession;
 })
 public class MaterialControl extends HttpServlet
 {
+    private MapperHelp mapperHelp = new MapperHelp();
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException
@@ -55,7 +57,8 @@ public class MaterialControl extends HttpServlet
             
             
             BusinessFacadeMapper bFacadeMapper = new BusinessFacadeMapper();
-            bFacadeMapper.insertMatrial(material);
+            mapperHelp.setImapper(bFacadeMapper);
+            mapperHelp.getImapper().insertMatrial(material);
             
             response.sendRedirect("index.html");
         } catch (CustomException ex) {
