@@ -28,7 +28,6 @@ public class OrderControl extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    private FacadeMapper facadeMapper;
     private BusinessFacadeMapper bFacadeMapper;
 
     /**
@@ -52,8 +51,8 @@ public class OrderControl extends HttpServlet {
             response.sendRedirect("./login");
         } else {
             try {
-                Order order = facadeMapper.getOrderById(orderId);
-                ArrayList<OrderItem> orderItems = facadeMapper.getOrderItems(orderId);
+                Order order = bFacadeMapper.getOrderById(orderId);
+                ArrayList<OrderItem> orderItems = bFacadeMapper.getOrderItems(orderId);
                 double total = bFacadeMapper.getOrderTotal(orderId);
                 if (order == null) {
 
@@ -98,10 +97,10 @@ public class OrderControl extends HttpServlet {
         
 
         try {
-            Order order = facadeMapper.getOrderById(id);
+            Order order = bFacadeMapper.getOrderById(id);
 
             order.setStatus(orderDone != null);
-            facadeMapper.updateOrder(order);
+            bFacadeMapper.updateOrder(order);
             response.sendRedirect("order?orderid=" + id);
             //request.getRequestDispatcher("order.jsp").forward(request, response);
 

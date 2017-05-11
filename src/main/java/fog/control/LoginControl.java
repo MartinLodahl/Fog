@@ -2,7 +2,6 @@ package fog.control;
 
 import fog.business.BusinessFacadeMapper;
 import fog.data.CustomException;
-import fog.data.FacadeMapper;
 import fog.domain.User;
 import fog.helper.PasswordAuthentication;
 import java.io.IOException;

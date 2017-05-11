@@ -2,7 +2,6 @@ package fog.control;
 
 import fog.business.BusinessFacadeMapper;
 import fog.data.CustomException;
-import fog.data.FacadeMapper;
 import fog.domain.Material;
 import java.io.IOException;
 import java.util.logging.Level;
