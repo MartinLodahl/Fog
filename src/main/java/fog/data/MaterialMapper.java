@@ -23,7 +23,7 @@ public class MaterialMapper {
 
 
 
-    public void CreateOrderItems(ArrayList<Material> list, int orderID) throws CustomException {
+    public void createOrderItems(ArrayList<Material> list, int orderID) throws CustomException {
         try {
             for (int i = 0; i < list.size(); i++) {
                 String query = "INSERT INTO orderitems "
@@ -102,7 +102,7 @@ public class MaterialMapper {
         return null;
     }
 
-    private Material get2DimensionalItem(String type, int size1, int size2, int quantity) throws CustomException {
+    public Material get2DimensionalItem(String type, int size1, int size2, int quantity) throws CustomException {
         try {
             String query = "SELECT * FROM materials where type=?;";
             PreparedStatement stmt = connector.getConnection().prepareStatement(query);

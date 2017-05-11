@@ -24,12 +24,16 @@ public class FacadeMapper {
     }
 //MaterialMapper
 
-    public ArrayList<Material> createMaterialList(int length, int width, boolean skur, int heigth) throws CustomException {
-        return materialMapper.CreateMaterialList(length, width, skur, heigth);
+    public Material getByType(String type, int size, int quantity) throws CustomException{
+       return materialMapper.getByType(type, size, quantity);
+    }
+    
+    public Material get2DimensionalItem(String type, int size1, int size2, int quantity) throws CustomException{
+        return materialMapper.get2DimensionalItem(type, size1, size2, quantity);
     }
 
     public void createOrderItems(ArrayList<Material> list, int orderID) throws CustomException {
-        materialMapper.CreateOrderItems(list, orderID);
+        materialMapper.createOrderItems(list, orderID);
     }
 
     public void insertMatrial(Material material) throws CustomException {
