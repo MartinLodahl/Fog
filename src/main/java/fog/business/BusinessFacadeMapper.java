@@ -18,28 +18,25 @@ import java.util.List;
  *
  * @author Pravien
  */
-public class BusinessFacadeMapper
-{
+public class BusinessFacadeMapper {
 
-    OrderCalculation orderCalculation;
-    FacadeMapper facadeMapper;
+    private final OrderCalculation orderCalculation;
+    private final FacadeMapper facadeMapper;
 
-    public BusinessFacadeMapper ()
-    {
-      orderCalculation = new OrderCalculation();  
+    public BusinessFacadeMapper() {
+        orderCalculation = new OrderCalculation();
+        facadeMapper = new FacadeMapper();
     }
 
-    public double getOrderTotal(int id) throws CustomException
-    {
+    public double getOrderTotal(int id) throws CustomException {
 
         return orderCalculation.getOrderTotal(id);
     }
-    
-    
-    public ArrayList<Material> createMaterialList(int length, int width, boolean skur, int heigth) throws CustomException{
+
+    public ArrayList<Material> createMaterialList(int length, int width, boolean skur, int heigth) throws CustomException {
         return orderCalculation.createMaterialList(length, width, skur, heigth);
     }
-            
+
     public void createOrderItems(ArrayList<Material> list, int orderID) throws CustomException {
         facadeMapper.createOrderItems(list, orderID);
     }
@@ -47,10 +44,8 @@ public class BusinessFacadeMapper
     public void insertMatrial(Material material) throws CustomException {
         facadeMapper.insertMatrial(material);
     }
-    
-    
-//OrderItemsMapper
 
+//OrderItemsMapper
     public ArrayList<OrderItem> getOrderItemsByOrderId(int orderId) throws CustomException {
         return facadeMapper.getOrderItemsByOrderId(orderId);
     }
@@ -79,8 +74,8 @@ public class BusinessFacadeMapper
     public ArrayList<OrderItem> getOrderItems(int id) throws CustomException {
         return facadeMapper.getOrderItems(id);
     }
-    
-    public ArrayList<String> getBookedDates () throws CustomException {
+
+    public ArrayList<String> getBookedDates() throws CustomException {
         return facadeMapper.getBookedDates();
     }
 
@@ -88,7 +83,5 @@ public class BusinessFacadeMapper
     public User getUserByUsername(String username) throws CustomException {
         return facadeMapper.getUserByUsername(username);
     }
-    
-    
 
 }
