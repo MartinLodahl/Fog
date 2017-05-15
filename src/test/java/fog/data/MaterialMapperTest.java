@@ -1,5 +1,7 @@
 package fog.data;
 
+import fog.business.BusinessFacadeMapper;
+import fog.business.OrderCalculation;
 import fog.domain.Material;
 import java.util.ArrayList;
 import org.junit.After;
@@ -42,13 +44,13 @@ public class MaterialMapperTest {
         int width = 500;
         boolean skur = false;
         int heigth = 200;
-        MaterialMapper instance = new MaterialMapper(con);
+        OrderCalculation instance = new OrderCalculation();
         ArrayList<Material> expResult = new ArrayList<>();
         expResult.add(new Material(1, "stolpe", "stolpe", 200, 10.00, 4));
         expResult.add(new Material(4, "Plastik braedde2", "braedde", 200, 5.00*length/100, 2));
         expResult.add(new Material(3, "Trae braedde", "braedde", 500, 10.00, 2));
         expResult.add(new Material(5, "Normalt tag", "tag", 500, 200, (10.00*length*width)/10000, 1));
-        ArrayList<Material> result = instance.CreateMaterialList(length, width, skur, heigth);
+        ArrayList<Material> result = instance.createMaterialList(length, width, skur, heigth);
       // Assert.assertArrayEquals(expResult.toArray(), result.toArray());
         for (int i = 0; i < expResult.size(); i++) {
             Assert.assertEquals(expResult.get(i).toString(), result.get(i).toString());   
