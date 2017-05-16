@@ -66,7 +66,7 @@
                     <line x1="${(300-order.length/2)}" y1="0" x2="${(300-order.length/2)+order.length}" y2="0" style="stroke:rgb(0,0,0);stroke-width:2" />
                     <line x1="${(300-order.length/2)+order.length}" y1="0" x2="${(300-order.length/2)+order.length}" y2="${order.height}" style="stroke:rgb(0,0,0);stroke-width:2" />
                     <text x="300" y="15" text-anchor="middle" alignment-baseline="central" font-family="sans-serif" font-size="20px" fill="black">længde ${order.length} cm</text>
-                    <text x="${(300-order.length/2)+order.length-150}" y="${order.height/2}" font-family="sans-serif" font-size="20px" fill="black">Heigth ${order.height} cm</text>
+                    <text x="${(300-order.length/2)+order.length-150}" y="${order.height/2}" font-family="sans-serif" font-size="20px" fill="black">højde ${order.height} cm</text>
                     Sorry, your browser does not support inline SVG.
                     </svg>
                 </div>            

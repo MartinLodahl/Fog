@@ -20,7 +20,6 @@ public class OrderCalculation
     
     public double getOrderTotal(int id) throws BusinessException {
         try {
-            FacadeMapper fMapper = new FacadeMapper();
             Order order = fMapper.getOrderById(id);
             List<OrderItem> orderItems = fMapper.getOrderItems(id);
             double total = 0;
