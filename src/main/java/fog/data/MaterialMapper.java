@@ -69,17 +69,11 @@ public class MaterialMapper {
             ResultSet res = stmt.executeQuery();
             while (res.next()) {
                 if (res.getInt("size") == size) {
-                    query = "SELECT * FROM materials where type=? and size=?;";
-                    stmt = connector.getConnection().prepareStatement(query);
-                    stmt.setString(1, type);
-                    stmt.setInt(2, size);
-                    res = stmt.executeQuery();
-                    if (res.next()) {
                         int id = res.getInt("id");
                         String name = res.getString("name");
                         Double price = res.getDouble("price");
                         return (new Material(id, name, type, size, price, quantity));
-                    }
+                    
                 }
             }
 
