@@ -6,7 +6,7 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class Connector {
+public class Connector implements IConnector {
       
    
     
@@ -15,7 +15,7 @@ public class Connector {
     private final String URL = "jdbc:mysql://localhost:3306/fog";
     private final String id = "root";
     private final String pw = "fuck";
-
+    
     public Connection getConnection() throws CustomException {
         Connection con = null;
         try {
@@ -41,4 +41,6 @@ public class Connector {
             throw ex;
         }
     }
+
+    
 }

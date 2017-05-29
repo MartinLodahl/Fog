@@ -11,9 +11,9 @@ import java.util.logging.Logger;
 public class OrderItemsMapper
 {
     
-    private final Connector connector;
+    private final IConnector connector;
 
-    public OrderItemsMapper(Connector connector) {
+    public OrderItemsMapper(IConnector connector) {
         this.connector = connector;
        
     }

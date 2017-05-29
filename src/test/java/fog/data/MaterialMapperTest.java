@@ -54,5 +54,7 @@ public class MaterialMapperTest {
         for (int i = 0; i < expResult.size(); i++) {
             Assert.assertEquals(expResult.get(i).toString(), result.get(i).toString());   
         }
-    }    
+    }
+
+    
 }

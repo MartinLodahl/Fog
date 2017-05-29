@@ -46,16 +46,20 @@ public class MaterialControl extends HttpServlet
                 return;
             }
             
+            // request parameters, from addmaterial site.
             String name = request.getParameter("materialname");
             String type  = request.getParameter("select");
+            //parse the parameters to Integers.
             int size = Integer.parseInt(request.getParameter("size"));
             int price = Integer.parseInt(request.getParameter("price"));
             Material material = new Material (name,type,size,price);
             
-            
+            // create Business facademapper, so we can acesse the database.
             BusinessFacadeMapper bFacadeMapper = new BusinessFacadeMapper();
+            //insert the material
             bFacadeMapper.insertMatrial(material);
             
+            // redirects to the index page.
             response.sendRedirect("index.html");
         } catch (BusinessException ex) {
             Logger.getLogger(MaterialControl.class.getName()).log(Level.SEVERE, null, ex);

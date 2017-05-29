@@ -37,6 +37,7 @@ public class CreateOrderControl extends HttpServlet {
         {
             HttpSession session = request.getSession();
            
+            
             ArrayList<String> callDates = bFacadeMapper.getBookedDates();
             session.setAttribute("calldate", callDates);
             
@@ -62,13 +63,7 @@ public class CreateOrderControl extends HttpServlet {
             boolean build = request.getParameter("build") != null;
             String callDate = request.getParameter("callDate");
             
-            /*
-mm/dd/yyyy
-måned/dag/år
-dd-mm-yyyy
-dag-måned-år
 
-             */
             
             String tempDay = callDate.substring(3, 5);
             String tempMonth = callDate.substring(0,2);

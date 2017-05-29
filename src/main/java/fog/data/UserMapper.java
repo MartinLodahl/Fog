@@ -10,9 +10,9 @@ import java.util.logging.Logger;
 
 public class UserMapper
 {
-    private final Connector connector;
+    private final IConnector connector;
 
-    public UserMapper(Connector connector) {
+    public UserMapper(IConnector connector) {
         this.connector = connector;
     }
 

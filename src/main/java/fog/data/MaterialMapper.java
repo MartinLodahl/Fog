@@ -15,9 +15,9 @@ import java.util.logging.Logger;
 
 public class MaterialMapper {
 
-    private final Connector connector;
+    private final IConnector connector;
 
-    public MaterialMapper(Connector connector) {
+    public MaterialMapper(IConnector connector) {
         this.connector = connector;
     }
 
